@@ -13,10 +13,8 @@ namespace UI.WebDriver
         {
             Chrome,
             Edge,
-            RemoteChrome,
-            RemoteEdge,
-            Firefox,
-            RemoteFirefox
+            RemoteChrome,            
+            Firefox,            
         }
 
         public static IWebDriver GetDriver(BrowserType browser)
