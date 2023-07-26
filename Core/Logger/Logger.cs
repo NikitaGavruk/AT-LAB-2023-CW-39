@@ -33,7 +33,6 @@ namespace Core.Logger
 
         public static class ExtentReporter
         {
-
             public enum Projects { UI, API, BDD }
 
             public static Status TestStatusConvert(TestStatus status)
