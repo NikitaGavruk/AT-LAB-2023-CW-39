@@ -2,44 +2,73 @@
 using OpenQA.Selenium.Support.UI;
 using UI.WebDriver;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UI.Utils
 {
-    public static class WebDriverExtensions
-    {    
+    public static class WebDriverExtension
+    {
+        private static void WaitElementIsVisible(By locator, int timeSeconds)
+        {
+            WebDriverWait wait = new WebDriverWait(Browser.GetDriver(), TimeSpan.FromSeconds(timeSeconds));
+            wait.Until(driver => driver.FindElement(locator).Displayed);
+        }
         public static void ClickOnElement(By locator, int waitSeconds)
         {
-            IWebDriver driver = Browser.GetDriver();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(waitSeconds));
-            wait.Until(d => d.FindElement(locator).Displayed);
-            driver.FindElement(locator).Click();
+            WaitElementIsVisible(locator, waitSeconds);
+            Browser.GetDriver().FindElement(locator).Click();
         }
 
         public static void ClickOnElement(By locator)
         {
-            IWebDriver driver = Browser.GetDriver();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            wait.Until(d => d.FindElement(locator).Displayed);
-            driver.FindElement(locator).Click();
+            WaitElementIsVisible(locator, 5);
+            Browser.GetDriver().FindElement(locator).Click();
+        }
+
+        public static void SendKeysToElement(By locator, string text)
+        {
+            WaitElementIsVisible(locator, 5);
+            Browser.GetDriver().FindElement(locator).SendKeys(text);
         }
 
         public static void ClickOnEnter(By locator)
         {
-            IWebDriver driver = Browser.GetDriver();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            wait.Until(d => d.FindElement(locator).Displayed);
-            driver.FindElement(locator).SendKeys(Keys.Enter);
-        }
+            WaitElementIsVisible(locator, 5);
+            Browser.GetDriver().FindElement(locator).SendKeys(Keys.Enter);
+        }        
 
         public static string GetTextFromElement(By locator, int waitSeconds)
         {
-            IWebDriver driver = Browser.GetDriver();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(waitSeconds));
+            WaitElementIsVisible(locator, waitSeconds);
+            return Browser.GetDriver().FindElement(locator).Text;
+        }
 
+        public static bool IsElementVisible(By locator, int timeSeconds)
+        {
+            try
+            {
+                WaitElementIsVisible(locator, timeSeconds);
+                return Browser.GetDriver().FindElement(locator).Displayed;
+            }
+            catch (WebDriverTimeoutException)
+            {
+                return false;
+            }
+            catch (StaleElementReferenceException)
+            {
+                return false;
+            }
+        }
+
+        public static string GetAttributeValueFromElement(By locator, int waitSeconds, string attribute)
+        {
+            WaitElementIsVisible(locator, waitSeconds);
+            return Browser.GetDriver().FindElement(locator).GetAttribute(attribute);
+        }
+
+        public static void ClearField(By locator)
+        {
+            WaitElementIsVisible(locator, 5);
+            Browser.GetDriver().FindElement(locator).Clear();
         }
     }
 }
