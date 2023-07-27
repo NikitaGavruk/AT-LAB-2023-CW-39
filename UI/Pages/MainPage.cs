@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace UI.Pages
 {
-    public class MainPage
+    public class MainPage : AbstractPage
     {
         private static readonly By searchField = By.CssSelector("[name='search']");
         private static readonly By loginButton = By.CssSelector("#pt-login-2>a>span");

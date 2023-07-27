@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UI.Pages
 {
-    internal class LoginPage
+    internal class LoginPage :AbstractPage
     {
         private static readonly By usernameField = By.CssSelector("#wpName1");
         private static readonly By passwordField = By.CssSelector("#wpPassword1");
