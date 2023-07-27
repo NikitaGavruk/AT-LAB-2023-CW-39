@@ -18,12 +18,6 @@ namespace UI.Utils
             Browser.GetDriver().FindElement(locator).Click();
         }
 
-        public static void ClickOnElement(By locator)
-        {
-            WaitElementIsVisible(locator, 5);
-            Browser.GetDriver().FindElement(locator).Click();
-        }
-
         public static void SendKeysToElement(By locator, string text, int timeSeconds)
         {
             WaitElementIsVisible(locator, timeSeconds);
@@ -59,7 +53,7 @@ namespace UI.Utils
             }
         }
 
-        public static string GetAttributeValueFromElement(By locator, int timeSeconds, string attribute)
+        public static string GetAttributeValueFromElement(By locator, string attribute, int timeSeconds)
         {
             WaitElementIsVisible(locator, timeSeconds);
             return Browser.GetDriver().FindElement(locator).GetAttribute(attribute);
