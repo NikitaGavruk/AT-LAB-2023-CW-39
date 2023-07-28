@@ -28,31 +28,34 @@ namespace UI.WebDriver
 			webDriver = WebDriverFactory.GetDriver(_currentBrowser);
 		}
 
-		public static Browser Instance => _currentInstance ?? (_currentInstance = new Browser());
-
 		public static IWebDriver GetDriver()
 		{
+			if (webDriver == null)
+			{
+				_currentInstance = new Browser();
+			}
+
 			return webDriver;
 		}
 
 		public static void WindowMaximaze()
 		{
-			webDriver.Manage().Window.Maximize();
+            GetDriver().Manage().Window.Maximize();
 		}
 
 		public static void NavigateTo(string url)
 		{
-			webDriver.Navigate().GoToUrl(url);
+            GetDriver().Navigate().GoToUrl(url);
 		}
 
 		public static void StartNavigate()
 		{
-			webDriver.Navigate().GoToUrl(Configuration.StartUrl);
+			GetDriver().Navigate().GoToUrl(Configuration.StartUrl);
 		}
 
 		public static void QuiteBrowser()
 		{
-			webDriver.Quit();
+			GetDriver().Quit();
 			_currentInstance = null;
 			webDriver = null;
 			_browser = null;
