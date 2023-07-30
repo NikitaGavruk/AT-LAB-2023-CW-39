@@ -7,59 +7,55 @@ namespace UI.WebDriver
 {
 	public class Browser
 	{
-		public static BrowserType _currentBrowser;
-		private static Browser _currentInstance;
-		private static string _browser;
+		public static BrowserType _currentBrowser;			
 		private static int ImplWait;
-		private static IWebDriver webDriver;
+		private static IWebDriver currentInstance;
 		private static Actions _actions;
 		private static IJavaScriptExecutor _jsExecuter;
-		private static IWebDriver driver => GetDriver();
+		private static IWebDriver webDriver => GetDriver();
 
 		private static void InitParams()
 		{
 			ImplWait = Convert.ToInt32(Configuration.ElementTimeout);
-			_browser = Configuration.Browser;
-			Enum.TryParse(_browser, out _currentBrowser);
+			string browserFromConfig = Configuration.Browser;
+			Enum.TryParse(browserFromConfig, out _currentBrowser);
 		}
 
 		private Browser()
 		{
 			InitParams();
-			webDriver = WebDriverFactory.GetDriver(_currentBrowser);
+			currentInstance = WebDriverFactory.GetDriver(_currentBrowser);
 		}
 
 		public static IWebDriver GetDriver()
 		{
-			if (webDriver == null)
+			if (currentInstance == null)
 			{
-				_currentInstance = new Browser();
+				new Browser();
 			}
 
-			return webDriver;
+			return currentInstance;
 		}
 
 		public static void WindowMaximaze()
 		{
-			driver.Manage().Window.Maximize();
+            webDriver.Manage().Window.Maximize();
 		}
 
 		public static void NavigateTo(string url)
 		{
-			driver.Navigate().GoToUrl(url);
+			webDriver.Navigate().GoToUrl(url);
 		}
 
 		public static void StartNavigate()
 		{
-			driver.Navigate().GoToUrl(Configuration.StartUrl);
+			webDriver.Navigate().GoToUrl(Configuration.StartUrl);
 		}
 
 		public static void QuiteBrowser()
 		{
-			driver.Quit();
-			_currentInstance = null;
-			webDriver = null;
-			_browser = null;
+			webDriver.Quit();			
+			currentInstance = null;			
 		}
 
 		public static Actions GetActions()
