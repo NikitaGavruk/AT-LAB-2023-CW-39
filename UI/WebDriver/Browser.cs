@@ -39,7 +39,7 @@ namespace UI.WebDriver
 
 		public static void WindowMaximaze()
 		{
-            webDriver.Manage().Window.Maximize();
+			webDriver.Manage().Window.Maximize();
 		}
 
 		public static void NavigateTo(string url)
