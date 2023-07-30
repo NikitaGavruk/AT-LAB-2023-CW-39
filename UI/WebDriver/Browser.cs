@@ -14,6 +14,7 @@ namespace UI.WebDriver
 		private static IWebDriver webDriver;
 		private static Actions _actions;
 		private static IJavaScriptExecutor _jsExecuter;
+		private static IWebDriver driver => GetDriver();
 
 		private static void InitParams()
 		{
@@ -40,22 +41,22 @@ namespace UI.WebDriver
 
 		public static void WindowMaximaze()
 		{
-            GetDriver().Manage().Window.Maximize();
+			driver.Manage().Window.Maximize();
 		}
 
 		public static void NavigateTo(string url)
 		{
-            GetDriver().Navigate().GoToUrl(url);
+			driver.Navigate().GoToUrl(url);
 		}
 
 		public static void StartNavigate()
 		{
-			GetDriver().Navigate().GoToUrl(Configuration.StartUrl);
+			driver.Navigate().GoToUrl(Configuration.StartUrl);
 		}
 
 		public static void QuiteBrowser()
 		{
-			GetDriver().Quit();
+			driver.Quit();
 			_currentInstance = null;
 			webDriver = null;
 			_browser = null;
