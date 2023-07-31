@@ -28,12 +28,14 @@ namespace UI.Tests
 
 			if (NUnit_status.Equals(TestStatus.Failed))
 			{
-				var failMessage = $"[{TestContext.CurrentContext.Test.Name}] Test failed with Status: " +	TestContext.CurrentContext.Result.Message;
+				var failMessage = $"[{TestContext.CurrentContext.Test.Name}] Test failed with Status: " +
+					TestContext.CurrentContext.Result.Message;
 				CustomLogger.LogInfo(Utils.LogLevel.Error, failMessage);
 			}
 			else
 			{
-				var statusMessage = $"[{TestContext.CurrentContext.Test.Name}] Test ended with Status: " +				TestContext.CurrentContext.Result.Outcome.Status.ToString();
+				var statusMessage = $"[{TestContext.CurrentContext.Test.Name}] Test ended with Status: " +
+					TestContext.CurrentContext.Result.Outcome.Status.ToString();
 				CustomLogger.LogInfo(Utils.LogLevel.Info, statusMessage);
 
 			}
