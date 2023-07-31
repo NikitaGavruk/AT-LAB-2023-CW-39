@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Interactions;
 using UI.WebDriver;
 using System;
 
@@ -63,6 +64,18 @@ namespace UI.Utils
         {
             WaitElementIsVisible(locator, timeSeconds);
             Browser.GetDriver().FindElement(locator).Clear();
+        }
+
+        public static IWebElement GetElement(By locator, int timeSeconds)
+        {
+            WaitElementIsVisible(locator, timeSeconds);
+            return Browser.GetDriver().FindElement(locator);
+        }
+
+        public static void ClickWithAction(By locator, int timeSeconds)
+        {            
+            var elementToClick = GetElement(locator, timeSeconds);
+            Browser.GetActions().MoveToElement(elementToClick).Click().Perform();
         }
     }
 }
