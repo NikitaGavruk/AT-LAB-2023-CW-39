@@ -7,32 +7,34 @@ namespace UI.WebDriver
 {
 	public class Browser
 	{
-		public static BrowserType _currentBrowser;
-		private static Browser _currentInstance;
-		private static string _browser;
+		public static BrowserType _currentBrowser;			
 		private static int ImplWait;
-		private static IWebDriver webDriver;
+		private static IWebDriver currentInstance;
 		private static Actions _actions;
 		private static IJavaScriptExecutor _jsExecuter;
+		private static IWebDriver webDriver => GetDriver();
 
 		private static void InitParams()
 		{
 			ImplWait = Convert.ToInt32(Configuration.ElementTimeout);
-			_browser = Configuration.Browser;
-			Enum.TryParse(_browser, out _currentBrowser);
+			string browserFromConfig = Configuration.Browser;
+			Enum.TryParse(browserFromConfig, out _currentBrowser);
 		}
 
 		private Browser()
 		{
 			InitParams();
-			webDriver = WebDriverFactory.GetDriver(_currentBrowser);
+			currentInstance = WebDriverFactory.GetDriver(_currentBrowser);
 		}
-
-		public static Browser Instance => _currentInstance ?? (_currentInstance = new Browser());
 
 		public static IWebDriver GetDriver()
 		{
-			return webDriver;
+			if (currentInstance == null)
+			{
+				new Browser();
+			}
+
+			return currentInstance;
 		}
 
 		public static void WindowMaximaze()
@@ -52,10 +54,8 @@ namespace UI.WebDriver
 
 		public static void QuiteBrowser()
 		{
-			webDriver.Quit();
-			_currentInstance = null;
-			webDriver = null;
-			_browser = null;
+			webDriver.Quit();			
+			currentInstance = null;			
 		}
 
 		public static Actions GetActions()
