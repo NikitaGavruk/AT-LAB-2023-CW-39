@@ -14,9 +14,19 @@ namespace UI.Pages
         public static readonly By title = By.CssSelector("#firstHeading>span");
         public static readonly By viewHistoryButton = By.CssSelector("#ca-history>a>span");
 
-        public string GetTitle()
+        public string GetTitle(int timeSeconds)
         {
-            return WebDriverExtension.GetTextFromElement(title, 5);
+            return WebDriverExtension.GetTextFromElement(title, timeSeconds);
+        }
+
+        public void ClickToViewHistory(int timeSeconds)
+        {
+            WebDriverExtension.ClickOnElement(viewHistoryButton, timeSeconds);
+        }
+
+        public void ClickToEdit(int timeSeconds)
+        {
+            WebDriverExtension.ClickOnElement(editButton, timeSeconds);
         }
     }
 }

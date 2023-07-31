@@ -15,11 +15,19 @@ namespace UI.Pages
         public static readonly By rememberMeCheckbox = By.CssSelector("#wpRemember");
         public static readonly By loginButton = By.CssSelector("#wpLoginAttempt");
 
-        public void Login(string username, string password)
+        public void EnterUsername(string username, int timeSeconds)
         {
-            WebDriverExtension.SendKeysToElement(usernameField, username, 5);
-            WebDriverExtension.SendKeysToElement(passwordField, password, 1);
-            WebDriverExtension.ClickOnElement(loginButton, 1);
+            WebDriverExtension.SendKeysToElement(usernameField, username, timeSeconds);
+        }
+
+        public void EnterPassword(string password, int timeSeconds)
+        {
+            WebDriverExtension.SendKeysToElement(passwordField, password, timeSeconds);
+        }
+
+        public void ClickToLoginButton(int timeSeconds)
+        {
+            WebDriverExtension.ClickOnElement(loginButton, timeSeconds);
         }
     }
 }
