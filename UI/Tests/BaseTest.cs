@@ -15,7 +15,6 @@ namespace UI.Tests
 		[SetUp]
 		public void Setup()
 		{
-
 			Driver = Browser.GetDriver();
 			Browser.WindowMaximaze();
 			Browser.StartNavigate();
