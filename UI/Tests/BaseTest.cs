@@ -1,7 +1,4 @@
-﻿using NUnit.Framework.Interfaces;
-using NUnit.Framework.Internal;
-using NUnit.Framework;
-using System;
+﻿using NUnit.Framework;
 using UI.WebDriver;
 using OpenQA.Selenium;
 
@@ -10,7 +7,6 @@ namespace UI.Tests
 	public class BaseTest
 	{
 		protected static IWebDriver Driver;
-
 
 		[SetUp]
 		public void Setup()
@@ -24,11 +20,6 @@ namespace UI.Tests
 		public void Quite()
 		{
 			Browser.QuiteBrowser();
-		}
-
-		[OneTimeTearDown]
-		public void OneTimeTearDown()
-		{
 		}
 	}
 }
