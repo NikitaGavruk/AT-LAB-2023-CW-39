@@ -15,53 +15,53 @@ namespace UI.Pages
         private static readonly By logoutButton = By.XPath("//*[@id='pt-logout']/a/span[2]");
         private static readonly By loggedUsername = By.CssSelector("#pt-userpage-2>a>span");
 
-        public bool IsPageVisible(int timeSeconds)
+        public bool IsPageVisible()
         {
-            return WebDriverExtension.IsElementVisible(title, timeSeconds);
+            return WebDriverExtension.IsElementVisible(title);
         }
 
-        public LoginPage ToLoginPage(int timeSeconds)
+        public LoginPage ToLoginPage()
         {
-            WebDriverExtension.ClickOnElement(loginButton, timeSeconds);
+            WebDriverExtension.ClickOnElement(loginButton);
             return new LoginPage();
         }
 
-        public void CallUserDropdownMenu(int timeSeconds)
+        public void CallUserDropdownMenu()
         {
-            WebDriverExtension.ClickOnElement(userDropdownMenu, timeSeconds);
+            WebDriverExtension.ClickOnElement(userDropdownMenu);
         }
 
-        public LogoutPage ClickToLogout(int timeSeconds)
+        public LogoutPage ClickToLogout()
         {
-            WebDriverExtension.ClickOnElement(logoutButton, timeSeconds);
+            WebDriverExtension.ClickOnElement(logoutButton);
             return new LogoutPage();
         }
 
-        public void SendKeysToSearchField(string searchText, int timeSeconds)
+        public void SendKeysToSearchField(string searchText)
         {
-            WebDriverExtension.SendKeysToElement(searchField, searchText, timeSeconds);
+            WebDriverExtension.SendKeysToElement(searchField, searchText);
         }
 
-        public ArticlePage ClickToSearchButton(int timeSeconds)
+        public ArticlePage ClickToSearchButton()
         {
-            WebDriverExtension.ClickOnElement(searchButton, timeSeconds);
+            WebDriverExtension.ClickOnElement(searchButton);
             return new ArticlePage();
         }
 
-        public string GetLoggedUsername(int timeSeconds)
+        public string GetLoggedUsername()
         {
-            return WebDriverExtension.GetTextFromElement(loggedUsername, timeSeconds);
+            return WebDriverExtension.GetTextFromElement(loggedUsername);
         }
 
-        public ArticlePage ClickToRandomArticle(int timeSeconds)
+        public ArticlePage ClickToRandomArticle()
         {
-            WebDriverExtension.ClickOnElement(randomPageButton, timeSeconds);
+            WebDriverExtension.ClickOnElement(randomPageButton);
             return new ArticlePage();
         }
 
-        public void ClickToSideMenu(int timeSeconds)
+        public void ClickToSideMenu()
         {
-            WebDriverExtension.ClickWithAction(openSideMenuButton, timeSeconds);
+            WebDriverExtension.ClickWithAction(openSideMenuButton);
         }
     }
 }
