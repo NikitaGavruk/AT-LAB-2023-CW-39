@@ -1,14 +1,9 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UI.Utils;
 
 namespace UI.Pages
 {
-    internal class EditHistoryPage : AbstractPage
+    public class EditHistoryPage : AbstractPage
     {
         private static readonly By title = By.CssSelector("#firstHeading");
 

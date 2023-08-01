@@ -1,10 +1,5 @@
 ﻿using OpenQA.Selenium;
 using UI.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UI.Pages
 {
@@ -25,9 +20,10 @@ namespace UI.Pages
             return WebDriverExtension.IsElementVisible(title, timeSeconds);
         }
 
-        public void ToLoginPage(int timeSeconds)
+        public LoginPage ToLoginPage(int timeSeconds)
         {
             WebDriverExtension.ClickOnElement(loginButton, timeSeconds);
+            return new LoginPage();
         }
 
         public void CallUserDropdownMenu(int timeSeconds)
@@ -35,9 +31,10 @@ namespace UI.Pages
             WebDriverExtension.ClickOnElement(userDropdownMenu, timeSeconds);
         }
 
-        public void ClickToLogout(int timeSeconds)
+        public LogoutPage ClickToLogout(int timeSeconds)
         {
             WebDriverExtension.ClickOnElement(logoutButton, timeSeconds);
+            return new LogoutPage();
         }
 
         public void SendKeysToSearchField(string searchText, int timeSeconds)
@@ -45,9 +42,10 @@ namespace UI.Pages
             WebDriverExtension.SendKeysToElement(searchField, searchText, timeSeconds);
         }
 
-        public void ClickToSearchButton(int timeSeconds)
+        public ArticlePage ClickToSearchButton(int timeSeconds)
         {
             WebDriverExtension.ClickOnElement(searchButton, timeSeconds);
+            return new ArticlePage();
         }
 
         public string GetLoggedUsername(int timeSeconds)
@@ -55,9 +53,10 @@ namespace UI.Pages
             return WebDriverExtension.GetTextFromElement(loggedUsername, timeSeconds);
         }
 
-        public void ClickToRandomArticle(int timeSeconds)
+        public ArticlePage ClickToRandomArticle(int timeSeconds)
         {
             WebDriverExtension.ClickOnElement(randomPageButton, timeSeconds);
+            return new ArticlePage();
         }
 
         public void ClickToSideMenu(int timeSeconds)
