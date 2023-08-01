@@ -8,9 +8,9 @@ namespace UI.Pages
     {
         private static readonly By toMainPageLink = By.CssSelector("[title=\"Main Page\"]");
 
-        public MainPage ToMainPage(int timeSeconds)
+        public MainPage ToMainPage()
         {
-            WebDriverExtension.ClickOnElement(toMainPageLink, timeSeconds);
+            WebDriverExtension.ClickOnElement(toMainPageLink);
             return new MainPage();
         }
     }

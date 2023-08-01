@@ -11,11 +11,11 @@ namespace UI.Steps
     {
         private static LoginPage loginPage = new LoginPage();
 
-        public static MainPage Login(string username, string password, int timeSeconds)
+        public static MainPage Login(string username, string password)
         {
-            loginPage.EnterUsername(username, timeSeconds);
-            loginPage.EnterPassword(password, timeSeconds);
-            loginPage.ClickToLoginButton(timeSeconds);
+            loginPage.EnterUsername(username);
+            loginPage.EnterPassword(password);
+            loginPage.ClickToLoginButton();
             return new MainPage();
         }
     }

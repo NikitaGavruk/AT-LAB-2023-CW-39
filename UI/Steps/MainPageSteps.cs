@@ -11,17 +11,17 @@ namespace UI.Steps
     {
         private static MainPage mainPage = new MainPage();
 
-        public static LogoutPage Logout(int timeSeconds)
+        public static LogoutPage Logout()
         {
-            mainPage.CallUserDropdownMenu(timeSeconds);
-            mainPage.ClickToLogout(timeSeconds);
+            mainPage.CallUserDropdownMenu();
+            mainPage.ClickToLogout();
             return new LogoutPage();
         }
 
-        public static ArticlePage Search(string searchText, int timeSeconds)
+        public static ArticlePage Search(string searchText)
         {
-            mainPage.SendKeysToSearchField(searchText, timeSeconds);
-            mainPage.ClickToSearchButton(timeSeconds);
+            mainPage.SendKeysToSearchField(searchText);
+            mainPage.ClickToSearchButton();
             return new ArticlePage();
         }
     }
