@@ -72,15 +72,15 @@ namespace UI.Utils
             Browser.GetDriver().FindElement(locator).Clear();
         }
 
-        public static IWebElement GetElement(By locator, int timeSeconds)
+        public static IWebElement GetElement(By locator)
         {
-            WaitElementIsVisible(locator, timeSeconds);
+            WaitElementIsVisible(locator);
             return Browser.GetDriver().FindElement(locator);
         }
 
-        public static void ClickWithAction(By locator, int timeSeconds)
+        public static void ClickWithAction(By locator)
         {            
-            var elementToClick = GetElement(locator, timeSeconds);
+            var elementToClick = GetElement(locator);
             Browser.GetActions().MoveToElement(elementToClick).Click().Perform();
         }
     }
