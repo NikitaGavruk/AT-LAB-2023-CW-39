@@ -14,13 +14,13 @@ namespace UI.Steps
         public static void Logout(int timeSeconds)
         {
             mainPage.CallUserDropdownMenu(timeSeconds);
-            mainPage.ClickToLogout(2);
+            mainPage.ClickToLogout(timeSeconds);
         }
 
         public static void Search(string searchText, int timeSeconds)
         {
             mainPage.SendKeysToSearchField(searchText, timeSeconds);
-            mainPage.ClickToSearchButton(1);
+            mainPage.ClickToSearchButton(timeSeconds);
         }
     }
 }

@@ -14,8 +14,8 @@ namespace UI.Steps
         public static void Login(string username, string password, int timeSeconds)
         {
             loginPage.EnterUsername(username, timeSeconds);
-            loginPage.EnterPassword(password, 1);
-            loginPage.ClickToLoginButton(1);
+            loginPage.EnterPassword(password, timeSeconds);
+            loginPage.ClickToLoginButton(timeSeconds);
         }
     }
 }
