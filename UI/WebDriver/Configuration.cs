@@ -1,6 +1,6 @@
 ﻿namespace UI.WebDriver
 {
-	public class Configuration
+	public static class Configuration
 	{
 		public static string GetEnvironmentVar(string var, string defaultaVar)
 		{
@@ -9,7 +9,7 @@
 
 		public static string ElementTimeout => GetEnvironmentVar("ElementTimeout", "30");
 
-		public static string Browser => GetEnvironmentVar("Browser", "RemoteChrome");
+		public static string Browser => GetEnvironmentVar("Browser", "Chrome");
 
 		public static string StartUrl => GetEnvironmentVar("StartUrl", "https://en.wikipedia.org");
 	}
