@@ -10,10 +10,10 @@ namespace UI.Pages
 {
     internal class LoginPage :AbstractPage
     {
-        public static readonly By usernameField = By.CssSelector("#wpName1");
-        public static readonly By passwordField = By.CssSelector("#wpPassword1");
-        public static readonly By rememberMeCheckbox = By.CssSelector("#wpRemember");
-        public static readonly By loginButton = By.CssSelector("#wpLoginAttempt");
+        private static readonly By usernameField = By.CssSelector("#wpName1");
+        private static readonly By passwordField = By.CssSelector("#wpPassword1");
+        private static readonly By rememberMeCheckbox = By.CssSelector("#wpRemember");
+        private static readonly By loginButton = By.CssSelector("#wpLoginAttempt");
 
         public void EnterUsername(string username, int timeSeconds)
         {

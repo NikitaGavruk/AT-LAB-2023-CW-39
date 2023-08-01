@@ -10,7 +10,7 @@ namespace UI.Pages
 {
     internal class EditHistoryPage : AbstractPage
     {
-        public static readonly By title = By.CssSelector("#firstHeading");
+        private static readonly By title = By.CssSelector("#firstHeading");
 
         public bool IsPageVisible(int timeSeconds)
         {

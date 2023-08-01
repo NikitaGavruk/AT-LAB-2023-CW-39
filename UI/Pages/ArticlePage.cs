@@ -10,9 +10,9 @@ namespace UI.Pages
 {
     internal class ArticlePage : AbstractPage
     {
-        public static readonly By editButton = By.CssSelector("#ca-edit>a>span");
-        public static readonly By title = By.CssSelector("#firstHeading>span");
-        public static readonly By viewHistoryButton = By.CssSelector("#ca-history>a>span");
+        private static readonly By editButton = By.CssSelector("#ca-edit>a>span");
+        private static readonly By title = By.CssSelector("#firstHeading>span");
+        private static readonly By viewHistoryButton = By.CssSelector("#ca-history>a>span");
 
         public string GetTitle(int timeSeconds)
         {

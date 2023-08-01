@@ -10,7 +10,7 @@ namespace UI.Pages
 {
     internal class EditPage : AbstractPage
     {
-        public static readonly By notLoggedWarning = By.CssSelector(".mw-halign-left");
+        private static readonly By notLoggedWarning = By.CssSelector(".mw-halign-left");
 
         public bool IsNotLoggedWarningDisplayed()
         {            

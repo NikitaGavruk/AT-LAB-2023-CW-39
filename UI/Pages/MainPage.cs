@@ -10,15 +10,15 @@ namespace UI.Pages
 {
     public class MainPage : AbstractPage
     {
-        public static readonly By searchField = By.CssSelector("[name='search']");        
-        public static readonly By searchButton = By.CssSelector(".cdx-button.cdx-search-input__end-button");
-        public static readonly By loginButton = By.CssSelector("#pt-login-2>a>span");
-        public static readonly By openSideMenuButton = By.CssSelector("#vector-main-menu-dropdown-label");
-        public static readonly By randomPageButton = By.CssSelector("#n-randompage>a>span");
-        public static readonly By title = By.CssSelector("#Welcome_to_Wikipedia");
-        public static readonly By userDropdownMenu = By.CssSelector("#vector-user-links-dropdown-checkbox");
-        public static readonly By logoutButton = By.XPath("//*[@id='pt-logout']/a/span[2]");
-        public static readonly By loggedUsername = By.CssSelector("#pt-userpage-2>a>span");
+        private static readonly By searchField = By.CssSelector("[name='search']");
+        private static readonly By searchButton = By.CssSelector(".cdx-button.cdx-search-input__end-button");
+        private static readonly By loginButton = By.CssSelector("#pt-login-2>a>span");
+        private static readonly By openSideMenuButton = By.CssSelector("#vector-main-menu-dropdown-label");
+        private static readonly By randomPageButton = By.CssSelector("#n-randompage>a>span");
+        private static readonly By title = By.CssSelector("#Welcome_to_Wikipedia");
+        private static readonly By userDropdownMenu = By.CssSelector("#vector-user-links-dropdown-checkbox");
+        private static readonly By logoutButton = By.XPath("//*[@id='pt-logout']/a/span[2]");
+        private static readonly By loggedUsername = By.CssSelector("#pt-userpage-2>a>span");
 
         public bool IsPageVisible(int timeSeconds)
         {
