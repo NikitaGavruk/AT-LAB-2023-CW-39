@@ -12,7 +12,7 @@ namespace UI.Pages
         private static readonly By openSideMenuButton = By.CssSelector("#vector-main-menu-dropdown-label");
         private static readonly By randomPageButton = By.CssSelector("#n-randompage>a>span");
         private static readonly By title = By.CssSelector("#Welcome_to_Wikipedia");
-        private static readonly By userDropdownMenu = By.CssSelector("#vector-user-links-dropdown-checkbox");
+        private static readonly By userDropdownMenu = By.CssSelector("#vector-user-links-dropdown");
         private static readonly By logoutButton = By.XPath("//*[@id='pt-logout']/a/span[2]");
         private static readonly By loggedUsername = By.CssSelector("#pt-userpage-2>a>span");
         private static readonly By aboutWikipediaLink = By.Id("n-aboutsite");
@@ -28,9 +28,10 @@ namespace UI.Pages
             return new LoginPage();
         }
 
-        public void CallUserDropdownMenu()
+        public MainPage CallUserDropdownMenu()
         {
             WebDriverExtension.ClickOnElement(userDropdownMenu);
+            return new MainPage();
         }
 
         public LogoutPage ClickToLogout()
@@ -39,9 +40,10 @@ namespace UI.Pages
             return new LogoutPage();
         }
 
-        public void SendKeysToSearchField(string searchText)
+        public MainPage SendKeysToSearchField(string searchText)
         {
             WebDriverExtension.SendKeysToElement(searchField, searchText);
+            return new MainPage();
         }
 
         public ArticlePage ClickToSearchButton()
@@ -61,9 +63,10 @@ namespace UI.Pages
             return new ArticlePage();
         }
 
-        public void ClickToSideMenu()
+        public MainPage ClickToSideMenu()
         {
             WebDriverExtension.ClickWithAction(openSideMenuButton);
+            return new MainPage();
         }
 
         public AboutPage ClickAboutWikipediaLink()

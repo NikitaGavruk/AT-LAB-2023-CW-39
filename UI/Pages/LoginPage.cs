@@ -15,6 +15,7 @@ namespace UI.Pages
         {
             WebDriverExtension.SendKeysToElement(usernameField, username);
             return this;
+
         }
 
         public LoginPage EnterPassword(string password)
