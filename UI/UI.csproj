@@ -17,6 +17,12 @@
     <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="resources\userData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
   <!--<ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>-->
