@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Core;
+using Core.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,10 +13,10 @@ namespace UI.Steps
     {
         private static LoginPage loginPage = new LoginPage();
 
-        public static MainPage Login(string username, string password)
+        public static MainPage Login()
         {
-            loginPage.EnterUsername(username)
-            .EnterPassword(password)
+            loginPage.EnterUsername(TestDataReader.GetTestUsername())
+            .EnterPassword(TestDataReader.GetTestUserPassword())
             .ClickToLoginButton();
             return new MainPage();
         }

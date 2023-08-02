@@ -26,7 +26,6 @@ namespace UI.Tests
         [Test]
         public void CheckArticleEditHistory()
         {
-            CustomLogger.LogInfo(Utils.LogLevel.Info, "Go to Main page");
             CustomLogger.LogInfo(Utils.LogLevel.Info, "Go to Login page");
             mainPage.ToLoginPage();
             CustomLogger.LogInfo(Utils.LogLevel.Info, "Login to account");
