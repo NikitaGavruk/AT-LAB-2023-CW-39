@@ -22,7 +22,7 @@ namespace Core
 
         public static User GetUserData()
         {
-            string path = $"{Environment.CurrentDirectory}/resources";
+            string path = $"{Directory.GetParent(Environment.CurrentDirectory)}/Core/resources";            
             string fileName = "userData.json";
             var configuration = InitConfiguration(path, fileName);
             return new User(configuration["username"], configuration["password"]);
