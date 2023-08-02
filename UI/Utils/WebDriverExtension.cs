@@ -7,16 +7,16 @@ using System;
 namespace UI.Utils
 {
     public static class WebDriverExtension
-    {
-        public static WebDriverWait Wait = new WebDriverWait(Browser.GetDriver(), TimeSpan.FromSeconds(int.Parse(Configuration.ElementTimeout)));
-
+    {       
         private static void WaitElementIsVisible(By locator)
         {
+            WebDriverWait Wait = new WebDriverWait(Browser.GetDriver(), TimeSpan.FromSeconds(int.Parse(Configuration.ElementTimeout)));
             Wait.Until(driver => driver.FindElement(locator).Displayed);
         }
 
         private static void WaitElementIsClickable(By locator)
         {
+            WebDriverWait Wait = new WebDriverWait(Browser.GetDriver(), TimeSpan.FromSeconds(int.Parse(Configuration.ElementTimeout)));
             Wait.Until(driver => driver.FindElement(locator).Enabled);
         }
         public static void ClickOnElement(By locator)
