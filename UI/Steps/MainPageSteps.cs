@@ -13,15 +13,15 @@ namespace UI.Steps
 
         public static LogoutPage Logout()
         {
-            mainPage.CallUserDropdownMenu();
-            mainPage.ClickToLogout();
+            mainPage.CallUserDropdownMenu()
+            .ClickToLogout();
             return new LogoutPage();
         }
 
         public static ArticlePage Search(string searchText)
         {
-            mainPage.SendKeysToSearchField(searchText);
-            mainPage.ClickToSearchButton();
+            mainPage.SendKeysToSearchField(searchText)
+            .ClickToSearchButton();
             return new ArticlePage();
         }
     }

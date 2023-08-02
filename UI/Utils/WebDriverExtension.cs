@@ -7,7 +7,7 @@ using System;
 namespace UI.Utils
 {
     public static class WebDriverExtension
-    {       
+    {
         private static void WaitElementIsVisible(By locator)
         {
             WebDriverWait Wait = new WebDriverWait(Browser.GetDriver(), TimeSpan.FromSeconds(int.Parse(Configuration.ElementTimeout)));
