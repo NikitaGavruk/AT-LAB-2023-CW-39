@@ -3,6 +3,10 @@ using UI.WebDriver;
 using OpenQA.Selenium;
 using UI.Utils;
 using NUnit.Framework.Interfaces;
+using UI.Interfaces;
+using UI.Pages;
+using LogLevel = UI.enums.LogLevel;
+
 
 namespace UI.Tests
 {
@@ -16,8 +20,10 @@ namespace UI.Tests
 		{
 			Driver = Browser.GetDriver();
 			CustomLogger = new CustomLogger(Driver);
-			CustomLogger.LogInfo(Utils.LogLevel.Info, $"Start Test [{TestContext.CurrentContext.Test.Name}]");
-			Browser.WindowMaximaze();
+			CustomLogger.LogInfo(LogLevel.Info, $"Start Test [{TestContext.CurrentContext.Test.Name}]");
+			Browser.WindowMaximize();
+			CustomLogger.LogInfo(LogLevel.Info, $"Start Test [{TestContext.CurrentContext.Test.Name}]");
+			Browser.WindowMaximize();
 			Browser.StartNavigate();
 		}
 
@@ -30,16 +36,16 @@ namespace UI.Tests
 			{
 				var failMessage = $"[{TestContext.CurrentContext.Test.Name}] Test failed with Status: " +
 					TestContext.CurrentContext.Result.Message;
-				CustomLogger.LogInfo(Utils.LogLevel.Error, failMessage);
+				CustomLogger.LogInfo(LogLevel.Error, failMessage);
 			}
 			else
 			{
 				var statusMessage = $"[{TestContext.CurrentContext.Test.Name}] Test ended with Status: " +
 					TestContext.CurrentContext.Result.Outcome.Status.ToString();
-				CustomLogger.LogInfo(Utils.LogLevel.Info, statusMessage);
+				CustomLogger.LogInfo(LogLevel.Info, statusMessage);
 
 			}
-			Browser.QuiteBrowser();
+			Browser.QuitBrowser();
 		}
 	}
 }
