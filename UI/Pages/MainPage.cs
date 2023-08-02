@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using UI.Utils;
+using UI.WebDriver;
 
 namespace UI.Pages
 {
@@ -14,6 +15,7 @@ namespace UI.Pages
         private static readonly By userDropdownMenu = By.CssSelector("#vector-user-links-dropdown-checkbox");
         private static readonly By logoutButton = By.XPath("//*[@id='pt-logout']/a/span[2]");
         private static readonly By loggedUsername = By.CssSelector("#pt-userpage-2>a>span");
+        private static readonly By aboutWikipediaLink = By.Id("n-aboutsite");
 
         public bool IsPageVisible()
         {
@@ -62,6 +64,12 @@ namespace UI.Pages
         public void ClickToSideMenu()
         {
             WebDriverExtension.ClickWithAction(openSideMenuButton);
+        }
+
+        public AboutPage ClickAboutWikipediaLink()
+        {
+            WebDriverExtension.ClickOnElement(aboutWikipediaLink);
+            return new AboutPage();
         }
     }
 }

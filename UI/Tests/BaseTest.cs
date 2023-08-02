@@ -3,13 +3,18 @@ using UI.WebDriver;
 using OpenQA.Selenium;
 using UI.Utils;
 using NUnit.Framework.Interfaces;
+using UI.Pages;
 
 namespace UI.Tests
 {
-	public class BaseTest
+	public abstract class BaseTest
 	{
 		protected static IWebDriver Driver;
 		protected static ICustomLogger CustomLogger;
+
+		protected static MainPage MainPage;
+		protected static LoginPage LoginPage;
+		protected static AboutPage AboutPage;
 
 		[SetUp]
 		public void Setup()
@@ -17,8 +22,13 @@ namespace UI.Tests
 			Driver = Browser.GetDriver();
 			CustomLogger = new CustomLogger(Driver);
 			CustomLogger.LogInfo(Utils.LogLevel.Info, $"Start Test [{TestContext.CurrentContext.Test.Name}]");
-			Browser.WindowMaximaze();
+			Browser.WindowMaximize();
 			Browser.StartNavigate();
+
+			// Initializing pages
+			MainPage = new MainPage();
+			LoginPage = new LoginPage();
+			AboutPage = new AboutPage();
 		}
 
 		[TearDown]
@@ -39,7 +49,7 @@ namespace UI.Tests
 				CustomLogger.LogInfo(Utils.LogLevel.Info, statusMessage);
 
 			}
-			Browser.QuiteBrowser();
+			Browser.QuitBrowser();
 		}
 	}
 }

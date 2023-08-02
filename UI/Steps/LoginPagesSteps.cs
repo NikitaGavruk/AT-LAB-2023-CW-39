@@ -13,10 +13,7 @@ namespace UI.Steps
 
         public static MainPage Login(string username, string password)
         {
-            loginPage.EnterUsername(username);
-            loginPage.EnterPassword(password);
-            loginPage.ClickToLoginButton();
-            return new MainPage();
+            return loginPage.EnterUsername(username).EnterPassword(password).ClickToLoginButton();
         }
     }
 }

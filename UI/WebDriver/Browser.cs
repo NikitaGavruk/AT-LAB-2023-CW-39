@@ -37,7 +37,7 @@ namespace UI.WebDriver
 			return currentInstance;
 		}
 
-		public static void WindowMaximaze()
+		public static void WindowMaximize()
 		{
 			webDriver.Manage().Window.Maximize();
 		}
@@ -52,7 +52,7 @@ namespace UI.WebDriver
 			webDriver.Navigate().GoToUrl(Configuration.StartUrl);
 		}
 
-		public static void QuiteBrowser()
+		public static void QuitBrowser()
 		{
 			webDriver.Quit();			
 			currentInstance = null;			
