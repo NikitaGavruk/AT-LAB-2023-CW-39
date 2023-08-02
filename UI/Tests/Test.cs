@@ -8,7 +8,27 @@ namespace UI.Tests
 	[TestFixture]
 	public class Test : BaseTest
 	{
-        private static MainPage mainPage = new MainPage();        
+        private static MainPage mainPage = new MainPage();
+
+        [Test]
+        public void LoginAndLogout()
+        {
+			CustomLogger.LogInfo(Utils.LogLevel.Info, "Go to Login page");
+			mainPage.ToLoginPage();
+			CustomLogger.LogInfo(Utils.LogLevel.Info, "Login to account");
+			string actualUsername = LoginPagesSteps.Login()
+			.GetLoggedUsername();
+			CustomLogger.LogInfo(Utils.LogLevel.Info, "Verify username is right");
+			Assert.That(actualUsername, Is.EqualTo(TestDataReader.GetTestUsername()));
+
+            CustomLogger.LogInfo(Utils.LogLevel.Info, "Logout from account");
+            var hasReturnedToMainPage = MainPageSteps.Logout()
+                .ToMainPage()
+                .IsPageVisible();
+
+            CustomLogger.LogInfo(Utils.LogLevel.Info, "Verify Main Page is visible");
+            Assert.That(hasReturnedToMainPage, Is.True);
+		}
 
         [Test]
         public void FindArticle()
