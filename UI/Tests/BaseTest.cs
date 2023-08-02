@@ -22,8 +22,6 @@ namespace UI.Tests
 			CustomLogger = new CustomLogger(Driver);
 			CustomLogger.LogInfo(LogLevel.Info, $"Start Test [{TestContext.CurrentContext.Test.Name}]");
 			Browser.WindowMaximize();
-			CustomLogger.LogInfo(LogLevel.Info, $"Start Test [{TestContext.CurrentContext.Test.Name}]");
-			Browser.WindowMaximize();
 			Browser.StartNavigate();
 		}
 
