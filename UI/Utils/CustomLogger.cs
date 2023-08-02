@@ -1,23 +1,11 @@
 ﻿using OpenQA.Selenium;
 using System;
 using System.IO;
+using UI.Interfaces;
+using LogLevel = UI.enums.LogLevel;
 
 namespace UI.Utils
 {
-    public enum LogLevel
-    {
-        Debug,
-        Info,
-        Warn,
-        Error
-    }
-
-    public interface ICustomLogger
-    {
-        void LogInfo(LogLevel logLevel, string message);
-        void LogError(Exception exception, string message);
-    }
-
     public class CustomLogger : ICustomLogger
     {
         private string _logFilePath;
@@ -40,7 +28,7 @@ namespace UI.Utils
             Directory.CreateDirectory(Path.GetDirectoryName(_logFilePath));
             Directory.CreateDirectory(screenshotDirectory);
         }
-
+        
         public void LogError(Exception exception, string message)
         {
             var screenshotFilePath = Path.Combine(_screenshotDirectory, $"screenshot_{_timeStamp}.png");
