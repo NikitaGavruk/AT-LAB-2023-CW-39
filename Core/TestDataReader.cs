@@ -22,7 +22,19 @@ namespace Core
 
         public static User GetUserData()
         {
-            string path = $"{Directory.GetParent(Environment.CurrentDirectory)}/Core/resources";            
+            string path = "";
+
+            if (Environment.CurrentDirectory.EndsWith("AT-LAB-2023-CW-39"))
+            {
+                path = $"{Environment.CurrentDirectory}/Core/resources";
+            }
+            else if (Environment.CurrentDirectory.EndsWith("UI"))
+            {
+                path = $"{Directory.GetParent(Environment.CurrentDirectory)}/Core/resources";
+            }
+            else
+                throw new DirectoryNotFoundException();
+                        
             string fileName = "userData.json";
             var configuration = InitConfiguration(path, fileName);
             return new User(configuration["username"], configuration["password"]);
