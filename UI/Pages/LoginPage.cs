@@ -10,14 +10,17 @@ namespace UI.Pages
         private static readonly By rememberMeCheckbox = By.CssSelector("#wpRemember");
         private static readonly By loginButton = By.CssSelector("#wpLoginAttempt");       
 
-        public void EnterUsername(string username)
+        public LoginPage EnterUsername(string username)
         {
             WebDriverExtension.SendKeysToElement(usernameField, username);
+            return new LoginPage();
+
         }
 
-        public void EnterPassword(string password)
+        public LoginPage EnterPassword(string password)
         {
             WebDriverExtension.SendKeysToElement(passwordField, password);
+            return new LoginPage();
         }
 
         public MainPage ClickToLoginButton()

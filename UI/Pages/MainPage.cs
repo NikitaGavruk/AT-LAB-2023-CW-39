@@ -26,9 +26,10 @@ namespace UI.Pages
             return new LoginPage();
         }
 
-        public void CallUserDropdownMenu()
+        public MainPage CallUserDropdownMenu()
         {
             WebDriverExtension.ClickOnElement(userDropdownMenu);
+            return new MainPage();
         }
 
         public LogoutPage ClickToLogout()
@@ -37,9 +38,10 @@ namespace UI.Pages
             return new LogoutPage();
         }
 
-        public void SendKeysToSearchField(string searchText)
+        public MainPage SendKeysToSearchField(string searchText)
         {
             WebDriverExtension.SendKeysToElement(searchField, searchText);
+            return new MainPage();
         }
 
         public ArticlePage ClickToSearchButton()
@@ -59,9 +61,10 @@ namespace UI.Pages
             return new ArticlePage();
         }
 
-        public void ClickToSideMenu()
+        public MainPage ClickToSideMenu()
         {
             WebDriverExtension.ClickWithAction(openSideMenuButton);
+            return new MainPage();
         }
     }
 }

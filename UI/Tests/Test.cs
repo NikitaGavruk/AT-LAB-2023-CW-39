@@ -34,6 +34,7 @@ namespace UI.Tests
             .GetLoggedUsername();
             CustomLogger.LogInfo(Utils.LogLevel.Info, "Verify username is right");
             Assert.That(actualUsername, Is.EqualTo(username));
+
             CustomLogger.LogInfo(Utils.LogLevel.Info, "Click to random article");
             bool IsEditPageVisible = mainPage.ClickToRandomArticle()
             .ClickToViewHistory()
