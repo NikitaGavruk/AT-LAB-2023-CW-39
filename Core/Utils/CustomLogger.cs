@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using System;
+﻿using System;
 using System.IO;
 using Core.Interfaces;
 using LogLevel = Core.enums.LogLevel;
@@ -8,8 +7,7 @@ namespace Core.Utils
 {
     public class CustomLogger : ICustomLogger
     {
-        private string _logFilePath;
-        private string _screenshotDirectory;        
+        private string _logFilePath;        
         private string _timeStamp;
 
         public CustomLogger()

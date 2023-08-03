@@ -75,15 +75,5 @@ namespace UI.Tests
             CustomLogger.LogInfo(LogLevel.Info, "Verify warning for not logged user displayed");
             Assert.That(IsNotLoggedWarningDisplayed, Is.True);
         }
-
-        [Test]
-        public void TestToFail()
-        {
-            
-            bool passed = false;
-            Thread.Sleep(2000);
-            
-            Assert.That(passed, Is.True);            
-        }
     }
 }

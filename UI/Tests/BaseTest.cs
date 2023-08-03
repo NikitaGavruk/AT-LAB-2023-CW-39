@@ -33,12 +33,12 @@ namespace UI.Tests
 			TestStatus NUnit_status = TestContext.CurrentContext.Result.Outcome.Status;
 
 			if (NUnit_status.Equals(TestStatus.Failed))
-			{
-				screenshoter.Capture();
+			{				
 				var failMessage = $"[{TestContext.CurrentContext.Test.Name}] Test failed with Status: " +
-					TestContext.CurrentContext.Result.Message;
-				CustomLogger.LogInfo(LogLevel.Error, failMessage);
-			}
+					TestContext.CurrentContext.Result.Message;                
+                CustomLogger.LogInfo(LogLevel.Error, failMessage);
+                screenshoter.Capture();
+            }
 			else
 			{
 				var statusMessage = $"[{TestContext.CurrentContext.Test.Name}] Test ended with Status: " +
