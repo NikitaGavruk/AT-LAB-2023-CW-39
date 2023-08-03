@@ -19,7 +19,7 @@ namespace UI.Tests
 		public void Setup()
 		{
 			Driver = Browser.GetDriver();
-			CustomLogger = new CustomLogger(Driver);
+			CustomLogger = new CustomLogger();
 			CustomLogger.LogInfo(LogLevel.Info, $"Start Test [{TestContext.CurrentContext.Test.Name}]");
 			Browser.WindowMaximize();
 			Browser.StartNavigate();
