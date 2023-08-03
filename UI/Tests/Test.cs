@@ -4,6 +4,7 @@ using UI.Steps;
 using Core.enums;
 using Core.Utils;
 using System.Threading;
+using UI.Utils;
 
 namespace UI.Tests
 {
@@ -78,9 +79,11 @@ namespace UI.Tests
         [Test]
         public void TestToFail()
         {
-            Thread.Sleep(1);
+            
             bool passed = false;
-            Assert.That(passed, Is.True);
+            Thread.Sleep(2000);
+            
+            Assert.That(passed, Is.True);            
         }
     }
 }

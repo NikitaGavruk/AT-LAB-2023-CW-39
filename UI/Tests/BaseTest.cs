@@ -6,7 +6,7 @@ using NUnit.Framework.Interfaces;
 using Core.Interfaces;
 using UI.Pages;
 using LogLevel = Core.enums.LogLevel;
-
+using UI.Utils;
 
 namespace UI.Tests
 {
@@ -14,12 +14,14 @@ namespace UI.Tests
 	{
 		protected static IWebDriver Driver;
 		protected static ICustomLogger CustomLogger;
+		protected static Screenshoter screenshoter;
 
 		[SetUp]
 		public void Setup()
 		{
 			Driver = Browser.GetDriver();
 			CustomLogger = new CustomLogger();
+			screenshoter = new Screenshoter();
 			CustomLogger.LogInfo(LogLevel.Info, $"Start Test [{TestContext.CurrentContext.Test.Name}]");
 			Browser.WindowMaximize();
 			Browser.StartNavigate();
@@ -32,6 +34,7 @@ namespace UI.Tests
 
 			if (NUnit_status.Equals(TestStatus.Failed))
 			{
+				screenshoter.Capture();
 				var failMessage = $"[{TestContext.CurrentContext.Test.Name}] Test failed with Status: " +
 					TestContext.CurrentContext.Result.Message;
 				CustomLogger.LogInfo(LogLevel.Error, failMessage);

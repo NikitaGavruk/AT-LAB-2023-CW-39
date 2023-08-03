@@ -12,14 +12,14 @@ namespace UI.Utils
         private static string screenshotDirectory;
         private static ICustomLogger logger;
 
-        static Screenshoter()
+        public Screenshoter()
         {
-            var screenshotDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Screenshots");
+            screenshotDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Screenshots");
             Directory.CreateDirectory(screenshotDirectory);
             logger = new CustomLogger();
         }
 
-        public static void Capture()
+        public void Capture()
         {
             string _timeStamp = DateTime.Now.ToString("yyyyMMdd_HH_mm_ss");
             var webDriver = Browser.GetDriver();
