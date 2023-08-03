@@ -77,19 +77,23 @@ namespace UI.Tests
         [Test]
         public void CheckSwitchLanguages()
         {
-            var languagesPage = new LanguagesPage();
             Driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/List_of_Wikipedias");
-            string expectedTitle = "Vikipediya";
             CustomLogger.LogInfo(LogLevel.Info, "Go to Languages Page");
-            languagesPage.ClickPopUpWindowButton();
-            languagesPage.ClickRussianLanguageButton();
-            Assert.That(Driver.Title, Is.EqualTo("Языковые разделы Википедии — Википедия"));
-            languagesPage.ClickEnglishLanguageButton();
-            Assert.That(Driver.Title, Is.EqualTo("List of Wikipedias - Wikipedia"));
-            languagesPage.ClickUzbekLanguageButton();
-            languagesPage.ClickUzbekWikipediaButton();
-            string actualTitle = Driver.Title;
-            Assert.That(expectedTitle, Is.EqualTo(actualTitle));
+            string expectedTitleOfRussianLanguage = LanguagePagesSteps.ClickOnListOfWikipediasButton()
+                .ClickRussianLanguageButton().GetTitle();
+            string actualTitleOfRussianLanguage = "Языковые разделы Википедии";
+            Assert.That(actualTitleOfRussianLanguage, Is.EqualTo(expectedTitleOfRussianLanguage));
+            CustomLogger.LogInfo(LogLevel.Info, "Go to Language categories page in Russian");
+            string expectedTitleOfEnglishLanguage = LanguagePagesSteps.ClickOnEnglishButton()
+                .GetTitle();
+            string actualTitleOfEnglishlanguage = "List of Wikipedias";
+            Assert.That(actualTitleOfEnglishlanguage, Is.EqualTo(expectedTitleOfEnglishLanguage));
+            CustomLogger.LogInfo(LogLevel.Info, "Go to Language categories page in English");
+            string expectedTitleOfUzbekLanguage = LanguagePagesSteps.ClickOnUzbekButton()
+                .GetTitle();
+            string actualTitleOfUzbekLanguage = "Vikipediyaga";
+            CustomLogger.LogInfo(LogLevel.Info, "Verify the page is Uzbek version of Wikipedia");
+            Assert.That(actualTitleOfUzbekLanguage, Is.EqualTo(expectedTitleOfUzbekLanguage));
         }
     }
 }
