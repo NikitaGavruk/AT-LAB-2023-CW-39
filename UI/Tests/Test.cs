@@ -3,6 +3,7 @@ using UI.Pages;
 using UI.Steps;
 using Core.enums;
 using Core.Utils;
+using System.Threading;
 
 namespace UI.Tests
 {
@@ -72,6 +73,14 @@ namespace UI.Tests
             .IsNotLoggedWarningDisplayed();
             CustomLogger.LogInfo(LogLevel.Info, "Verify warning for not logged user displayed");
             Assert.That(IsNotLoggedWarningDisplayed, Is.True);
+        }
+
+        [Test]
+        public void TestToFail()
+        {
+            Thread.Sleep(1);
+            bool passed = false;
+            Assert.That(passed, Is.True);
         }
     }
 }
