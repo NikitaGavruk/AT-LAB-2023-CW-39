@@ -7,7 +7,6 @@ namespace UI.Tests
     public class DisplayAboutPageTest : BaseTest
     {
         [Test]
-        [Category("Display")]
         public void DisplayAboutPageTest_Success()
         {
             var aboutPage = MainPage
