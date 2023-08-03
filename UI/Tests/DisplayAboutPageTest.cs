@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Core;
+using NUnit.Framework;
 
 namespace UI.Tests
 {
@@ -6,20 +7,17 @@ namespace UI.Tests
     public class DisplayAboutPageTest : BaseTest
     {
         [Test]
+        [Category("Display")]
         public void DisplayAboutPageTest_Success()
         {
-            var expectedHeading = "Wikipedia:About";
-            var username = "Shokirov Abdulaziz";
-            var password = "NAS9iFp.3.,T%d,";
-
             var aboutPage = MainPage
                 .ToLoginPage()
-                .EnterUsername(username)
-                .EnterPassword(password)
+                .EnterUsername(TestDataReader.GetTestUsername())
+                .EnterPassword(TestDataReader.GetTestUserPassword())
                 .ClickToLoginButton()
                 .ClickAboutWikipediaLink();
 
-            Assert.AreEqual(expectedHeading, aboutPage.GetActualHeading());
+            Assert.AreEqual(ExpectedDataReader.GetAboutPageHeading(), aboutPage.GetActualHeading());
         }
     }
 }

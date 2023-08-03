@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using Core;
+using Core.Model;
+using NUnit.Framework;
 using UI.WebDriver;
 using OpenQA.Selenium;
 using UI.Utils;
