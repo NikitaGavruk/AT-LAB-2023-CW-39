@@ -7,12 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core
+namespace Core.Utils
 {
     public class TestDataReader
     {
         public static IConfiguration InitConfiguration(string path, string fileName)
-        {            
+        {
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(path)
                 .AddJsonFile(fileName)
@@ -34,7 +34,7 @@ namespace Core
             }
             else
                 throw new DirectoryNotFoundException();
-                        
+
             string fileName = "userData.json";
             var configuration = InitConfiguration(path, fileName);
             return new User(configuration["username"], configuration["password"]);

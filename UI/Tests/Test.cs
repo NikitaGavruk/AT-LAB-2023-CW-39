@@ -1,12 +1,12 @@
-﻿using Core;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using UI.Pages;
 using UI.Steps;
-using UI.enums;
+using Core.enums;
+using Core.Utils;
 
 namespace UI.Tests
 {
-	[TestFixture]
+    [TestFixture]
 	public class Test : BaseTest
 	{
         private static MainPage mainPage = new MainPage();

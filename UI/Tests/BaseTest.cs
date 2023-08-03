@@ -1,11 +1,11 @@
 ﻿using NUnit.Framework;
 using UI.WebDriver;
 using OpenQA.Selenium;
-using UI.Utils;
+using Core.Utils;
 using NUnit.Framework.Interfaces;
-using UI.Interfaces;
+using Core.Interfaces;
 using UI.Pages;
-using LogLevel = UI.enums.LogLevel;
+using LogLevel = Core.enums.LogLevel;
 
 
 namespace UI.Tests
@@ -41,7 +41,6 @@ namespace UI.Tests
 				var statusMessage = $"[{TestContext.CurrentContext.Test.Name}] Test ended with Status: " +
 					TestContext.CurrentContext.Result.Outcome.Status.ToString();
 				CustomLogger.LogInfo(LogLevel.Info, statusMessage);
-
 			}
 			Browser.QuitBrowser();
 		}

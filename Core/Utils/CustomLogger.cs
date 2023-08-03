@@ -1,10 +1,10 @@
 ﻿using OpenQA.Selenium;
 using System;
 using System.IO;
-using UI.Interfaces;
-using LogLevel = UI.enums.LogLevel;
+using Core.Interfaces;
+using LogLevel = Core.enums.LogLevel;
 
-namespace UI.Utils
+namespace Core.Utils
 {
     public class CustomLogger : ICustomLogger
     {
