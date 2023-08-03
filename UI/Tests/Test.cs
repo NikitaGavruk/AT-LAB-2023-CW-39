@@ -73,5 +73,24 @@ namespace UI.Tests
             CustomLogger.LogInfo(LogLevel.Info, "Verify warning for not logged user displayed");
             Assert.That(IsNotLoggedWarningDisplayed, Is.True);
         }
+
+        [Test]
+        public void CheckSwitchLanguages()
+        {
+            var languagesPage = new LanguagesPage();
+            Driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/List_of_Wikipedias");
+            string expectedTitle = "Vikipediya";
+            CustomLogger.LogInfo(LogLevel.Info, "Go to Languages Page");
+            languagesPage.ClickPopUpWindowButton();
+            languagesPage.ClickRussianLanguageButton();
+            Assert.That(Driver.Title, Is.EqualTo("Языковые разделы Википедии — Википедия"));
+            languagesPage.ClickEnglishLanguageButton();
+            Assert.That(Driver.Title, Is.EqualTo("List of Wikipedias - Wikipedia"));
+            languagesPage.ClickUzbekLanguageButton();
+            languagesPage.ClickUzbekWikipediaButton();
+            string actualTitle = Driver.Title;
+
+            Assert.That(expectedTitle, Is.EqualTo(actualTitle));
+        }
     }
 }
