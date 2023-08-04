@@ -75,5 +75,27 @@ namespace UI.Tests
             CustomLogger.LogInfo(LogLevel.Info, "Verify warning for not logged user displayed");
             Assert.That(IsNotLoggedWarningDisplayed, Is.True);
         }
+
+        [Test]
+        public void CheckSwitchLanguages()
+        {
+            Driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/List_of_Wikipedias");
+            CustomLogger.LogInfo(LogLevel.Info, "Go to Languages Page");
+            string expectedTitleOfRussianLanguage = LanguagePagesSteps.ClickOnListOfWikipediasButton()
+                .ClickRussianLanguageButton().GetTitle();
+            string actualTitleOfRussianLanguage = "Языковые разделы Википедии";
+            Assert.That(actualTitleOfRussianLanguage, Is.EqualTo(expectedTitleOfRussianLanguage));
+            CustomLogger.LogInfo(LogLevel.Info, "Go to Language categories page in Russian");
+            string expectedTitleOfEnglishLanguage = LanguagePagesSteps.ClickOnEnglishButton()
+                .GetTitle();
+            string actualTitleOfEnglishlanguage = "List of Wikipedias";
+            Assert.That(actualTitleOfEnglishlanguage, Is.EqualTo(expectedTitleOfEnglishLanguage));
+            CustomLogger.LogInfo(LogLevel.Info, "Go to Language categories page in English");
+            string expectedTitleOfUzbekLanguage = LanguagePagesSteps.ClickOnUzbekButton()
+                .GetTitle();
+            string actualTitleOfUzbekLanguage = "Vikipediyaga";
+            CustomLogger.LogInfo(LogLevel.Info, "Verify the page is Uzbek version of Wikipedia");
+            Assert.That(actualTitleOfUzbekLanguage, Is.EqualTo(expectedTitleOfUzbekLanguage));
+        }
     }
 }
