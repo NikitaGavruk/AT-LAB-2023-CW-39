@@ -73,5 +73,19 @@ namespace UI.Tests
             CustomLogger.LogInfo(LogLevel.Info, "Verify warning for not logged user displayed");
             Assert.That(IsNotLoggedWarningDisplayed, Is.True);
         }
+
+        [Test]
+        [Category("Display")]
+        public void DisplayAboutPageTest_Success()
+        {
+            var aboutPage = MainPage
+                .ToLoginPage()
+                .EnterUsername(TestDataReader.GetTestUsername())
+                .EnterPassword(TestDataReader.GetTestUserPassword())
+                .ClickToLoginButton()
+                .ClickAboutWikipediaLink();
+
+            Assert.AreEqual(ExpectedDataReader.GetAboutPageHeading(), aboutPage.GetActualHeading());
+        }
     }
 }
