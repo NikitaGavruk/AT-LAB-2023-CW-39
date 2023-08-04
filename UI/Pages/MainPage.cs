@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using UI.Utils;
+using UI.WebDriver;
 
 namespace UI.Pages
 {
@@ -12,8 +13,9 @@ namespace UI.Pages
         private static readonly By randomPageButton = By.CssSelector("#n-randompage>a>span");
         private static readonly By title = By.CssSelector("#Welcome_to_Wikipedia");
         private static readonly By userDropdownMenu = By.CssSelector("#vector-user-links-dropdown");
-        private static readonly By logoutButton = By.XPath("//*[@id='pt-logout']/a/span[2]");
+        private static readonly By logoutButton = By.Id("pt-logout");
         private static readonly By loggedUsername = By.CssSelector("#pt-userpage-2>a>span");
+        private static readonly By aboutWikipediaLink = By.Id("n-aboutsite");
 
         public bool IsPageVisible()
         {
@@ -61,10 +63,16 @@ namespace UI.Pages
             return new ArticlePage();
         }
 
-        public MainPage ClickToSideMenu()
+        public MainPage OpenSideMenu()
         {
             WebDriverExtension.ClickWithAction(openSideMenuButton);
             return new MainPage();
+        }
+
+        public AboutPage ClickAboutWikipediaLink()
+        {
+            WebDriverExtension.ClickOnElement(aboutWikipediaLink);
+            return new AboutPage();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using Core;
+using Core.Model;
+using NUnit.Framework;
 using UI.WebDriver;
 using OpenQA.Selenium;
 using Core.Utils;
@@ -10,11 +12,15 @@ using UI.Utils;
 
 namespace UI.Tests
 {
-	public class BaseTest
+	public abstract class BaseTest
 	{
 		protected static IWebDriver Driver;
 		protected static ICustomLogger CustomLogger;
 		protected static Screenshoter screenshoter;
+
+		protected static MainPage MainPage;
+		protected static LoginPage LoginPage;
+		protected static AboutPage AboutPage;
 
 		[SetUp]
 		public void Setup()
@@ -25,6 +31,11 @@ namespace UI.Tests
 			CustomLogger.LogInfo(LogLevel.Info, $"Start Test [{TestContext.CurrentContext.Test.Name}]");
 			Browser.WindowMaximize();
 			Browser.StartNavigate();
+
+			// Initializing pages
+			MainPage = new MainPage();
+			LoginPage = new LoginPage();
+			AboutPage = new AboutPage();
 		}
 
 		[TearDown]
