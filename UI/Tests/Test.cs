@@ -1,12 +1,13 @@
-﻿using Core;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using UI.Pages;
 using UI.Steps;
-using UI.enums;
+using Core.enums;
+using Core.Utils;
+using Core;
 
 namespace UI.Tests
 {
-	[TestFixture]
+    [TestFixture]
 	public class Test : BaseTest
 	{
         private static MainPage mainPage = new MainPage();
@@ -66,7 +67,7 @@ namespace UI.Tests
         public void CheckNotLoggedWarningOnEditPage()
         {
             CustomLogger.LogInfo(LogLevel.Info, "Go to Main page");
-            mainPage.ClickToSideMenu();
+            mainPage.OpenSideMenu();
             bool IsNotLoggedWarningDisplayed = mainPage.ClickToRandomArticle()
             .ClickToEdit()
             .IsNotLoggedWarningDisplayed();
@@ -75,17 +76,39 @@ namespace UI.Tests
         }
 
         [Test]
-        [Category("Display")]
-        public void DisplayAboutPageTest_Success()
+        public void CheckSwitchLanguages()
         {
-            var aboutPage = MainPage
-                .ToLoginPage()
-                .EnterUsername(TestDataReader.GetTestUsername())
-                .EnterPassword(TestDataReader.GetTestUserPassword())
-                .ClickToLoginButton()
-                .ClickAboutWikipediaLink();
+            Driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/List_of_Wikipedias");
+            CustomLogger.LogInfo(LogLevel.Info, "Go to Languages Page");
+            string expectedTitleOfRussianLanguage = LanguagePagesSteps.ClickOnListOfWikipediasButton()
+                .ClickRussianLanguageButton().GetTitle();
+            string actualTitleOfRussianLanguage = "Языковые разделы Википедии";
+            Assert.That(actualTitleOfRussianLanguage, Is.EqualTo(expectedTitleOfRussianLanguage));
+            CustomLogger.LogInfo(LogLevel.Info, "Go to Language categories page in Russian");
+            string expectedTitleOfEnglishLanguage = LanguagePagesSteps.ClickOnEnglishButton()
+                .GetTitle();
+            string actualTitleOfEnglishlanguage = "List of Wikipedias";
+            Assert.That(actualTitleOfEnglishlanguage, Is.EqualTo(expectedTitleOfEnglishLanguage));
+            CustomLogger.LogInfo(LogLevel.Info, "Go to Language categories page in English");
+            string expectedTitleOfUzbekLanguage = LanguagePagesSteps.ClickOnUzbekButton()
+                .GetTitle();
+            string actualTitleOfUzbekLanguage = "Vikipediyaga";
+            CustomLogger.LogInfo(LogLevel.Info, "Verify the page is Uzbek version of Wikipedia");
+            Assert.That(actualTitleOfUzbekLanguage, Is.EqualTo(expectedTitleOfUzbekLanguage));
+        }
 
-            Assert.AreEqual(ExpectedDataReader.GetAboutPageHeading(), aboutPage.GetActualHeading());
+        [Test]
+        public void DisplayAboutPageTest()
+        {
+            CustomLogger.LogInfo(LogLevel.Info, "Go to Login page");
+            MainPage.ToLoginPage();
+            CustomLogger.LogInfo(LogLevel.Info, "Log into an account");
+            LoginPagesSteps.Login();
+            CustomLogger.LogInfo(LogLevel.Info, "Go to About page");
+            MainPage.ClickAboutWikipediaLink();
+
+            CustomLogger.LogInfo(LogLevel.Info, "Verify About Page is displayed");
+            Assert.AreEqual(ExpectedDataReader.GetAboutPageHeading(), AboutPage.GetActualHeading());
         }
     }
 }

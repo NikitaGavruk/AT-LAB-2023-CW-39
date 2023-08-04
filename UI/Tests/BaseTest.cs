@@ -3,12 +3,12 @@ using Core.Model;
 using NUnit.Framework;
 using UI.WebDriver;
 using OpenQA.Selenium;
-using UI.Utils;
+using Core.Utils;
 using NUnit.Framework.Interfaces;
-using UI.Interfaces;
+using Core.Interfaces;
 using UI.Pages;
-using LogLevel = UI.enums.LogLevel;
-
+using LogLevel = Core.enums.LogLevel;
+using UI.Utils;
 
 namespace UI.Tests
 {
@@ -16,6 +16,7 @@ namespace UI.Tests
 	{
 		protected static IWebDriver Driver;
 		protected static ICustomLogger CustomLogger;
+		protected static Screenshoter screenshoter;
 
 		protected static MainPage MainPage;
 		protected static LoginPage LoginPage;
@@ -25,7 +26,8 @@ namespace UI.Tests
 		public void Setup()
 		{
 			Driver = Browser.GetDriver();
-			CustomLogger = new CustomLogger(Driver);
+			CustomLogger = new CustomLogger();
+			screenshoter = new Screenshoter();
 			CustomLogger.LogInfo(LogLevel.Info, $"Start Test [{TestContext.CurrentContext.Test.Name}]");
 			Browser.WindowMaximize();
 			Browser.StartNavigate();
@@ -42,17 +44,17 @@ namespace UI.Tests
 			TestStatus NUnit_status = TestContext.CurrentContext.Result.Outcome.Status;
 
 			if (NUnit_status.Equals(TestStatus.Failed))
-			{
+			{				
 				var failMessage = $"[{TestContext.CurrentContext.Test.Name}] Test failed with Status: " +
-					TestContext.CurrentContext.Result.Message;
-				CustomLogger.LogInfo(LogLevel.Error, failMessage);
-			}
+					TestContext.CurrentContext.Result.Message;                
+                CustomLogger.LogInfo(LogLevel.Error, failMessage);
+                screenshoter.Capture();
+            }
 			else
 			{
 				var statusMessage = $"[{TestContext.CurrentContext.Test.Name}] Test ended with Status: " +
 					TestContext.CurrentContext.Result.Outcome.Status.ToString();
 				CustomLogger.LogInfo(LogLevel.Info, statusMessage);
-
 			}
 			Browser.QuitBrowser();
 		}

@@ -14,14 +14,14 @@ namespace UI.Pages
         public LoginPage EnterUsername(string username)
         {
             WebDriverExtension.SendKeysToElement(usernameField, username);
-            return this;
+            return new LoginPage();
 
         }
 
         public LoginPage EnterPassword(string password)
         {
             WebDriverExtension.SendKeysToElement(passwordField, password);
-            return this;
+            return new LoginPage();
         }
 
         public MainPage ClickToLoginButton()

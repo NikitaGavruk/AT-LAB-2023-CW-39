@@ -63,7 +63,7 @@ namespace UI.Pages
             return new ArticlePage();
         }
 
-        public MainPage ClickToSideMenu()
+        public MainPage OpenSideMenu()
         {
             WebDriverExtension.ClickWithAction(openSideMenuButton);
             return new MainPage();

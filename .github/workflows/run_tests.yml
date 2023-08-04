@@ -25,3 +25,10 @@ jobs:
       run: dotnet build --no-restore
     - name: Tests
       run: dotnet test --no-restore
+      
+    - name: Save screenshots as artifacts
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+          name: screenshots
+          path: UI\bin\Debug\net472\Screenshots\*.png

@@ -1,7 +1,7 @@
 ﻿using System;
-using LogLevel = UI.enums.LogLevel;
+using LogLevel = Core.enums.LogLevel;
 
-namespace UI.Interfaces
+namespace Core.Interfaces
 {
     public interface ICustomLogger
     {
