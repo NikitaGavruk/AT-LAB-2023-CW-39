@@ -7,9 +7,11 @@ namespace UI.Pages
     {
         private static readonly By editButton = By.CssSelector("#ca-edit>a>span");
         private static readonly By title = By.CssSelector("#firstHeading>span");
-        private static readonly By viewHistoryButton = By.CssSelector("#ca-history>a>span");       
+        private static readonly By viewHistoryButton = By.CssSelector("#ca-history>a>span");
+        private static readonly By addToWatchlist = By.CssSelector("#ca-watch>a>span");
+		private static readonly By watchlistLink = By.XPath("(//span[text()='Watchlist'])[1]");
 
-        public string GetTitle()
+		public string GetTitle()
         {
             return WebDriverExtension.GetTextFromElement(title);
         }
@@ -25,5 +27,17 @@ namespace UI.Pages
             WebDriverExtension.ClickOnElement(editButton);
             return new EditPage();
         }
-    }
+
+        public ArticlePage AddToWatchlist()
+        {
+            WebDriverExtension.ClickOnElement(addToWatchlist);
+            return new ArticlePage();
+        }
+
+		public WatchlistPage ToWatchlist()
+		{
+			WebDriverExtension.ClickOnElement(watchlistLink);
+			return new WatchlistPage();
+		}
+	}
 }

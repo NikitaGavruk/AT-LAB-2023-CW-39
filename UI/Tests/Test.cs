@@ -5,6 +5,7 @@ using Core.enums;
 using Core.Utils;
 using System.Threading;
 using UI.Utils;
+using Core;
 
 namespace UI.Tests
 {
@@ -16,13 +17,13 @@ namespace UI.Tests
         [Test]
         public void LoginAndLogout()
         {
-			CustomLogger.LogInfo(LogLevel.Info, "Go to Login page");
-			mainPage.ToLoginPage();
-			CustomLogger.LogInfo(LogLevel.Info, "Login to account");
-			string actualUsername = LoginPagesSteps.Login()
-			.GetLoggedUsername();
-			CustomLogger.LogInfo(LogLevel.Info, "Verify username is right");
-			Assert.That(actualUsername, Is.EqualTo(TestDataReader.GetTestUsername()));
+            CustomLogger.LogInfo(LogLevel.Info, "Go to Login page");
+            mainPage.ToLoginPage();
+            CustomLogger.LogInfo(LogLevel.Info, "Login to account");
+            string actualUsername = LoginPagesSteps.Login()
+            .GetLoggedUsername();
+            CustomLogger.LogInfo(LogLevel.Info, "Verify username is right");
+            Assert.That(actualUsername, Is.EqualTo(TestDataReader.GetTestUsername()));
 
             CustomLogger.LogInfo(LogLevel.Info, "Logout from account");
             var hasReturnedToMainPage = MainPageSteps.Logout()
@@ -31,7 +32,7 @@ namespace UI.Tests
 
             CustomLogger.LogInfo(LogLevel.Info, "Verify Main Page is visible");
             Assert.That(hasReturnedToMainPage, Is.True);
-		}
+        }
 
         [Test]
         public void FindArticle()
@@ -97,5 +98,26 @@ namespace UI.Tests
             CustomLogger.LogInfo(LogLevel.Info, "Verify the page is Uzbek version of Wikipedia");
             Assert.That(actualTitleOfUzbekLanguage, Is.EqualTo(expectedTitleOfUzbekLanguage));
         }
+
+        [Test]
+        public void AddToWatchlist()
+        {
+			CustomLogger.LogInfo(LogLevel.Info, "Go to Login page");
+			mainPage.ToLoginPage();
+			CustomLogger.LogInfo(LogLevel.Info, "Login to account");
+			string actualUsername = LoginPagesSteps.Login()
+			.GetLoggedUsername();
+			CustomLogger.LogInfo(LogLevel.Info, "Verify username is right");
+			Assert.That(actualUsername, Is.EqualTo(TestDataReader.GetTestUsername()));
+
+			CustomLogger.LogInfo(LogLevel.Info, "Click to random article and its title");
+			string articleTitle = mainPage.ClickToRandomArticle()
+                .GetTitle();
+
+            CustomLogger.LogInfo(LogLevel.Info, "Check if article is on watchlist");
+            var isArticleOnList = ArticlePageSteps.AddToWatchlist()
+                .IsArticleOnList(articleTitle);
+            Assert.That(isArticleOnList, Is.True);
+		}
     }
 }
