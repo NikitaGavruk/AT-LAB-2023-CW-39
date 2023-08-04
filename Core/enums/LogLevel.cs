@@ -1,4 +1,4 @@
-﻿namespace UI.enums
+﻿namespace Core.enums
 {
     public enum LogLevel
     {
