@@ -9,7 +9,7 @@ namespace UI.Pages
         private static readonly By title = By.CssSelector("#firstHeading>span");
         private static readonly By viewHistoryButton = By.CssSelector("#ca-history>a>span");
         private static readonly By addToWatchlist = By.CssSelector("#ca-watch>a>span");
-		private static readonly By watchlistLink = By.XPath("(//span[text()='Watchlist'])[1]");
+		private static readonly By watchlistLink = By.CssSelector("#pt-watchlist-2>a");
 
 		public string GetTitle()
         {
