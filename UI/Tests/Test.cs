@@ -3,9 +3,6 @@ using UI.Pages;
 using UI.Steps;
 using Core.enums;
 using Core.Utils;
-using System.Threading;
-using UI.Utils;
-using Core;
 
 namespace UI.Tests
 {
@@ -116,6 +113,7 @@ namespace UI.Tests
 
             CustomLogger.LogInfo(LogLevel.Info, "Check if article is on watchlist");
             var isArticleOnList = ArticlePageSteps.AddToWatchlist()
+                .ToViewWachlistTab()
                 .IsArticleOnList(articleTitle);
             Assert.That(isArticleOnList, Is.True);
 		}
