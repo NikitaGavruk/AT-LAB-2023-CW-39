@@ -36,7 +36,7 @@ namespace UI.Tests
         public void FindArticle()
         {
             CustomLogger.LogInfo(LogLevel.Info, "Go to Main Page");
-            string expectedTitle = "Mikhail Lomonosov";
+            string expectedTitle = ExpectedDataReader.GetArticle();
             CustomLogger.LogInfo(LogLevel.Info, $"Start search {expectedTitle}");
             string actualTitle = MainPageSteps.Search(expectedTitle)
             .GetTitle();
@@ -81,18 +81,19 @@ namespace UI.Tests
             Driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/List_of_Wikipedias");
             CustomLogger.LogInfo(LogLevel.Info, "Go to Languages Page");
             string expectedTitleOfRussianLanguage = LanguagePagesSteps.ClickOnListOfWikipediasButton()
-                .ClickRussianLanguageButton().GetTitle();
-            string actualTitleOfRussianLanguage = "Языковые разделы Википедии";
+                .ClickRussianLanguageButton()
+                .GetTitle();
+            string actualTitleOfRussianLanguage = ExpectedDataReader.GetTitleOfRussianLanguage();
             Assert.That(actualTitleOfRussianLanguage, Is.EqualTo(expectedTitleOfRussianLanguage));
             CustomLogger.LogInfo(LogLevel.Info, "Go to Language categories page in Russian");
             string expectedTitleOfEnglishLanguage = LanguagePagesSteps.ClickOnEnglishButton()
                 .GetTitle();
-            string actualTitleOfEnglishlanguage = "List of Wikipedias";
+            string actualTitleOfEnglishlanguage = ExpectedDataReader.GetTitleOfEnglishLanguage();
             Assert.That(actualTitleOfEnglishlanguage, Is.EqualTo(expectedTitleOfEnglishLanguage));
             CustomLogger.LogInfo(LogLevel.Info, "Go to Language categories page in English");
             string expectedTitleOfUzbekLanguage = LanguagePagesSteps.ClickOnUzbekButton()
                 .GetTitle();
-            string actualTitleOfUzbekLanguage = "Vikipediyaga";
+            string actualTitleOfUzbekLanguage = ExpectedDataReader.GetTitleOfUzbekLanguage();
             CustomLogger.LogInfo(LogLevel.Info, "Verify the page is Uzbek version of Wikipedia");
             Assert.That(actualTitleOfUzbekLanguage, Is.EqualTo(expectedTitleOfUzbekLanguage));
         }

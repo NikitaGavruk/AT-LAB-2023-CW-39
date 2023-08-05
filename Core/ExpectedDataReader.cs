@@ -33,5 +33,25 @@ namespace Core
         {
             return GetExpectedData().ExpectedHeadingInAboutPage;
         }
+
+        public static string GetTitleOfRussianLanguage()
+        {
+            return GetExpectedData().TitleOfRussianLanguage;
+        }
+        
+        public static string GetTitleOfEnglishLanguage()
+        {
+            return GetExpectedData().TitleOfEnglishLanguage;
+        }
+        
+        public static string GetTitleOfUzbekLanguage()
+        {
+            return GetExpectedData().TitleOfUzbekLanguage;
+        }
+
+        public static string GetArticle()
+        {
+            return GetExpectedData().ArticleToBeSearched;
+        }
     }
 }
