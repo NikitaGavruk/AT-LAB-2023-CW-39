@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using UI.Utils;
-using UI.WebDriver;
 
 namespace UI.Pages
 {
