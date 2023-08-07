@@ -3,7 +3,7 @@ using System.IO;
 using Core.Model;
 using Newtonsoft.Json;
 
-namespace Core
+namespace Core.Utils
 {
     public static class ExpectedDataReader
     {   
@@ -27,31 +27,6 @@ namespace Core
             var jsonStr = File.ReadAllText(fullPath);
 
             return JsonConvert.DeserializeObject<ExpectedDataModel>(jsonStr);
-        }
-
-        public static string GetAboutPageHeading()
-        {
-            return GetExpectedData().ExpectedHeadingInAboutPage;
-        }
-
-        public static string GetTitleOfRussianLanguage()
-        {
-            return GetExpectedData().TitleOfRussianLanguage;
-        }
-        
-        public static string GetTitleOfEnglishLanguage()
-        {
-            return GetExpectedData().TitleOfEnglishLanguage;
-        }
-        
-        public static string GetTitleOfUzbekLanguage()
-        {
-            return GetExpectedData().TitleOfUzbekLanguage;
-        }
-
-        public static string GetArticle()
-        {
-            return GetExpectedData().ArticleToBeSearched;
         }
     }
 }

@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Model
 {
@@ -12,7 +7,7 @@ namespace Core.Model
         // add properties for your expected data in your test cases
 
         [JsonProperty("expected_heading_in_about_page")]
-        public string ExpectedHeadingInAboutPage { get; set; }
+        public string HeadingInAboutPage { get; set; }
         
         [JsonProperty("expected_title_of_russian_language")]
         public string TitleOfRussianLanguage { get; set; }
