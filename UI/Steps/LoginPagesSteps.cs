@@ -18,6 +18,7 @@ namespace UI.Steps
             loginPage.EnterUsername(TestDataReader.GetTestUsername())
             .EnterPassword(TestDataReader.GetTestUserPassword())
             .ClickToLoginButton();
+
             return new MainPage();
         }
     }
