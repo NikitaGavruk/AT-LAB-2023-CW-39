@@ -24,16 +24,18 @@ namespace Core.Utils
         {
             string path = "";
 
-            if (Environment.CurrentDirectory.EndsWith("AT-LAB-2023-CW-39"))
+            if (AppDomain.CurrentDomain.BaseDirectory.EndsWith("AT-LAB-2023-CW-39"))
             {
-                path = $"{Environment.CurrentDirectory}/Core/resources";
+                path = $"{AppDomain.CurrentDomain.BaseDirectory}/Core/resources";
             }
-            else if (Environment.CurrentDirectory.EndsWith("UI"))
+            else if (AppDomain.CurrentDomain.BaseDirectory.EndsWith("UI"))
             {
-                path = $"{Directory.GetParent(Environment.CurrentDirectory)}/Core/resources";
+                path = $"{Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory)}/Core/resources";
             }
             else
-                throw new DirectoryNotFoundException();
+            {
+                path = $"{AppDomain.CurrentDomain.BaseDirectory}/resources";
+            }
 
             string fileName = "userData.json";
             var configuration = InitConfiguration(path, fileName);
