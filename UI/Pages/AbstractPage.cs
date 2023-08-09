@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UI.WebDriver;
 
 namespace UI.Pages
@@ -13,7 +9,6 @@ namespace UI.Pages
         {
             Browser.GetDriver().Navigate().GoToUrl(url);
             return (T)Activator.CreateInstance(typeof(T));
-
         }
     }
 }

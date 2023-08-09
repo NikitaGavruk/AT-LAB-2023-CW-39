@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium.Interactions;
 using UI.WebDriver;
 using System;
 

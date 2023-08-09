@@ -3,26 +3,24 @@ using UI.Pages;
 using UI.Steps;
 using Core.enums;
 using Core.Utils;
-using System.Threading;
-using UI.Utils;
 
 namespace UI.Tests
 {
     [TestFixture]
-	public class Test : BaseTest
-	{
+    public class Test : BaseTest
+    {
         private static MainPage mainPage = new MainPage();
 
         [Test]
         public void LoginAndLogout()
         {
-			CustomLogger.LogInfo(LogLevel.Info, "Go to Login page");
-			mainPage.ToLoginPage();
-			CustomLogger.LogInfo(LogLevel.Info, "Login to account");
-			string actualUsername = LoginPagesSteps.Login()
-			.GetLoggedUsername();
-			CustomLogger.LogInfo(LogLevel.Info, "Verify username is right");
-			Assert.That(actualUsername, Is.EqualTo(TestDataReader.GetTestUsername()));
+            CustomLogger.LogInfo(LogLevel.Info, "Go to Login page");
+            mainPage.ToLoginPage();
+            CustomLogger.LogInfo(LogLevel.Info, "Login to account");
+            string actualUsername = LoginPagesSteps.Login()
+                .GetLoggedUsername();
+            CustomLogger.LogInfo(LogLevel.Info, "Verify username is right");
+            Assert.That(actualUsername, Is.EqualTo(TestDataReader.GetTestUsername()));
 
             CustomLogger.LogInfo(LogLevel.Info, "Logout from account");
             var hasReturnedToMainPage = MainPageSteps.Logout()
@@ -31,16 +29,16 @@ namespace UI.Tests
 
             CustomLogger.LogInfo(LogLevel.Info, "Verify Main Page is visible");
             Assert.That(hasReturnedToMainPage, Is.True);
-		}
+        }
 
         [Test]
         public void FindArticle()
         {
             CustomLogger.LogInfo(LogLevel.Info, "Go to Main Page");
-            string expectedTitle = "Mikhail Lomonosov";
+            string expectedTitle = ExpectedData.ArticleToBeSearched;
             CustomLogger.LogInfo(LogLevel.Info, $"Start search {expectedTitle}");
             string actualTitle = MainPageSteps.Search(expectedTitle)
-            .GetTitle();
+                .GetTitle();
             CustomLogger.LogInfo(LogLevel.Info, "Verify that loaded right article page");
             Assert.That(expectedTitle, Is.EqualTo(actualTitle));
         }
@@ -52,14 +50,14 @@ namespace UI.Tests
             mainPage.ToLoginPage();
             CustomLogger.LogInfo(LogLevel.Info, "Login to account");
             string actualUsername = LoginPagesSteps.Login()
-            .GetLoggedUsername();
+                .GetLoggedUsername();
             CustomLogger.LogInfo(LogLevel.Info, "Verify username is right");
             Assert.That(actualUsername, Is.EqualTo(TestDataReader.GetTestUsername()));
 
             CustomLogger.LogInfo(LogLevel.Info, "Click to random article");
             bool IsEditPageVisible = mainPage.ClickToRandomArticle()
-            .ClickToViewHistory()
-            .IsPageVisible();
+                .ClickToViewHistory()
+                .IsPageVisible();
             CustomLogger.LogInfo(LogLevel.Info, "Verify Edit page is visible");
             Assert.That(IsEditPageVisible, Is.True);
         }
@@ -68,10 +66,10 @@ namespace UI.Tests
         public void CheckNotLoggedWarningOnEditPage()
         {
             CustomLogger.LogInfo(LogLevel.Info, "Go to Main page");
-            mainPage.ClickToSideMenu();
+            mainPage.OpenSideMenu();
             bool IsNotLoggedWarningDisplayed = mainPage.ClickToRandomArticle()
-            .ClickToEdit()
-            .IsNotLoggedWarningDisplayed();
+                .ClickToEdit()
+                .IsNotLoggedWarningDisplayed();
             CustomLogger.LogInfo(LogLevel.Info, "Verify warning for not logged user displayed");
             Assert.That(IsNotLoggedWarningDisplayed, Is.True);
         }
@@ -82,20 +80,57 @@ namespace UI.Tests
             Driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/List_of_Wikipedias");
             CustomLogger.LogInfo(LogLevel.Info, "Go to Languages Page");
             string expectedTitleOfRussianLanguage = LanguagePagesSteps.ClickOnListOfWikipediasButton()
-                .ClickRussianLanguageButton().GetTitle();
-            string actualTitleOfRussianLanguage = "Языковые разделы Википедии";
+                .ClickRussianLanguageButton()
+                .GetTitle();
+            string actualTitleOfRussianLanguage = ExpectedData.TitleOfRussianLanguage;
             Assert.That(actualTitleOfRussianLanguage, Is.EqualTo(expectedTitleOfRussianLanguage));
             CustomLogger.LogInfo(LogLevel.Info, "Go to Language categories page in Russian");
             string expectedTitleOfEnglishLanguage = LanguagePagesSteps.ClickOnEnglishButton()
                 .GetTitle();
-            string actualTitleOfEnglishlanguage = "List of Wikipedias";
-            Assert.That(actualTitleOfEnglishlanguage, Is.EqualTo(expectedTitleOfEnglishLanguage));
+            string actualTitleOfEnglishLanguage = ExpectedData.TitleOfEnglishLanguage;
+            Assert.That(actualTitleOfEnglishLanguage, Is.EqualTo(expectedTitleOfEnglishLanguage));
             CustomLogger.LogInfo(LogLevel.Info, "Go to Language categories page in English");
             string expectedTitleOfUzbekLanguage = LanguagePagesSteps.ClickOnUzbekButton()
                 .GetTitle();
-            string actualTitleOfUzbekLanguage = "Vikipediyaga";
+            string actualTitleOfUzbekLanguage = ExpectedData.TitleOfUzbekLanguage;
             CustomLogger.LogInfo(LogLevel.Info, "Verify the page is Uzbek version of Wikipedia");
             Assert.That(actualTitleOfUzbekLanguage, Is.EqualTo(expectedTitleOfUzbekLanguage));
+        }
+
+        [Test]
+        public void AddToWatchlist()
+        {
+            CustomLogger.LogInfo(LogLevel.Info, "Go to Login page");
+            mainPage.ToLoginPage();
+            CustomLogger.LogInfo(LogLevel.Info, "Login to account");
+            string actualUsername = LoginPagesSteps.Login()
+            .GetLoggedUsername();
+            CustomLogger.LogInfo(LogLevel.Info, "Verify username is right");
+            Assert.That(actualUsername, Is.EqualTo(TestDataReader.GetTestUsername()));
+
+            CustomLogger.LogInfo(LogLevel.Info, "Click to random article and get its title");
+            string articleTitle = mainPage.ClickToRandomArticle()
+                .GetTitle();
+
+            CustomLogger.LogInfo(LogLevel.Info, "Check if article is on watchlist");
+            var isArticleOnList = ArticlePageSteps.AddToWatchlist()
+                .SwitchToViewWachlistTab()
+                .IsArticleInList(articleTitle);
+            Assert.That(isArticleOnList, Is.True);
+        }
+        
+        [Test]
+        public void DisplayAboutPageTest()
+        {
+            CustomLogger.LogInfo(LogLevel.Info, "Go to Login page");
+            MainPage.ToLoginPage();
+            CustomLogger.LogInfo(LogLevel.Info, "Log into an account");
+            LoginPagesSteps.Login();
+            CustomLogger.LogInfo(LogLevel.Info, "Go to About page");
+            MainPage.ClickAboutWikipediaLink();
+
+            CustomLogger.LogInfo(LogLevel.Info, "Verify About Page is displayed");
+            Assert.AreEqual(ExpectedData.HeadingInAboutPage, AboutPage.GetActualHeading());
         }
     }
 }

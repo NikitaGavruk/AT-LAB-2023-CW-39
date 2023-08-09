@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Core.Model;
+using NUnit.Framework;
 using UI.WebDriver;
 using OpenQA.Selenium;
 using Core.Utils;
@@ -10,21 +11,32 @@ using UI.Utils;
 
 namespace UI.Tests
 {
-	public class BaseTest
+	public abstract class BaseTest
 	{
 		protected static IWebDriver Driver;
 		protected static ICustomLogger CustomLogger;
-		protected static Screenshoter screenshoter;
+		protected static Screenshoter Screenshoter;
+		protected static MainPage MainPage;
+		protected static LoginPage LoginPage;
+		protected static AboutPage AboutPage;
+		protected static ExpectedDataModel ExpectedData;
 
 		[SetUp]
 		public void Setup()
 		{
 			Driver = Browser.GetDriver();
 			CustomLogger = new CustomLogger();
-			screenshoter = new Screenshoter();
+			Screenshoter = new Screenshoter();
 			CustomLogger.LogInfo(LogLevel.Info, $"Start Test [{TestContext.CurrentContext.Test.Name}]");
 			Browser.WindowMaximize();
 			Browser.StartNavigate();
+
+			// Initializing pages
+			MainPage = new MainPage();
+			LoginPage = new LoginPage();
+			AboutPage = new AboutPage();
+
+			ExpectedData = ExpectedDataReader.GetExpectedData();
 		}
 
 		[TearDown]
@@ -37,7 +49,7 @@ namespace UI.Tests
 				var failMessage = $"[{TestContext.CurrentContext.Test.Name}] Test failed with Status: " +
 					TestContext.CurrentContext.Result.Message;                
                 CustomLogger.LogInfo(LogLevel.Error, failMessage);
-                screenshoter.Capture();
+                Screenshoter.Capture();
             }
 			else
 			{

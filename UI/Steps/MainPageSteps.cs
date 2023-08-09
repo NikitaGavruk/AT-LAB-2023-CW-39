@@ -10,7 +10,7 @@ namespace UI.Steps
     public class MainPageSteps
     {
         private static MainPage mainPage = new MainPage();
-
+        
         public static LogoutPage Logout()
         {
             mainPage.CallUserDropdownMenu()
