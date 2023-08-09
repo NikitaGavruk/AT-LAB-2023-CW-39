@@ -20,7 +20,9 @@ namespace Core.Utils
                 path = $"{Directory.GetParent(Environment.CurrentDirectory)}/Core/resources";
             }
             else
-                throw new DirectoryNotFoundException();
+            {
+                path = $"{AppDomain.CurrentDomain.BaseDirectory}/resources";
+            }
 
             var fileName = "expectedData.json";
             var fullPath = path + $"\\{fileName}";

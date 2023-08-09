@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Interfaces;
+using Core.Model;
 
 namespace API.Tests
 {
@@ -18,6 +19,7 @@ namespace API.Tests
         protected APIUtils.API api;
         protected Client client;
         protected ICustomLogger logger;
+        protected static ExpectedDataModel ExpectedData;
 
         [SetUp]
         public void SetUp()
@@ -25,6 +27,8 @@ namespace API.Tests
             client = Client.Instance;
             api = new APIUtils.API();
             logger = new CustomLogger();
+
+            ExpectedData = ExpectedDataReader.GetExpectedData();
         }
 
         [TearDown]

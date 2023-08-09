@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using System.Net;
 using Core.enums;
+using Core.Utils;
 
 namespace API.Tests
 {
@@ -16,7 +17,7 @@ namespace API.Tests
         public void GetArticlePdfRequest()
         {
             string url = "https://en.wikipedia.org/api/rest_v1/page/pdf/Mikhail_Lomonosov";
-            string expectedContentType = "application/pdf";
+            string expectedContentType = ExpectedData.ContentType;
 
             logger.LogInfo(LogLevel.Info, $"Create GET request taking the endpoint {url}");
             RestRequest request = api.CreateGetRequest(url, ("accept", "application/pdf"));

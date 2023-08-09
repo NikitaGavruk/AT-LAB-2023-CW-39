@@ -20,5 +20,8 @@ namespace Core.Model
         
         [JsonProperty("expected_article")]
         public string ArticleToBeSearched { get; set; }
+
+        [JsonProperty("expected_content_type")]
+        public string ContentType { get; set; }
     }
 }
