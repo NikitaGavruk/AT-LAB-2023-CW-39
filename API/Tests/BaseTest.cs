@@ -19,7 +19,6 @@ namespace API.Tests
         protected APIUtils.API api;
         protected Client client;
         protected ICustomLogger logger;
-        protected static ExpectedDataModel ExpectedData;
 
         [SetUp]
         public void SetUp()
@@ -27,8 +26,6 @@ namespace API.Tests
             client = Client.Instance;
             api = new APIUtils.API();
             logger = new CustomLogger();
-
-            ExpectedData = ExpectedDataReader.GetExpectedData();
         }
 
         [TearDown]
