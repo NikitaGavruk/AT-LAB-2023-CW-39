@@ -1,13 +1,12 @@
 ﻿using System;
 using System.IO;
-using Core.Model;
 using Newtonsoft.Json;
 
 namespace Core.Utils
 {
     public static class ExpectedDataReader
     {   
-        public static ExpectedDataModel GetExpectedData()
+        public static T GetExpectedData<T>(string fileName) where T: class
         {
             string path;
 
@@ -23,12 +22,11 @@ namespace Core.Utils
             {
                 path = $"{AppDomain.CurrentDomain.BaseDirectory}/resources";
             }
-
-            var fileName = "expectedData.json";
-            var fullPath = path + $"\\{fileName}";
+            
+            var fullPath = path + $"\\{fileName}.json";
             var jsonStr = File.ReadAllText(fullPath);
 
-            return JsonConvert.DeserializeObject<ExpectedDataModel>(jsonStr);
+            return JsonConvert.DeserializeObject<T>(jsonStr);
         }
     }
 }

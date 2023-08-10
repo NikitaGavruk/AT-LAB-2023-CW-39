@@ -3,11 +3,6 @@ using Core.Utils;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using Core.enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Core.Interfaces;
 using Core.Model;
 
@@ -20,6 +15,7 @@ namespace API.Tests
         protected Client client;
         protected ICustomLogger logger;
         protected static ExpectedDataModel ExpectedData;
+        protected static ApiResourcesModel ApiResourcesData;
 
         [SetUp]
         public void SetUp()
@@ -28,7 +24,8 @@ namespace API.Tests
             api = new APIUtils.API();
             logger = new CustomLogger();
 
-            ExpectedData = ExpectedDataReader.GetExpectedData();
+            ExpectedData = ExpectedDataReader.GetExpectedData<ExpectedDataModel>("expectedData");
+            ApiResourcesData = ExpectedDataReader.GetExpectedData<ApiResourcesModel>("apiResources");
         }
 
         [TearDown]

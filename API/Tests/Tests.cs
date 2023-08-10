@@ -1,12 +1,7 @@
-﻿using API.APIUtils;
-using Newtonsoft.Json.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using RestSharp;
-using System;
-using System.Linq;
-using System.Net;
 using Core.enums;
-using Core.Utils;
+using System.Net;
 
 namespace API.Tests
 {
@@ -14,10 +9,11 @@ namespace API.Tests
     public class Tests : BaseTest
     {
         [Test]
+        [Category("pdf")]
         public void GetArticlePdfRequest()
         {
-            string url = "https://en.wikipedia.org/api/rest_v1/page/pdf/Mikhail_Lomonosov";
-            string expectedContentType = ExpectedData.ContentType;
+            var url = ApiResourcesData.PdfRequestEndpoint;
+            var expectedContentType = ApiResourcesData.PdfRequestContentType;
 
             logger.LogInfo(LogLevel.Info, $"Create GET request taking the endpoint {url}");
             RestRequest request = api.CreateGetRequest(url, ("accept", "application/pdf"));
@@ -27,6 +23,25 @@ namespace API.Tests
 
             logger.LogInfo(LogLevel.Info, "Check if the response content is compare to expected");
             Assert.That(actualContentType, Is.EqualTo(expectedContentType));
+        }
+
+        [Test]
+        [Category("meta")]
+        public void GetTitleMetadataRequest()
+        {
+            var endPoint = ApiResourcesData.MetadataRequestEndpoint;
+            var expectedContentType = ApiResourcesData.MetadataRequestContentType;
+
+            logger.LogInfo(LogLevel.Info, $"Create GET request taking the endpoint {endPoint}");
+            RestRequest request = api.CreateGetRequest(endPoint, ("accept", "application/json"));
+            logger.LogInfo(LogLevel.Info, "Send the request and get the response");
+            RestResponse response = api.GetResponse(request);
+            
+            logger.LogInfo(LogLevel.Info, "Check if the response status code is OK");
+            Assert.That(response.StatusCode == HttpStatusCode.OK);
+            
+            logger.LogInfo(LogLevel.Info, "Check if the response content type matches the expected content type");
+            Assert.That(response.ContentType, Is.EqualTo(expectedContentType));
         }
     }
 }

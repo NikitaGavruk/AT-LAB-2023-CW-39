@@ -36,7 +36,7 @@ namespace UI.Tests
 			LoginPage = new LoginPage();
 			AboutPage = new AboutPage();
 
-			ExpectedData = ExpectedDataReader.GetExpectedData();
+			ExpectedData = ExpectedDataReader.GetExpectedData<ExpectedDataModel>("expectedData");
 		}
 
 		[TearDown]

@@ -5,14 +5,12 @@ using System;
 
 namespace API.APIUtils
 {
-
     public class API
     {
         public static RestRequest request { get; private set; }
 
         private RestRequest AddingParameters(ParameterType type, params (string key, string value)[] header)
         {
-
             foreach ((string key, string value) in header)
             {
                 request.AddParameter(key, value, type);
@@ -27,25 +25,25 @@ namespace API.APIUtils
                 throw new CreateRequestException("The resource is invalid");
             request = new RestRequest(resource, Method.Head);
             AddingParameters(ParameterType.HttpHeader, ("Accept", "application/json"));
+            
             return request;
         }
 
         public RestRequest CreateGetRequest(string resource,
             params (string key, string value)[] headers)
         {
-
             if (resource.Length < 1)
                 throw new CreateRequestException("The resource is invalid");
             request = new RestRequest(resource, Method.Get);
             if (headers != null)
                 AddingParameters(ParameterType.HttpHeader, headers);
+            
             return request;
         }
 
         public RestRequest CreatePostRequest(string resource,
             params (string key, string value)[] headers)
         {
-
             if (resource.Length < 1)
                 throw new CreateRequestException("The resource is invalid");
             request = new RestRequest(resource, Method.Post);
@@ -58,7 +56,6 @@ namespace API.APIUtils
         public RestRequest CreatePostRequest<TModel>(string resource, TModel model,
             params (string key, string value)[] headers) where TModel : class
         {
-
             if (resource.Length < 1)
                 throw new CreateRequestException("The resource is invalid");
             request = new RestRequest(resource, Method.Post);
