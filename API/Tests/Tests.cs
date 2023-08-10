@@ -16,7 +16,7 @@ namespace API.Tests
         [Test]
         public void GetArticlePdfRequest()
         {
-            string url = "https://en.wikipedia.org/api/rest_v1/page/pdf/Mikhail_Lomonosov";
+            string url = "page/pdf/Mikhail_Lomonosov";
             string expectedContentType = ExpectedData.ContentType;
 
             logger.LogInfo(LogLevel.Info, $"Create GET request taking the endpoint {url}");

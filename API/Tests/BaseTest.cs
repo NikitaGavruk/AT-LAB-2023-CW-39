@@ -24,7 +24,7 @@ namespace API.Tests
         [SetUp]
         public void SetUp()
         {
-            //client = Client.Instance;
+            client = Client.Instance;
             api = new APIUtils.API();
             logger = new CustomLogger();
 
@@ -49,7 +49,7 @@ namespace API.Tests
                 logger.LogInfo(LogLevel.Info, statusMessage);
             }
 
-            //Client.QuitClient();
+            Client.QuitClient();
             APIUtils.API.CloseRequest();
         }
     }

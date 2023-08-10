@@ -11,7 +11,6 @@ namespace API.APIUtils
 
         private RestRequest AddingParameters(ParameterType type, params (string key, string value)[] header)
         {
-
             foreach ((string key, string value) in header)
             {
                 request.AddParameter(key, value, type);
@@ -24,8 +23,10 @@ namespace API.APIUtils
         {
             if (resource.Length < 1)
                 throw new CreateRequestException("The resource is invalid");
+
             request = new RestRequest(resource, Method.Head);
             AddingParameters(ParameterType.HttpHeader, ("Accept", "application/json"));
+
             return request;
         }
 
@@ -35,6 +36,7 @@ namespace API.APIUtils
 
             if (resource.Length < 1)
                 throw new CreateRequestException("The resource is invalid");
+
             request = new RestRequest(resource, Method.Get);
             if (headers != null)
                 AddingParameters(ParameterType.HttpHeader, headers);
@@ -61,6 +63,7 @@ namespace API.APIUtils
 
             if (resource.Length < 1)
                 throw new CreateRequestException("The resource is invalid");
+
             request = new RestRequest(resource, Method.Post);
             if (model != null)
                 request.AddJsonBody<TModel>(model);

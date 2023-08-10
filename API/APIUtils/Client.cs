@@ -9,7 +9,7 @@ namespace API.APIUtils
 
         private Client()
         {
-            _Client = new RestClient();
+            _Client = new RestClient("https://en.wikipedia.org/api/rest_v1/");
         }
 
         public static Client Instance => _currentClient ?? (_currentClient = new Client());
