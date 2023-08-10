@@ -5,7 +5,6 @@ using System;
 
 namespace API.APIUtils
 {
-
     public class API
     {
         public static RestRequest request { get; private set; }
@@ -39,6 +38,7 @@ namespace API.APIUtils
             request = new RestRequest(resource, Method.Get);
             if (headers != null)
                 AddingParameters(ParameterType.HttpHeader, headers);
+
             return request;
         }
 
