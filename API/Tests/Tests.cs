@@ -17,7 +17,7 @@ namespace API.Tests
         public void GetArticlePdfRequest()
         {
             string url = "page/pdf/Mikhail_Lomonosov";
-            string expectedContentType = ExpectedData.ContentType;
+            string expectedContentType = TestDataReader.GetExpectedData("contentType");
 
             logger.LogInfo(LogLevel.Info, $"Create GET request taking the endpoint {url}");
             RestRequest request = api.CreateGetRequest(url, ("accept", "application/pdf"));
