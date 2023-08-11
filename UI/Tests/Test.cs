@@ -45,7 +45,7 @@ namespace UI.Tests
         public void FindArticle()
         {
             CustomLogger.LogInfo(LogLevel.Info, "Go to Main Page");
-            string expectedTitle = ExpectedData.ArticleToBeSearched;
+            string expectedTitle = TestDataReader.GetExpectedData("expected_article");
             CustomLogger.LogInfo(LogLevel.Info, $"Start search {expectedTitle}");
             string actualTitle = MainPageSteps.Search(expectedTitle)
                 .GetTitle();
@@ -98,17 +98,17 @@ namespace UI.Tests
             string expectedTitleOfRussianLanguage = LanguagePagesSteps.ClickOnListOfWikipediasButton()
                 .ClickRussianLanguageButton()
                 .GetTitle();
-            string actualTitleOfRussianLanguage = ExpectedData.TitleOfRussianLanguage;
+            string actualTitleOfRussianLanguage = TestDataReader.GetExpectedData("expected_title_of_russian_language");
             Assert.That(actualTitleOfRussianLanguage, Is.EqualTo(expectedTitleOfRussianLanguage));
             CustomLogger.LogInfo(LogLevel.Info, "Go to Language categories page in Russian");
             string expectedTitleOfEnglishLanguage = LanguagePagesSteps.ClickOnEnglishButton()
                 .GetTitle();
-            string actualTitleOfEnglishLanguage = ExpectedData.TitleOfEnglishLanguage;
+            string actualTitleOfEnglishLanguage = TestDataReader.GetExpectedData("expected_title_of_english_language");
             Assert.That(actualTitleOfEnglishLanguage, Is.EqualTo(expectedTitleOfEnglishLanguage));
             CustomLogger.LogInfo(LogLevel.Info, "Go to Language categories page in English");
             string expectedTitleOfUzbekLanguage = LanguagePagesSteps.ClickOnUzbekButton()
                 .GetTitle();
-            string actualTitleOfUzbekLanguage = ExpectedData.TitleOfUzbekLanguage;
+            string actualTitleOfUzbekLanguage = TestDataReader.GetExpectedData("expected_title_of_uzbek_language");
             CustomLogger.LogInfo(LogLevel.Info, "Verify the page is Uzbek version of Wikipedia");
             Assert.That(actualTitleOfUzbekLanguage, Is.EqualTo(expectedTitleOfUzbekLanguage));
         }
@@ -150,7 +150,7 @@ namespace UI.Tests
             MainPage.ClickAboutWikipediaLink();
 
             CustomLogger.LogInfo(LogLevel.Info, "Verify About Page is displayed");
-            Assert.AreEqual(ExpectedData.HeadingInAboutPage, AboutPage.GetActualHeading());
+            Assert.AreEqual(TestDataReader.GetExpectedData("expected_heading_in_about_page"), AboutPage.GetActualHeading());
         }
     }
 }

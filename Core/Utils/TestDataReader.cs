@@ -18,20 +18,8 @@ namespace Core.Utils
         }
 
         public static User GetUserData()
-        {
-            string path = "";
-
-            if (Environment.CurrentDirectory.EndsWith("AT-LAB-2023-CW-39"))
-            {
-                path = $"{Environment.CurrentDirectory}/Core/resources";
-            }
-            else if (Environment.CurrentDirectory.EndsWith("UI"))
-            {
-                path = $"{Directory.GetParent(Environment.CurrentDirectory)}/Core/resources";
-            }
-            else
-                throw new DirectoryNotFoundException();
-
+        {            
+            string path = $"{AppDomain.CurrentDomain.BaseDirectory}/resources";
             string fileName = "userData.json";
             var configuration = InitConfiguration(path, fileName);
             
@@ -41,5 +29,15 @@ namespace Core.Utils
         public static string GetTestUsername() => GetUserData().GetUserName();
 
         public static string GetTestUserPassword() => GetUserData().GetPassword();
+
+        public static string GetExpectedData(string parameter)
+        {
+            string path = $"{AppDomain.CurrentDomain.BaseDirectory}/resources";
+            string fileName = "expectedData.json";
+            var configuration = InitConfiguration(path, fileName);
+
+            return configuration[parameter];
+
+        }
     }
 }

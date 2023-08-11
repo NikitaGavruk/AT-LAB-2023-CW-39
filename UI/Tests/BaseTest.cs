@@ -18,8 +18,7 @@ namespace UI.Tests
 		protected static Screenshoter Screenshoter;
 		protected static MainPage MainPage;
 		protected static LoginPage LoginPage;
-		protected static AboutPage AboutPage;
-		protected static ExpectedDataModel ExpectedData;
+		protected static AboutPage AboutPage;		
 
 		[SetUp]
 		public void Setup()
@@ -35,8 +34,6 @@ namespace UI.Tests
 			MainPage = new MainPage();
 			LoginPage = new LoginPage();
 			AboutPage = new AboutPage();
-
-			ExpectedData = ExpectedDataReader.GetExpectedData();
 		}
 
 		[TearDown]
