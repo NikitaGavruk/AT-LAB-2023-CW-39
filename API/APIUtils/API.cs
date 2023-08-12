@@ -23,9 +23,10 @@ namespace API.APIUtils
         {
             if (resource.Length < 1)
                 throw new CreateRequestException("The resource is invalid");
+            
             request = new RestRequest(resource, Method.Head);
             AddingParameters(ParameterType.HttpHeader, ("Accept", "application/json"));
-            
+
             return request;
         }
 
@@ -34,10 +35,11 @@ namespace API.APIUtils
         {
             if (resource.Length < 1)
                 throw new CreateRequestException("The resource is invalid");
+            
             request = new RestRequest(resource, Method.Get);
             if (headers != null)
                 AddingParameters(ParameterType.HttpHeader, headers);
-            
+
             return request;
         }
 
@@ -58,6 +60,7 @@ namespace API.APIUtils
         {
             if (resource.Length < 1)
                 throw new CreateRequestException("The resource is invalid");
+
             request = new RestRequest(resource, Method.Post);
             if (model != null)
                 request.AddJsonBody<TModel>(model);

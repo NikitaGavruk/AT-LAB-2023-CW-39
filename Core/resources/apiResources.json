@@ -1,6 +1,6 @@
 {
   "pdf_request_endpoint": "page/pdf/Mikhail_Lomonosov",
-  "pdf_request_content_type":"application/pdf",
+  "pdf_request_content_type": "application/pdf",
   "metadata_request_endpoint": "page/title/Lionel_Messi",
   "metadata_request_content_type": "application/json"
 }

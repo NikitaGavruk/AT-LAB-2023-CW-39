@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using RestSharp;
-using Core.enums;
 using System.Net;
+using Core.enums;
 
 namespace API.Tests
 {
@@ -9,7 +9,6 @@ namespace API.Tests
     public class Tests : BaseTest
     {
         [Test]
-        [Category("pdf")]
         public void GetArticlePdfRequest()
         {
             var url = ApiResourcesData.PdfRequestEndpoint;
@@ -26,7 +25,6 @@ namespace API.Tests
         }
 
         [Test]
-        [Category("meta")]
         public void GetTitleMetadataRequest()
         {
             var endPoint = ApiResourcesData.MetadataRequestEndpoint;
