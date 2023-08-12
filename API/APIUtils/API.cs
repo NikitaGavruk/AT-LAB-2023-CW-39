@@ -9,14 +9,12 @@ namespace API.APIUtils
     {
         public static RestRequest request { get; private set; }
 
-        private RestRequest AddingParameters(ParameterType type, params (string key, string value)[] header)
+        private void AddingParameters(ParameterType type, params (string key, string value)[] header)
         {
             foreach ((string key, string value) in header)
             {
                 request.AddParameter(key, value, type);
             }
-
-            return request;
         }
 
         public RestRequest CreateHeadRequest(string resource)
@@ -73,7 +71,6 @@ namespace API.APIUtils
         public RestResponse GetResponse(RestRequest request)
         {
             return Client.GetClient.Execute(request);
-            throw new NullReferenceException("The client or the request are not initialized");
         }
 
         public T DeserializeToClass<T>(RestResponse response) where T : class, new()

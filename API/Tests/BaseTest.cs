@@ -24,7 +24,7 @@ namespace API.Tests
             api = new APIUtils.API();
             logger = new CustomLogger();
             
-            ApiResourcesData = ExpectedDataReader.GetExpectedData<ApiResourcesModel>("apiResources");
+            ApiResourcesData = ExpectedDataReader.GetExpectedData<ApiResourcesModel>(Resources.ApiResources);
         }
 
         [TearDown]

@@ -1,4 +1,5 @@
-﻿using Core.Model;
+﻿using Core.enums;
+using Core.Model;
 using NUnit.Framework;
 using UI.WebDriver;
 using OpenQA.Selenium;
@@ -36,7 +37,7 @@ namespace UI.Tests
 			LoginPage = new LoginPage();
 			AboutPage = new AboutPage();
 
-			ExpectedData = ExpectedDataReader.GetExpectedData<ExpectedDataModel>("expectedData");
+			ExpectedData = ExpectedDataReader.GetExpectedData<ExpectedDataModel>(Resources.ExpectedData);
 		}
 
 		[TearDown]
