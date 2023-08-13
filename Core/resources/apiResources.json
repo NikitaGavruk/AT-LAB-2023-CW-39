@@ -2,5 +2,27 @@
   "pdf_request_endpoint": "page/pdf/Mikhail_Lomonosov",
   "pdf_request_content_type": "application/pdf",
   "metadata_request_endpoint": "page/title/Lionel_Messi",
-  "metadata_request_content_type": "application/json"
+  "metadata_request_content_type": "application/json",
+  "page_items_request_endpoint": "page/",
+  "page_items": {
+    "items": [
+      "data-parsoid",
+      "html",
+      "lint",
+      "media-list",
+      "mobile-html",
+      "mobile-html-offline-resources",
+      "mobile-sections",
+      "mobile-sections-lead",
+      "mobile-sections-remaining",
+      "pdf",
+      "random",
+      "related",
+      "segments",
+      "summary",
+      "talk",
+      "title",
+      "wikitext"
+    ]
+  }
 }
