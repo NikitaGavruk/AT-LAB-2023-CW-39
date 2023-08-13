@@ -28,5 +28,23 @@ namespace API.Tests
             logger.LogInfo(LogLevel.Info, "Check if the response content is compare to expected");
             Assert.That(actualContentType, Is.EqualTo(expectedContentType));
         }
+
+        [Test]
+        public void GetLinterError()
+        {
+            RestRequest request = api.CreateGetRequest("https://en.wikipedia.org/api/rest_v1/page/lint/formula_1");
+            RestResponse response = api.GetResponse(request);
+
+            logger.LogInfo(LogLevel.Info, "Make and API request and get the response");
+            Assert.That(response.StatusCode == HttpStatusCode.OK);
+            logger.LogInfo(LogLevel.Info, "Get the status code and compare it with OK");
+
+            string responseBody = response.Content;
+            logger.LogInfo(LogLevel.Info, "Get response body");
+
+            string expectedResponseBody = "[{\"type\":\"missing-end-tag\",\"dsr\":[120305,120333,3,0],\"params\":{\"name\":\"b\",\"inTable\":true}}]";
+            logger.LogInfo(LogLevel.Info, "Compare it to expected data");
+            Assert.AreEqual(responseBody, expectedResponseBody, "Response body does not match expected result");
+        }
     }
 }
