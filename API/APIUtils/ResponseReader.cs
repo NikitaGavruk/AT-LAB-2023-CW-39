@@ -25,5 +25,10 @@ namespace API.APIUtils
             
             return JObject.Parse(jsonResponse);
         }
+
+        public static string GetJsonResponse(RestResponse response)
+        {
+            return response.Content;
+        }
     }
 }
