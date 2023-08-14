@@ -1,15 +1,10 @@
 ﻿using API.APIUtils;
+using Core.enums;
+using Core.Interfaces;
+using Core.Model;
 using Core.Utils;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
-using Core.enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Core.Interfaces;
-using Core.Model;
 
 namespace API.Tests
 {
@@ -20,12 +15,16 @@ namespace API.Tests
         protected Client client;
         protected ICustomLogger logger;
 
+        protected static ApiResourcesModel ApiResourcesData;
+        
         [SetUp]
         public void SetUp()
         {
             client = Client.Instance;
             api = new APIUtils.API();
             logger = new CustomLogger();
+            
+            ApiResourcesData = ExpectedDataReader.GetExpectedData<ApiResourcesModel>(Resources.ApiResources);
         }
 
         [TearDown]
