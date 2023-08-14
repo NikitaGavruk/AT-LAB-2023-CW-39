@@ -2,6 +2,7 @@
 using RestSharp;
 using System.Net;
 using Core.enums;
+using System.Collections.Generic;
 
 namespace API.Tests
 {
@@ -34,12 +35,28 @@ namespace API.Tests
             RestRequest request = api.CreateGetRequest(endPoint, ("accept", "application/json"));
             logger.LogInfo(LogLevel.Info, "Send the request and get the response");
             RestResponse response = api.GetResponse(request);
-            
+
             logger.LogInfo(LogLevel.Info, "Check if the response status code is OK");
             Assert.That(response.StatusCode == HttpStatusCode.OK);
-            
+
             logger.LogInfo(LogLevel.Info, "Check if the response content type matches the expected content type");
             Assert.That(response.ContentType, Is.EqualTo(expectedContentType));
+        }
+
+        [Test]
+        public void GetApiPageItemsRequest()
+        {
+            string url = ApiResourcesData.PageItemsRequestEndpoint;
+            var expectedContent = ApiResourcesData.PageItems;
+
+            logger.LogInfo(LogLevel.Info, $"Create GET request taking the endpoint {url}");
+            RestRequest request = api.CreateGetRequest(url, ("accept", "application/json"));
+            logger.LogInfo(LogLevel.Info, "Send the request and get the response");
+            RestResponse response = api.GetResponse(request);
+            var actualContent = api.DeserializeToClass<Dictionary<string, string[]>>(response);
+
+            logger.LogInfo(LogLevel.Info, "Check if the response content is compare to expected");
+            Assert.That(actualContent, Is.EqualTo(expectedContent));
         }
     }
 }
