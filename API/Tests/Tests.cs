@@ -1,12 +1,8 @@
-﻿using API.APIUtils;
-using Newtonsoft.Json.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using RestSharp;
-using System;
-using System.Linq;
 using System.Net;
 using Core.enums;
-using Core.Utils;
+using System.Collections.Generic;
 
 namespace API.Tests
 {
@@ -16,8 +12,8 @@ namespace API.Tests
         [Test]
         public void GetArticlePdfRequest()
         {
-            string url = "page/pdf/Mikhail_Lomonosov";
-            string expectedContentType = TestDataReader.GetExpectedData("contentType");
+            var url = ApiResourcesData.PdfRequestEndpoint;
+            var expectedContentType = ApiResourcesData.PdfRequestContentType;
 
             logger.LogInfo(LogLevel.Info, $"Create GET request taking the endpoint {url}");
             RestRequest request = api.CreateGetRequest(url, ("accept", "application/pdf"));
@@ -45,6 +41,40 @@ namespace API.Tests
             string expectedResponseBody = "[{\"type\":\"missing-end-tag\",\"dsr\":[120305,120333,3,0],\"params\":{\"name\":\"b\",\"inTable\":true}}]";
             logger.LogInfo(LogLevel.Info, "Compare it to expected data");
             Assert.AreEqual(responseBody, expectedResponseBody, "Response body does not match expected result");
+        }
+        
+        [Test]
+        public void GetTitleMetadataRequest()
+        {
+            var endPoint = ApiResourcesData.MetadataRequestEndpoint;
+            var expectedContentType = ApiResourcesData.MetadataRequestContentType;
+
+            logger.LogInfo(LogLevel.Info, $"Create GET request taking the endpoint {endPoint}");
+            RestRequest request = api.CreateGetRequest(endPoint, ("accept", "application/json"));
+            logger.LogInfo(LogLevel.Info, "Send the request and get the response");
+            RestResponse response = api.GetResponse(request);
+
+            logger.LogInfo(LogLevel.Info, "Check if the response status code is OK");
+            Assert.That(response.StatusCode == HttpStatusCode.OK);
+
+            logger.LogInfo(LogLevel.Info, "Check if the response content type matches the expected content type");
+            Assert.That(response.ContentType, Is.EqualTo(expectedContentType));
+        }
+
+        [Test]
+        public void GetApiPageItemsRequest()
+        {
+            string url = ApiResourcesData.PageItemsRequestEndpoint;
+            var expectedContent = ApiResourcesData.PageItems;
+
+            logger.LogInfo(LogLevel.Info, $"Create GET request taking the endpoint {url}");
+            RestRequest request = api.CreateGetRequest(url, ("accept", "application/json"));
+            logger.LogInfo(LogLevel.Info, "Send the request and get the response");
+            RestResponse response = api.GetResponse(request);
+            var actualContent = api.DeserializeToClass<Dictionary<string, string[]>>(response);
+
+            logger.LogInfo(LogLevel.Info, "Check if the response content is compare to expected");
+            Assert.That(actualContent, Is.EqualTo(expectedContent));
         }
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Core.Model
+﻿namespace Core.Model
 {
     public class User
     {
@@ -17,7 +11,7 @@ namespace Core.Model
             this.password = password;
         }
 
-        public string GetUserName() => this.username;
-        public string GetPassword() => this.password;
+        public string GetUserName() => username;
+        public string GetPassword() => password;
     }
 }

@@ -2,35 +2,35 @@
 
 namespace UI.Steps
 {
-    public class LanguagePagesSteps
+    public static class LanguagePagesSteps
     {
-        private static ListOfWikipediasPage listOfWikipediasPage = new ListOfWikipediasPage();
-        private static RussianLanguagePage russianLanguagePage = new RussianLanguagePage();
-        private static EnglishLanguagePage englishLanguagePage = new EnglishLanguagePage();
-        private static UzbekLanguagePage uzbekLanguagePage = new UzbekLanguagePage();
+        private static ListOfWikipediasPage _listOfWikipediasPage = new ListOfWikipediasPage();
+        private static RussianLanguagePage _russianLanguagePage = new RussianLanguagePage();
+        private static EnglishLanguagePage _englishLanguagePage = new EnglishLanguagePage();
+        private static UzbekLanguagePage _uzbekLanguagePage = new UzbekLanguagePage();
 
         public static ListOfWikipediasPage ClickOnListOfWikipediasButton()
         {
-            listOfWikipediasPage.ClickPopUpWindowButton();
+            _listOfWikipediasPage.ClickPopUpWindowButton();
             return new ListOfWikipediasPage();
         }
 
         public static ListOfWikipediasPage ClickOnRussianButton()
         {
-            listOfWikipediasPage.ClickRussianLanguageButton();
+            _listOfWikipediasPage.ClickRussianLanguageButton();
             return new ListOfWikipediasPage();
         }
 
         public static EnglishLanguagePage ClickOnEnglishButton()
         {
-            russianLanguagePage.ClickEnglishLanguageButton();
+            _russianLanguagePage.ClickEnglishLanguageButton();
             return new EnglishLanguagePage();
         }
 
         public static UzbekLanguagePage ClickOnUzbekButton()
         {
-            englishLanguagePage.ClickUzbekLanguageButton();
-            uzbekLanguagePage.ClickUzbekWikipediaButton();
+            _englishLanguagePage.ClickUzbekLanguageButton();
+            _uzbekLanguagePage.ClickUzbekWikipediaButton();
             return new UzbekLanguagePage();
         }
 

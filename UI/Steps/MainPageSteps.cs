@@ -1,26 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UI.Pages;
+﻿using UI.Pages;
 
 namespace UI.Steps
 {
-    public class MainPageSteps
+    public static class MainPageSteps
     {
-        private static MainPage mainPage = new MainPage();
+        private static MainPage _mainPage = new MainPage();
         
         public static LogoutPage Logout()
         {
-            mainPage.CallUserDropdownMenu()
+            _mainPage.CallUserDropdownMenu()
             .ClickToLogout();
             return new LogoutPage();
         }
 
         public static ArticlePage Search(string searchText)
         {
-            mainPage.SendKeysToSearchField(searchText)
+            _mainPage.SendKeysToSearchField(searchText)
             .ClickToSearchButton();
             return new ArticlePage();
         }

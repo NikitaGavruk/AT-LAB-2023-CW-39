@@ -2,13 +2,13 @@
 
 namespace UI.Steps
 {
-    public class ArticlePageSteps
+    public static class ArticlePageSteps
     {
-        private static ArticlePage articlePage = new ArticlePage();
+        private static ArticlePage _articlePage = new ArticlePage();
 
         public static WatchlistPage AddToWatchlist()
         {
-            articlePage.AddToWatchlist()
+            _articlePage.AddToWatchlist()
                 .NavigateToWatchlist();
             return new WatchlistPage();
         }
