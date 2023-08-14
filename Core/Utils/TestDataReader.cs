@@ -6,7 +6,7 @@ namespace Core.Utils
 {
     public class TestDataReader
     {
-        public static IConfiguration InitConfiguration(string path, string fileName)
+        private static IConfiguration InitConfiguration(string path, string fileName)
         {
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(path)
@@ -16,10 +16,10 @@ namespace Core.Utils
             return configuration;
         }
 
-        public static User GetUserData()
+        private static User GetUserData()
         {            
-            string path = $"{AppDomain.CurrentDomain.BaseDirectory}/resources";
-            string fileName = "userData.json";
+            var path = $"{AppDomain.CurrentDomain.BaseDirectory}/resources";
+            var fileName = "userData.json";
             var configuration = InitConfiguration(path, fileName);
             
             return new User(configuration["username"], configuration["password"]);
@@ -31,8 +31,8 @@ namespace Core.Utils
 
         public static string GetExpectedData(string parameter)
         {
-            string path = $"{AppDomain.CurrentDomain.BaseDirectory}/resources";
-            string fileName = "expectedData.json";
+            var path = $"{AppDomain.CurrentDomain.BaseDirectory}/resources";
+            var fileName = "expectedData.json";
             var configuration = InitConfiguration(path, fileName);
 
             return configuration[parameter];

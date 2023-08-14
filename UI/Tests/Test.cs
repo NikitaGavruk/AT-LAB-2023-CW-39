@@ -15,7 +15,7 @@ namespace UI.Tests
     [AllureEpic(".NET Automation Lab")]
     public class Test : BaseTest
     {
-        private static MainPage mainPage = new MainPage();
+        private static MainPage _mainPage = new MainPage();
 
         [Test(Description = "Logins and logs out from account")]
         [AllureStory("Logins and logs out from account")]
@@ -23,9 +23,9 @@ namespace UI.Tests
         public void LoginAndLogout()
         {
             CustomLogger.LogInfo(LogLevel.Info, "Go to Login page");
-            mainPage.ToLoginPage();
+            _mainPage.ToLoginPage();
             CustomLogger.LogInfo(LogLevel.Info, "Login to account");
-            string actualUsername = LoginPagesSteps.Login()
+            var actualUsername = LoginPagesSteps.Login()
                 .GetLoggedUsername();
             CustomLogger.LogInfo(LogLevel.Info, "Verify username is right");
             Assert.That(actualUsername, Is.EqualTo(TestDataReader.GetTestUsername()));
@@ -45,9 +45,9 @@ namespace UI.Tests
         public void FindArticle()
         {
             CustomLogger.LogInfo(LogLevel.Info, "Go to Main Page");
-            string expectedTitle = TestDataReader.GetExpectedData("expected_article");
+            var expectedTitle = ExpectedData.ArticleToBeSearched;
             CustomLogger.LogInfo(LogLevel.Info, $"Start search {expectedTitle}");
-            string actualTitle = MainPageSteps.Search(expectedTitle)
+            var actualTitle = MainPageSteps.Search(expectedTitle)
                 .GetTitle();
             CustomLogger.LogInfo(LogLevel.Info, "Verify that loaded right article page");
             Assert.That(expectedTitle, Is.EqualTo(actualTitle));
@@ -59,7 +59,7 @@ namespace UI.Tests
         public void CheckArticleEditHistory()
         {
             CustomLogger.LogInfo(LogLevel.Info, "Go to Login page");
-            mainPage.ToLoginPage();
+            _mainPage.ToLoginPage();
             CustomLogger.LogInfo(LogLevel.Info, "Login to account");
             string actualUsername = LoginPagesSteps.Login()
                 .GetLoggedUsername();
@@ -67,11 +67,11 @@ namespace UI.Tests
             Assert.That(actualUsername, Is.EqualTo(TestDataReader.GetTestUsername()));
 
             CustomLogger.LogInfo(LogLevel.Info, "Click to random article");
-            bool IsEditPageVisible = mainPage.ClickToRandomArticle()
+            bool isEditPageVisible = _mainPage.ClickToRandomArticle()
                 .ClickToViewHistory()
                 .IsPageVisible();
             CustomLogger.LogInfo(LogLevel.Info, "Verify Edit page is visible");
-            Assert.That(IsEditPageVisible, Is.True);
+            Assert.That(isEditPageVisible, Is.True);
         }
 
         [Test(Description = "Checks if user logged or not")]
@@ -80,12 +80,12 @@ namespace UI.Tests
         public void CheckNotLoggedWarningOnEditPage()
         {
             CustomLogger.LogInfo(LogLevel.Info, "Go to Main page");
-            mainPage.OpenSideMenu();
-            bool IsNotLoggedWarningDisplayed = mainPage.ClickToRandomArticle()
+            _mainPage.OpenSideMenu();
+            var isNotLoggedWarningDisplayed = _mainPage.ClickToRandomArticle()
                 .ClickToEdit()
                 .IsNotLoggedWarningDisplayed();
             CustomLogger.LogInfo(LogLevel.Info, "Verify warning for not logged user displayed");
-            Assert.That(IsNotLoggedWarningDisplayed, Is.True);
+            Assert.That(isNotLoggedWarningDisplayed, Is.True);
         }
 
         [Test(Description = "Checks every single language pages are working or not")]
@@ -95,20 +95,20 @@ namespace UI.Tests
         {
             Driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/List_of_Wikipedias");
             CustomLogger.LogInfo(LogLevel.Info, "Go to Languages Page");
-            string expectedTitleOfRussianLanguage = LanguagePagesSteps.ClickOnListOfWikipediasButton()
+            var expectedTitleOfRussianLanguage = LanguagePagesSteps.ClickOnListOfWikipediasButton()
                 .ClickRussianLanguageButton()
                 .GetTitle();
-            string actualTitleOfRussianLanguage = ExpectedData.TitleOfRussianLanguage;
+            var actualTitleOfRussianLanguage = ExpectedData.TitleOfRussianLanguage;
             Assert.That(actualTitleOfRussianLanguage, Is.EqualTo(expectedTitleOfRussianLanguage));
             CustomLogger.LogInfo(LogLevel.Info, "Go to Language categories page in Russian");
-            string expectedTitleOfEnglishLanguage = LanguagePagesSteps.ClickOnEnglishButton()
+            var expectedTitleOfEnglishLanguage = LanguagePagesSteps.ClickOnEnglishButton()
                 .GetTitle();
-            string actualTitleOfEnglishLanguage = ExpectedData.TitleOfEnglishLanguage;
+            var actualTitleOfEnglishLanguage = ExpectedData.TitleOfEnglishLanguage;
             Assert.That(actualTitleOfEnglishLanguage, Is.EqualTo(expectedTitleOfEnglishLanguage));
             CustomLogger.LogInfo(LogLevel.Info, "Go to Language categories page in English");
-            string expectedTitleOfUzbekLanguage = LanguagePagesSteps.ClickOnUzbekButton()
+            var expectedTitleOfUzbekLanguage = LanguagePagesSteps.ClickOnUzbekButton()
                 .GetTitle();
-            string actualTitleOfUzbekLanguage = ExpectedData.TitleOfUzbekLanguage;
+            var actualTitleOfUzbekLanguage = ExpectedData.TitleOfUzbekLanguage;
             CustomLogger.LogInfo(LogLevel.Info, "Verify the page is Uzbek version of Wikipedia");
             Assert.That(actualTitleOfUzbekLanguage, Is.EqualTo(expectedTitleOfUzbekLanguage));
         }
@@ -119,7 +119,7 @@ namespace UI.Tests
         public void AddToWatchlist()
         {
             CustomLogger.LogInfo(LogLevel.Info, "Go to Login page");
-            mainPage.ToLoginPage();
+            _mainPage.ToLoginPage();
             CustomLogger.LogInfo(LogLevel.Info, "Login to account");
             string actualUsername = LoginPagesSteps.Login()
             .GetLoggedUsername();
@@ -127,7 +127,7 @@ namespace UI.Tests
             Assert.That(actualUsername, Is.EqualTo(TestDataReader.GetTestUsername()));
 
             CustomLogger.LogInfo(LogLevel.Info, "Click to random article and get its title");
-            string articleTitle = mainPage.ClickToRandomArticle()
+            string articleTitle = _mainPage.ClickToRandomArticle()
                 .GetTitle();
 
             CustomLogger.LogInfo(LogLevel.Info, "Check if article is on watchlist");

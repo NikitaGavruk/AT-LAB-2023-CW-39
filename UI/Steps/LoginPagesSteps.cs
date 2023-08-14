@@ -1,21 +1,15 @@
-﻿using Core.Model;
-using Core.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Core.Utils;
 using UI.Pages;
 
 namespace UI.Steps
 {
-    public class LoginPagesSteps
+    public static class LoginPagesSteps
     {
-        private static LoginPage loginPage = new LoginPage();
+        private static LoginPage _loginPage = new LoginPage();
 
         public static MainPage Login()
         {
-            loginPage.EnterUsername(TestDataReader.GetTestUsername())
+            _loginPage.EnterUsername(TestDataReader.GetTestUsername())
             .EnterPassword(TestDataReader.GetTestUserPassword())
             .ClickToLoginButton();
 

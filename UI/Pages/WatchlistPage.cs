@@ -15,7 +15,7 @@ namespace UI.Pages
 
         public bool IsArticleInList(string articleTitle)
         {
-            By article = By.XPath($"//a[@title='{articleTitle}']");
+            var article = By.XPath($"//a[@title='{articleTitle}']");
             return WebDriverExtension.IsElementVisible(article);
         }
     }

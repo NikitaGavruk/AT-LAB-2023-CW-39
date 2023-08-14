@@ -18,7 +18,6 @@ namespace UI.Tests
 		protected static ICustomLogger CustomLogger;
 		protected static Screenshoter Screenshoter;
 		protected static MainPage MainPage;
-		protected static LoginPage LoginPage;
 		protected static AboutPage AboutPage;
 		protected static ExpectedDataModel ExpectedData;
 
@@ -34,7 +33,6 @@ namespace UI.Tests
 
 			// Initializing pages
 			MainPage = new MainPage();
-			LoginPage = new LoginPage();
 			AboutPage = new AboutPage();
 
 			ExpectedData = ExpectedDataReader.GetExpectedData<ExpectedDataModel>(Resources.ExpectedData);
@@ -55,7 +53,7 @@ namespace UI.Tests
 			else
 			{
 				var statusMessage = $"[{TestContext.CurrentContext.Test.Name}] Test ended with Status: " +
-					TestContext.CurrentContext.Result.Outcome.Status.ToString();
+					TestContext.CurrentContext.Result.Outcome.Status;
 				CustomLogger.LogInfo(LogLevel.Info, statusMessage);
 			}
 			Browser.QuitBrowser();
