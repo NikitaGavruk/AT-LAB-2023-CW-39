@@ -10,7 +10,7 @@
     <PackageReference Include="MongoDB.Bson.signed" Version="2.19.0" />
     <PackageReference Include="NUnit" Version="3.13.3" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.0" />
     <PackageReference Include="SpecFlow" Version="3.9.74" />
     <PackageReference Include="SpecFlow.Internal.Json" Version="1.0.8" />
     <PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
@@ -19,7 +19,12 @@
 
   <ItemGroup>
     <Folder Include="Features" />
-    <Folder Include="Hooks" />
     <Folder Include="StepDefinitions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\API\API.csproj" />
+    <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\UI\UI.csproj" />
   </ItemGroup>
 </Project>
