@@ -11,6 +11,7 @@ using API.APIUtils;
 
 namespace BDD.Hooks
 {
+    [Binding]
     public class Hooks
     {
         protected IWebDriver Driver;
