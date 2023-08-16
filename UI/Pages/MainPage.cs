@@ -73,5 +73,10 @@ namespace UI.Pages
             WebDriverExtension.ClickOnElement(aboutWikipediaLink);
             return new AboutPage();
         }
+
+        public bool IsSearchFieldVisible()
+        {
+            return WebDriverExtension.IsElementVisible(searchField);
+        }
     }
 }
