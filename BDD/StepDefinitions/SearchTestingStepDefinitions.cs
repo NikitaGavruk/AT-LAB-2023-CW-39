@@ -7,12 +7,10 @@ using System;
 using TechTalk.SpecFlow;
 using UI.Pages;
 using UI.Steps;
-using UI.WebDriver;
 
-namespace SpecFlowProject2.StepDefinitions
+namespace BDD.StepDefinitions
 { 
-    [Binding]
-    //[Allure]
+    [Binding]    
     public class SearchTestingStepDefinitions
     {
         private MainPage mainPage = new MainPage();       
