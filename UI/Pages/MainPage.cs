@@ -78,5 +78,11 @@ namespace UI.Pages
         {
             return WebDriverExtension.IsElementVisible(searchField);
         }
+
+        public ArticlePage SendEnterToSearchField()
+        {
+            WebDriverExtension.ClickOnEnter(searchField);
+            return new ArticlePage();
+        }
     }
 }
