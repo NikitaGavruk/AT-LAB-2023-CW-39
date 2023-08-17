@@ -31,6 +31,7 @@ namespace UI.Steps
         {
             _englishLanguagePage.ClickUzbekLanguageButton();
             _uzbekLanguagePage.ClickUzbekWikipediaButton();
+            
             return new UzbekLanguagePage();
         }
 

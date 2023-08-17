@@ -10,6 +10,7 @@ namespace UI.Steps
         {
             _mainPage.CallUserDropdownMenu()
             .ClickToLogout();
+            
             return new LogoutPage();
         }
 
@@ -17,6 +18,7 @@ namespace UI.Steps
         {
             _mainPage.SendKeysToSearchField(searchText)
             .SendEnterToSearchField();
+            
             return new ArticlePage();
         }
     }

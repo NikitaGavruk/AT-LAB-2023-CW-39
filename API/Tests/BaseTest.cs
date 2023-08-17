@@ -12,15 +12,12 @@ namespace API.Tests
     public class BaseTest
     {
         protected APIUtils.API api;
-        protected Client client;
         protected ICustomLogger logger;
-
         protected static ApiResourcesModel ApiResourcesData;
         
         [SetUp]
         public void SetUp()
         {
-            client = Client.Instance;
             api = new APIUtils.API();
             logger = new CustomLogger();
             

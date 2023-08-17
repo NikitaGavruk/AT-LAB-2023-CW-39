@@ -7,8 +7,7 @@ namespace UI.WebDriver
 {
 	public class Browser
 	{
-		public static BrowserType _currentBrowser;			
-		private static int ImplWait;
+		public static BrowserType _currentBrowser;
 		private static IWebDriver currentInstance;
 		private static Actions _actions;
 		private static IJavaScriptExecutor _jsExecuter;
@@ -16,7 +15,7 @@ namespace UI.WebDriver
 
 		private static void InitParams()
 		{
-			ImplWait = Convert.ToInt32(Configuration.ElementTimeout);
+			Convert.ToInt32(Configuration.ElementTimeout);
 			string browserFromConfig = Configuration.Browser;
 			Enum.TryParse(browserFromConfig, out _currentBrowser);
 		}
@@ -58,16 +57,8 @@ namespace UI.WebDriver
 			currentInstance = null;			
 		}
 
-		public static Actions GetActions()
-		{
-			_actions = new Actions(GetDriver());
-			return _actions;
-		}
-
-		public static IJavaScriptExecutor GetJSExecuter()
-		{
-			_jsExecuter = (IJavaScriptExecutor)GetDriver();
-			return _jsExecuter;
-		}
+		public static Actions GetActions() => new Actions(GetDriver());
+		
+		public static IJavaScriptExecutor GetJSExecuter() => _jsExecuter = (IJavaScriptExecutor)GetDriver();
 	}
 }
