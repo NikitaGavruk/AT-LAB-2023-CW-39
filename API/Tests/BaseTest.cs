@@ -12,6 +12,7 @@ namespace API.Tests
     public class BaseTest
     {
         protected APIUtils.API api;
+        protected Client client;
         protected ICustomLogger logger;
         protected static ApiResourcesModel ApiResourcesData;
         
@@ -19,6 +20,7 @@ namespace API.Tests
         public void SetUp()
         {
             api = new APIUtils.API();
+            client = Client.Instance;
             logger = new CustomLogger();
             
             ApiResourcesData = ExpectedDataReader.GetExpectedData<ApiResourcesModel>(Resources.ApiResources);
