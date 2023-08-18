@@ -36,20 +36,11 @@ namespace UI.WebDriver
 			return currentInstance;
 		}
 
-		public static void WindowMaximize()
-		{
-			webDriver.Manage().Window.Maximize();
-		}
-
-		public static void NavigateTo(string url)
-		{
-			webDriver.Navigate().GoToUrl(url);
-		}
-
-		public static void StartNavigate()
-		{
-			webDriver.Navigate().GoToUrl(Configuration.StartUrl);
-		}
+		public static void WindowMaximize() => webDriver.Manage().Window.Maximize();
+		
+		public static void NavigateTo(string url) => webDriver.Navigate().GoToUrl(url);
+		
+		public static void StartNavigate() => webDriver.Navigate().GoToUrl(Configuration.StartUrl);
 
 		public static void QuitBrowser()
 		{

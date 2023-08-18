@@ -7,6 +7,6 @@ namespace UI.Pages
     {
         private static readonly By notLoggedWarning = By.CssSelector(".mw-halign-left");
 
-        public bool IsNotLoggedWarningDisplayed() =>WebDriverExtension.IsElementVisible(notLoggedWarning);
+        public bool IsNotLoggedWarningDisplayed() => WebDriverExtension.IsElementVisible(notLoggedWarning);
     }
 }
