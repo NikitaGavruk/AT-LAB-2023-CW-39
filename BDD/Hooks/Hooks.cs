@@ -1,5 +1,4 @@
-﻿using Core.enums;
-using Core.Utils;
+﻿using Core.Utils;
 using NUnit.Framework.Interfaces;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -7,7 +6,6 @@ using TechTalk.SpecFlow;
 using UI.Utils;
 using UI.WebDriver;
 using LogLevel = Core.enums.LogLevel;
-using API.APIUtils;
 
 namespace BDD.Hooks
 {

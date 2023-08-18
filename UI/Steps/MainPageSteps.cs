@@ -16,7 +16,7 @@ namespace UI.Steps
         public static ArticlePage Search(string searchText)
         {
             _mainPage.SendKeysToSearchField(searchText)
-            .ClickToSearchButton();
+            .SendEnterToSearchField();
             return new ArticlePage();
         }
     }
