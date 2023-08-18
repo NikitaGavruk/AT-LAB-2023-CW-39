@@ -28,7 +28,7 @@ namespace BDD.Features
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "LoginAndLogour.feature"
+#line 1 "LoginAndLogout.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
