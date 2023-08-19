@@ -7,6 +7,9 @@ namespace UI.Pages
     {
         private static readonly By title = By.CssSelector("#firstHeading");
 
-        public bool IsPageVisible() => WebDriverExtension.IsElementVisible(title);
+        public bool IsPageVisible()
+        {
+            return WebDriverExtension.IsElementVisible(title);
+        }
     }
 }

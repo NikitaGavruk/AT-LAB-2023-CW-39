@@ -10,7 +10,6 @@ namespace UI.Steps
         {
             _articlePage.AddToWatchlist()
                 .NavigateToWatchlist();
-            
             return new WatchlistPage();
         }
     }

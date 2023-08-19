@@ -7,6 +7,9 @@ namespace UI.Pages
     {
         private static readonly By aboutPageHeading = By.Id("firstHeading");
 
-        public string GetActualHeading() => WebDriverExtension.GetTextFromElement(aboutPageHeading);
+        public string GetActualHeading()
+        {
+           return WebDriverExtension.GetTextFromElement(aboutPageHeading);
+        }
     }
 }

@@ -14,13 +14,14 @@ namespace API.Tests
         protected APIUtils.API api;
         protected Client client;
         protected ICustomLogger logger;
+
         protected static ApiResourcesModel ApiResourcesData;
         
         [SetUp]
         public void SetUp()
         {
-            api = new APIUtils.API();
             client = Client.Instance;
+            api = new APIUtils.API();
             logger = new CustomLogger();
             
             ApiResourcesData = ExpectedDataReader.GetExpectedData<ApiResourcesModel>(Resources.ApiResources);
