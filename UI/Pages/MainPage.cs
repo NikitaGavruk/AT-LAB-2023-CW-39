@@ -16,10 +16,7 @@ namespace UI.Pages
         private static readonly By loggedUsername = By.CssSelector("#pt-userpage-2>a>span");
         private static readonly By aboutWikipediaLink = By.Id("n-aboutsite");
 
-        public bool IsPageVisible()
-        {
-            return WebDriverExtension.IsElementVisible(title);
-        }
+        public bool IsPageVisible() => WebDriverExtension.IsElementVisible(title);
 
         public LoginPage ToLoginPage()
         {
@@ -51,10 +48,7 @@ namespace UI.Pages
             return new ArticlePage();
         }
 
-        public string GetLoggedUsername()
-        {
-            return WebDriverExtension.GetTextFromElement(loggedUsername);
-        }
+        public string GetLoggedUsername() => WebDriverExtension.GetTextFromElement(loggedUsername);
 
         public ArticlePage ClickToRandomArticle()
         {

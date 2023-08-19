@@ -11,10 +11,7 @@ namespace UI.Pages
         private static readonly By addToWatchlist = By.CssSelector("#ca-watch>a>span");
         private static readonly By watchlistLink = By.CssSelector("#pt-watchlist-2>a");
 
-        public string GetTitle()
-        {
-            return WebDriverExtension.GetTextFromElement(title);
-        }
+        public string GetTitle() => WebDriverExtension.GetTextFromElement(title);
 
         public EditHistoryPage ClickToViewHistory()
         {
