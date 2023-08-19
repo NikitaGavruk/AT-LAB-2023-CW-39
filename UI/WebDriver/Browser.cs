@@ -7,7 +7,8 @@ namespace UI.WebDriver
 {
 	public class Browser
 	{
-		public static BrowserType _currentBrowser;
+		public static BrowserType _currentBrowser;			
+		private static int ImplWait;
 		private static IWebDriver currentInstance;
 		private static Actions _actions;
 		private static IJavaScriptExecutor _jsExecuter;
@@ -15,7 +16,7 @@ namespace UI.WebDriver
 
 		private static void InitParams()
 		{
-			Convert.ToInt32(Configuration.ElementTimeout);
+			ImplWait = Convert.ToInt32(Configuration.ElementTimeout);
 			string browserFromConfig = Configuration.Browser;
 			Enum.TryParse(browserFromConfig, out _currentBrowser);
 		}
@@ -36,11 +37,20 @@ namespace UI.WebDriver
 			return currentInstance;
 		}
 
-		public static void WindowMaximize() => webDriver.Manage().Window.Maximize();
-		
-		public static void NavigateTo(string url) => webDriver.Navigate().GoToUrl(url);
-		
-		public static void StartNavigate() => webDriver.Navigate().GoToUrl(Configuration.StartUrl);
+		public static void WindowMaximize()
+		{
+			webDriver.Manage().Window.Maximize();
+		}
+
+		public static void NavigateTo(string url)
+		{
+			webDriver.Navigate().GoToUrl(url);
+		}
+
+		public static void StartNavigate()
+		{
+			webDriver.Navigate().GoToUrl(Configuration.StartUrl);
+		}
 
 		public static void QuitBrowser()
 		{
@@ -48,8 +58,16 @@ namespace UI.WebDriver
 			currentInstance = null;			
 		}
 
-		public static Actions GetActions() => new Actions(GetDriver());
-		
-		public static IJavaScriptExecutor GetJSExecuter() => _jsExecuter = (IJavaScriptExecutor)GetDriver();
+		public static Actions GetActions()
+		{
+			_actions = new Actions(GetDriver());
+			return _actions;
+		}
+
+		public static IJavaScriptExecutor GetJSExecuter()
+		{
+			_jsExecuter = (IJavaScriptExecutor)GetDriver();
+			return _jsExecuter;
+		}
 	}
 }

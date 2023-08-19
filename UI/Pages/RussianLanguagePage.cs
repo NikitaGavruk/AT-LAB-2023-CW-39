@@ -7,8 +7,11 @@ namespace UI.Pages
     {
         private static readonly By englishLanguageButton = By.CssSelector(".interwiki-en span");
 
-        public bool EnglishLanguageButtonIsVisible() => WebDriverExtension.IsElementVisible(englishLanguageButton);
-             
+        public bool EnglishLanguageButtonIsVisible()
+        {
+            return WebDriverExtension.IsElementVisible(englishLanguageButton);
+        }
+
         public RussianLanguagePage ClickEnglishLanguageButton()
         {
             WebDriverExtension.ClickOnElement(englishLanguageButton);
