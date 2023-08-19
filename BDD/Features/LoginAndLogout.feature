@@ -1,7 +1,6 @@
 Feature: Login And Logout
     guest user can login and logout
 
-@UI
 Scenario: A user should be able to login and logout
     Given a guest user that not logged in
     When user logs into the system

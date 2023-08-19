@@ -74,10 +74,7 @@ namespace UI.Pages
             return new AboutPage();
         }
 
-        public bool IsSearchFieldVisible()
-        {
-            return WebDriverExtension.IsElementVisible(searchField);
-        }
+        public bool IsSearchFieldVisible() => WebDriverExtension.IsElementVisible(searchField);
 
         public ArticlePage SendEnterToSearchField()
         {
