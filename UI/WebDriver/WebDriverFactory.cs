@@ -7,7 +7,7 @@ using System;
 
 namespace UI.WebDriver
 {
-    public class WebDriverFactory
+    public static class WebDriverFactory
     {
         public enum BrowserType
         {

@@ -33,6 +33,5 @@ namespace UI.Steps
             _uzbekLanguagePage.ClickUzbekWikipediaButton();
             return new UzbekLanguagePage();
         }
-
     }
 }

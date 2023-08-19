@@ -7,16 +7,13 @@ namespace UI.WebDriver
 {
 	public class Browser
 	{
-		public static BrowserType _currentBrowser;			
-		private static int ImplWait;
-		private static IWebDriver currentInstance;
-		private static Actions _actions;
-		private static IJavaScriptExecutor _jsExecuter;
+		private static BrowserType _currentBrowser;
+		private static IWebDriver _currentInstance;
 		private static IWebDriver webDriver => GetDriver();
 
 		private static void InitParams()
 		{
-			ImplWait = Convert.ToInt32(Configuration.ElementTimeout);
+			Convert.ToInt32(Configuration.ElementTimeout);
 			string browserFromConfig = Configuration.Browser;
 			Enum.TryParse(browserFromConfig, out _currentBrowser);
 		}
@@ -24,50 +21,33 @@ namespace UI.WebDriver
 		private Browser()
 		{
 			InitParams();
-			currentInstance = WebDriverFactory.GetDriver(_currentBrowser);
+			_currentInstance = WebDriverFactory.GetDriver(_currentBrowser);
 		}
 
 		public static IWebDriver GetDriver()
 		{
-			if (currentInstance == null)
+			if (_currentInstance == null)
 			{
 				new Browser();
 			}
 
-			return currentInstance;
+			return _currentInstance;
 		}
 
-		public static void WindowMaximize()
-		{
-			webDriver.Manage().Window.Maximize();
-		}
-
-		public static void NavigateTo(string url)
-		{
-			webDriver.Navigate().GoToUrl(url);
-		}
-
-		public static void StartNavigate()
-		{
-			webDriver.Navigate().GoToUrl(Configuration.StartUrl);
-		}
+		public static void WindowMaximize() => webDriver.Manage().Window.Maximize();
+		
+		public static void NavigateTo(string url) => webDriver.Navigate().GoToUrl(url);
+		
+		public static void StartNavigate() => webDriver.Navigate().GoToUrl(Configuration.StartUrl);
 
 		public static void QuitBrowser()
 		{
 			webDriver.Quit();			
-			currentInstance = null;			
+			_currentInstance = null;			
 		}
 
-		public static Actions GetActions()
-		{
-			_actions = new Actions(GetDriver());
-			return _actions;
-		}
-
-		public static IJavaScriptExecutor GetJSExecuter()
-		{
-			_jsExecuter = (IJavaScriptExecutor)GetDriver();
-			return _jsExecuter;
-		}
+		public static Actions GetActions() => new Actions(GetDriver());
+		
+		public static IJavaScriptExecutor GetJSExecuter() => (IJavaScriptExecutor)GetDriver();
 	}
 }
