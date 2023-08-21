@@ -1,7 +1,6 @@
 ﻿Feature: SwitchLanguage
   Switch to different languages
 
-@UI
 Scenario: Switch between different language on Wikipedia
   Given the user is on the Wikipedia website
   When the user switches to Russian language
