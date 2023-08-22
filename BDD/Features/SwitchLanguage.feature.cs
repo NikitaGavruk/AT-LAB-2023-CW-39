@@ -35,7 +35,7 @@ namespace BDD.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "SwitchLanguage", "  Switch to different languages", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "SwitchLanguage", "\tSwitch to different languages as a guest user", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,15 +74,18 @@ namespace BDD.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Switch between different language on Wikipedia")]
-        [NUnit.Framework.CategoryAttribute("UI")]
-        public void SwitchBetweenDifferentLanguageOnWikipedia()
+        [NUnit.Framework.DescriptionAttribute("Switch between different languages on Wikipedia")]
+        [NUnit.Framework.TestCaseAttribute("\"russian\"", "\"Языковые разделы Википедии\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"english\"", "\"List of Wikipedias\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"uzbek\"", "\"Vikipediyaga\"", null)]
+        public void SwitchBetweenDifferentLanguagesOnWikipedia(string language, string expectedTitle, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
-                    "UI"};
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Switch between different language on Wikipedia", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+            argumentsOfScenario.Add("language", language);
+            argumentsOfScenario.Add("expectedTitle", expectedTitle);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Switch between different languages on Wikipedia", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 4
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -92,26 +95,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 5
+ testRunner.Given("the user is on the Wikipedia web page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 6
-  testRunner.Given("the user is on the Wikipedia website", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("the user switches to language", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 7
-  testRunner.When("the user switches to Russian language", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 8
-  testRunner.Then("the page language should be Russian", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 9
-  testRunner.When("the user switches to English language", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 10
-  testRunner.Then("the page language should be English", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 11
-  testRunner.When("the user switches to Uzbek language", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 12
-  testRunner.Then("the page language should be Uzbek", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the page title should be expectedTitle", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

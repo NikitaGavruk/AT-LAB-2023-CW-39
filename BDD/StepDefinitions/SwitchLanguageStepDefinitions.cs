@@ -1,10 +1,7 @@
-﻿using Core.enums;
-using Core.Interfaces;
+﻿using Core.Interfaces;
 using Core.Model;
 using Core.Utils;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using System;
 using TechTalk.SpecFlow;
 using UI.Pages;
@@ -23,52 +20,36 @@ namespace BDD.StepDefinitions
         private ExpectedDataModel expectedData = new ExpectedDataModel();
         private ICustomLogger logger = new CustomLogger();
 
-        [Given(@"the user is on the Wikipedia website")]
-        public void GivenTheUserIsOnTheWikipediaWebsite()
+        [Given(@"the user is on the Wikipedia web page")]
+        public void GivenTheUserIsOnTheWikipediaWebPage()
         {
             Browser.NavigateTo("https://en.wikipedia.org/wiki/List_of_Wikipedias");
             logger.LogInfo(Core.enums.LogLevel.Info, "Checking if website in the right path");
             Assert.That(listOfWikipediasPage.GetTitle, Is.EqualTo("List of Wikipedias"));
         }
 
-        [When(@"the user switches to Russian language")]
-        public void WhenTheUserSwitchesToRussianLanguage()
+        [When(@"the user switches to language")]
+        public void WhenTheUserSwitchesToLanguage()
         {
             logger.LogInfo(Core.enums.LogLevel.Info, "Go to Russian language");
             LanguagePagesSteps.ClickOnListOfWikipediasButton().ClickRussianLanguageButton();
         }
 
-        [Then(@"the page language should be Russian")]
-        public void ThenThePageLanguageShouldBeRussian()
+        [Then(@"the page title should be expectedTitle")]
+        public void ThenThePageTitleShouldBeExpectedTitle()
         {
             logger.LogInfo(Core.enums.LogLevel.Info, "Checking if page loaded");
             Assert.That(russianLanguagePage.GetTitle, Is.EqualTo("Языковые разделы Википедии"));
-        }
 
-        [When(@"the user switches to English language")]
-        public void WhenTheUserSwitchesToEnglishLanguage()
-        {
             logger.LogInfo(Core.enums.LogLevel.Info, "Go to English language");
             LanguagePagesSteps.ClickOnEnglishButton();
-        }
 
-        [Then(@"the page language should be English")]
-        public void ThenThePageLanguageShouldBeEnglish()
-        {
             logger.LogInfo(Core.enums.LogLevel.Info, "Checking if page loaded");
             Assert.That(englishLanguagePage.GetTitle(), Is.EqualTo("List of Wikipedias"));
-        }
 
-        [When(@"the user switches to Uzbek language")]
-        public void WhenTheUserSwitchesToUzbekLanguage()
-        {
             logger.LogInfo(Core.enums.LogLevel.Info, "Go to Uzbek language");
             LanguagePagesSteps.ClickOnUzbekButton();
-        }
 
-        [Then(@"the page language should be Uzbek")]
-        public void ThenThePageLanguageShouldBeUzbek()
-        {
             logger.LogInfo(Core.enums.LogLevel.Info, "Checking if page loaded");
             Assert.That(uzbekLanguagePage.GetTitle(), Is.EqualTo("Vikipediyaga"));
         }

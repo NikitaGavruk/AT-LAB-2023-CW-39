@@ -1,11 +1,12 @@
 ﻿Feature: SwitchLanguage
-  Switch to different languages
+	Switch to different languages as a guest user
 
-Scenario: Switch between different language on Wikipedia
-  Given the user is on the Wikipedia website
-  When the user switches to Russian language
-  Then the page language should be Russian
-  When the user switches to English language
-  Then the page language should be English
-  When the user switches to Uzbek language
-  Then the page language should be Uzbek
+Scenario: Switch between different languages on Wikipedia
+	Given the user is on the Wikipedia web page
+	When the user switches to language
+	Then the page title should be expectedTitle
+	Examples: 
+	| language | expectedTitle |
+	| "russian" | "Языковые разделы Википедии" |
+	| "english" | "List of Wikipedias" |
+	| "uzbek" | "Vikipediyaga" |
