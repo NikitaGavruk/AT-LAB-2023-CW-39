@@ -1,9 +1,7 @@
-﻿using BDD.Hooks;
-using Core.enums;
+﻿using Core.enums;
 using Core.Interfaces;
 using Core.Utils;
 using NUnit.Framework;
-using System;
 using TechTalk.SpecFlow;
 using UI.Pages;
 using UI.Steps;

@@ -13,10 +13,7 @@ namespace UI.Pages
             return WebDriverExtension.GetTextFromElement(title);
         }
 
-        public bool EnglishLanguageButtonIsVisible()
-        {
-            return WebDriverExtension.IsElementVisible(englishLanguageButton);
-        }
+        public bool EnglishLanguageButtonIsVisible() => WebDriverExtension.IsElementVisible(englishLanguageButton);
 
         public RussianLanguagePage ClickEnglishLanguageButton()
         {
