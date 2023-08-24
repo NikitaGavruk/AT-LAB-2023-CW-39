@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{8FD01369-4ED2-4643-85B2-AE8C0EC1952B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{8FD01369-4ED2-4643-85B2-AE8C0EC1952B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{C8DFB209-964E-4A25-9ADD-8B298E31FB48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{C8DFB209-964E-4A25-9ADD-8B298E31FB48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{23F9181C-1177-4439-B19D-0184E34D3E3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI", "UI\UI.csproj", "{23F9181C-1177-4439-B19D-0184E34D3E3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDD", "BDD\BDD.csproj", "{E9E05BA6-D0F4-4E8B-9D3C-FA41C661A269}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BDD", "BDD\BDD.csproj", "{E9E05BA6-D0F4-4E8B-9D3C-FA41C661A269}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidUI", "AndroidUI\AndroidUI.csproj", "{334EE3C7-97AB-4379-BDF2-8768C1B9DAAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{E9E05BA6-D0F4-4E8B-9D3C-FA41C661A269}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9E05BA6-D0F4-4E8B-9D3C-FA41C661A269}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9E05BA6-D0F4-4E8B-9D3C-FA41C661A269}.Release|Any CPU.Build.0 = Release|Any CPU
+		{334EE3C7-97AB-4379-BDF2-8768C1B9DAAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{334EE3C7-97AB-4379-BDF2-8768C1B9DAAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{334EE3C7-97AB-4379-BDF2-8768C1B9DAAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{334EE3C7-97AB-4379-BDF2-8768C1B9DAAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

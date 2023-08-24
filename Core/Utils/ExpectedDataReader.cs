@@ -41,6 +41,8 @@ namespace Core.Utils
                     return "expectedData";
                 case Resources.UserData:
                     return "userData";
+                case Resources.DriverCapabilitys:
+                    return "driverCapabilitys";
                 default:
                     throw new ArgumentException("Invalid file type");
             }
