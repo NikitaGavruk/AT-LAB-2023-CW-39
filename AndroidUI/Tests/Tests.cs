@@ -19,7 +19,8 @@ namespace AndroidUI.Tests
         [SetUp]
         public void SetUp()
         {
-            driver = DriverFactory.GetDriver();
+            //DriverExtensions.LauncApp();
+            //driver = DriverFactory.GetDriver();
         }
 
         [Test]
@@ -28,9 +29,24 @@ namespace AndroidUI.Tests
             DriverExtensions.PressBack();
             DriverExtensions.ClickToElement(By.CssSelector("android.widget.TextView"));
             DriverExtensions.SendKeys(By.CssSelector("android.widget.EditText"), "Mikhail Lomonosov");
-            driver.PressKeyCode(AndroidKeyCode.Keycode_ENTER);
+            //driver.PressKeyCode(AndroidKeyCode.Keycode_ENTER);
+            //driver.FindElementByXPath("//*[@resource-id='org.wikipedia:id/page_list_item_title'][1]").Click();
+            var heads = driver.FindElementByCssSelector(".android.widget.TextView").Text;
 
-            Assert.Pass();
+
+            Assert.That(heads, Is.EqualTo("Mikhail Lomonosov"));
+        }
+
+        [TearDown]
+        public void Quit()
+        {
+            DriverFactory.ExitDriver();
+        }
+
+        [Test]
+        public void Test2()
+        {
+            DriverExtensions.PressBack();
         }
     }
 }

@@ -31,5 +31,15 @@ namespace AndroidUI.Utils
             driver.PressKeyCode(AndroidKeyCode);
         }
 
+        public static void LauncApp()
+        {
+            driver.LaunchApp();
+        }
+
+        public static void CloseApp()
+        {
+            driver.CloseApp();
+        }
+
     }
 }
