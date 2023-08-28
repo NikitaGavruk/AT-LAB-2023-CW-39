@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="resources\driverCapabilitys.json">
+    <None Update="resources\driverCapabilities.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

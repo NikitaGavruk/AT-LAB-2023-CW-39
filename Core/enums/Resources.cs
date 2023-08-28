@@ -5,6 +5,6 @@
         ApiResources,
         ExpectedData,
         UserData,
-        DriverCapabilitys
+        driverCapabilities
     }
 }
