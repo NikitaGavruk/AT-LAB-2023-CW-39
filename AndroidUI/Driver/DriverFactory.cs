@@ -34,7 +34,7 @@ namespace AndroidUI.Driver
             driver = new AndroidDriver<IWebElement>(appiumUrl, appiumOptions);            
         }
 
-        public void ExitDriver()
+        public static void ExitDriver()
         {
             driver.CloseApp();
             driver = null;
