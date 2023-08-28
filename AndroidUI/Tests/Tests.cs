@@ -1,4 +1,5 @@
 ﻿using AndroidUI.Driver;
+using AndroidUI.Pages;
 using AndroidUI.Utils;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
@@ -15,38 +16,31 @@ namespace AndroidUI.Tests
     public class Tests
     {
         private AndroidDriver<IWebElement> driver;
+        private MainPage mainPage = new MainPage();
 
         [SetUp]
         public void SetUp()
         {
-            //DriverExtensions.LauncApp();
-            //driver = DriverFactory.GetDriver();
+
         }
 
         [Test]
-        public void SimpleTest()
+        public void FindArticle()
         {
-            DriverExtensions.PressBack();
-            DriverExtensions.ClickToElement(By.CssSelector("android.widget.TextView"));
-            DriverExtensions.SendKeys(By.CssSelector("android.widget.EditText"), "Mikhail Lomonosov");
-            //driver.PressKeyCode(AndroidKeyCode.Keycode_ENTER);
-            //driver.FindElementByXPath("//*[@resource-id='org.wikipedia:id/page_list_item_title'][1]").Click();
-            var heads = driver.FindElementByCssSelector(".android.widget.TextView").Text;
+            string actualTitle = mainPage.SkipLanguagePopUp().
+                ClickToSearchField().
+                EnterSearchRequest("Mikhail Lomonosov").
+                PressEnter().
+                ClickToFirstSearchPopUp().
+                GetTitle();
 
-
-            Assert.That(heads, Is.EqualTo("Mikhail Lomonosov"));
+            Assert.That(actualTitle, Is.EqualTo("Mikhail Lomonosov"));
         }
 
         [TearDown]
         public void Quit()
         {
             DriverFactory.ExitDriver();
-        }
-
-        [Test]
-        public void Test2()
-        {
-            DriverExtensions.PressBack();
         }
     }
 }

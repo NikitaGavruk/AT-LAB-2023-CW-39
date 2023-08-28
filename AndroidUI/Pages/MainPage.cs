@@ -1,10 +1,6 @@
 ﻿using AndroidUI.Utils;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OpenQA.Selenium.Appium.Android;
 
 namespace AndroidUI.Pages
 {
@@ -12,6 +8,7 @@ namespace AndroidUI.Pages
     {
         private By inactiveSearchField = By.CssSelector("android.widget.TextView");
         private By activeSearchField = By.CssSelector("android.widget.EditText");
+        private By firstSearchPopUp = By.XPath("//*[@resource-id='org.wikipedia:id/page_list_item_title'][1]");
 
         public MainPage ClickToSearchField()
         {
@@ -19,10 +16,33 @@ namespace AndroidUI.Pages
             return new MainPage();
         }
 
-        public MainPage pastSearchRequest(string searchRequest)
+        public MainPage EnterSearchRequest(string searchRequest)
         {
             DriverExtensions.SendKeys(activeSearchField, searchRequest); 
             return new MainPage();
+        }
+
+        public MainPage PressEnter()
+        {
+            DriverExtensions.PressKey(AndroidKeyCode.Keycode_ENTER);
+            return new MainPage();
+        }
+
+        public MainPage SkipLanguagePopUp()
+        {
+            try
+            {
+                DriverExtensions.PressBack();
+            }
+            catch (WebDriverTimeoutException) { }
+
+            return new MainPage();
+        }
+
+        public ArticlePage ClickToFirstSearchPopUp()
+        {
+            DriverExtensions.ClickToElement(firstSearchPopUp);
+            return new ArticlePage();
         }
     }
 }
