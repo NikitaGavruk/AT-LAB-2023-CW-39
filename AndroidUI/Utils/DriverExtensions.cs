@@ -30,6 +30,5 @@ namespace AndroidUI.Utils
             //Use AndoidKeyCode.key to find key code
             driver.PressKeyCode(AndroidKeyCode);
         }
-
     }
 }

@@ -28,7 +28,7 @@ namespace AndroidUI.Tests
                 var failMessage = $"[{TestContext.CurrentContext.Test.Name}] Test failed with Status: " +
                     TestContext.CurrentContext.Result.Message;
                 Logger.LogInfo(LogLevel.Error, failMessage);
-                //Screenshoter.Capture();
+                Screenshoter.Capture();
             }
             else
             {
