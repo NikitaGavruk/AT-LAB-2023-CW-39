@@ -1,9 +1,9 @@
 ﻿using AndroidUI.Driver;
-using Core.enums;
 using Core.Interfaces;
 using Core.Utils;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Extensions;
+
 namespace AndroidUI.Utils
 {
     public class Screenshoter
@@ -11,7 +11,6 @@ namespace AndroidUI.Utils
         private static IWebDriver driver => DriverFactory.GetDriver();
         private static ICustomLogger logger;
         private static string screenshotDirectory;
-
 
         static Screenshoter()
         {
@@ -25,6 +24,7 @@ namespace AndroidUI.Utils
             {
                 string timeStamp = DateTime.Now.ToString("yyyyMMdd_HH_mm_ss");
                 var screenshotFilePath = Path.Combine(screenshotDirectory, $"screenshot_{timeStamp}.png");
+                Directory.CreateDirectory($"{AppDomain.CurrentDomain.BaseDirectory}/Screenshots");
 
                 driver.TakeScreenshot().
                     SaveAsFile(screenshotFilePath, ScreenshotImageFormat.Png);
@@ -34,8 +34,7 @@ namespace AndroidUI.Utils
             catch(Exception ex)
             {
                 logger.LogInfo(Core.enums.LogLevel.Info, $"Failed to save screenshot due to: {ex.Message}");
-            }
-            
+            }            
         }
     }
 }
