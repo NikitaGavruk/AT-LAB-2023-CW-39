@@ -4,6 +4,7 @@
     {
         ApiResources,
         ExpectedData,
-        UserData
+        UserData,
+        driverCapabilities
     }
 }
