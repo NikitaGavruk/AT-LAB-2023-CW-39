@@ -40,6 +40,5 @@ namespace AndroidUI.Utils
         {
             driver.CloseApp();
         }
-
     }
 }

@@ -9,7 +9,7 @@ namespace AndroidUI.Driver
     public class DriverFactory
     {
         private static AndroidDriver<IWebElement> driver;
-        private static DriverCapabilityModel capabilitys = ExpectedDataReader.GetExpectedData<DriverCapabilityModel>(Core.enums.Resources.DriverCapabilitys);
+        private static DriverCapabilityModel capabilities = ExpectedDataReader.GetExpectedData<DriverCapabilityModel>(Core.enums.Resources.driverCapabilities);
 
         public static AndroidDriver<IWebElement> GetDriver()
         {
@@ -25,11 +25,11 @@ namespace AndroidUI.Driver
         {
             Uri appiumUrl = new Uri("http://localhost:4723/wd/hub");
             var appiumOptions = new AppiumOptions();
-            appiumOptions.AddAdditionalCapability("appium:automationName", capabilitys.AutomationName);
-            appiumOptions.AddAdditionalCapability(MobileCapabilityType.DeviceName, capabilitys.DeviceName);
-            appiumOptions.AddAdditionalCapability(MobileCapabilityType.PlatformName, capabilitys.PlatformName); ;
-            appiumOptions.AddAdditionalCapability("appium:appPackage", capabilitys.Package);
-            appiumOptions.AddAdditionalCapability("appium:appActivity", capabilitys.Activity);
+            appiumOptions.AddAdditionalCapability("appium:automationName", capabilities.AutomationName);
+            appiumOptions.AddAdditionalCapability(MobileCapabilityType.DeviceName, capabilities.DeviceName);
+            appiumOptions.AddAdditionalCapability(MobileCapabilityType.PlatformName, capabilities.PlatformName); ;
+            appiumOptions.AddAdditionalCapability("appium:appPackage", capabilities.Package);
+            appiumOptions.AddAdditionalCapability("appium:appActivity", capabilities.Activity);
 
             driver = new AndroidDriver<IWebElement>(appiumUrl, appiumOptions);            
         }
