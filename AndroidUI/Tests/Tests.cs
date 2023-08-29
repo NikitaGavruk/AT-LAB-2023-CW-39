@@ -1,14 +1,11 @@
 ﻿using AndroidUI.Driver;
 using AndroidUI.Pages;
 using AndroidUI.Utils;
+using Core.enums;
+using Core.Model;
+using Core.Utils;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Support.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AndroidUI.Tests
 {
@@ -17,11 +14,12 @@ namespace AndroidUI.Tests
     {
         private AndroidDriver<IWebElement> driver;
         private MainPage mainPage = new MainPage();
+        private ExpectedDataModel ExpectedData;
 
         [SetUp]
         public void SetUp()
         {
-
+            ExpectedData = ExpectedDataReader.GetExpectedData<ExpectedDataModel>(Resources.ExpectedData);
         }
 
         [Test]
@@ -29,12 +27,12 @@ namespace AndroidUI.Tests
         {
             string actualTitle = mainPage.SkipLanguagePopUp().
                 ClickToSearchField().
-                EnterSearchRequest("Mikhail Lomonosov").
+                EnterSearchRequest(ExpectedData.ArticleToBeSearched).
                 PressEnter().
                 ClickToFirstSearchPopUp().
                 GetTitle();
 
-            Assert.That(actualTitle, Is.EqualTo("Mikhail Lomonosov"));
+            Assert.That(actualTitle, Is.EqualTo(ExpectedData.ArticleTitle));
         }
 
         [TearDown]
