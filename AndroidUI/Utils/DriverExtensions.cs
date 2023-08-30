@@ -31,5 +31,16 @@ namespace AndroidUI.Utils
             driver.PressKeyCode(AndroidKeyCode);
         }
 
+        public static void ScrollDown()
+        {
+            //scroll from bottom to top            
+            driver.FindElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollForward()");
+        }
+
+        public static void ScrollUp()
+        {
+            //scroll from top to bottom
+            driver.FindElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollBackward()");
+        }
     }
 }
