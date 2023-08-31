@@ -34,6 +34,19 @@ namespace AndroidUI.Utils
             //Use AndoidKeyCode.key to find key code
             driver.PressKeyCode(AndroidKeyCode);
         }
+
+        public static void LauncApp()
+        {
+            driver.LaunchApp();
+        }
+
+        public static void CloseApp()
+        {
+            driver.CloseApp();
+        }
+
+        public static List<IWebElement> GetElements(By locator) => driver.FindElements(locator).ToList<IWebElement>();        
+
         public static IWebElement GetElement(By locator) => driver.FindElement(locator);
     }
 }
