@@ -5,7 +5,7 @@ using OpenQA.Selenium.Interactions;
 
 namespace AndroidUI.Utils
 {
-    public class DriverExtensions
+    public static class DriverExtensions
     {
         private static AndroidDriver<IWebElement> driver => DriverFactory.GetDriver();
 
@@ -34,7 +34,6 @@ namespace AndroidUI.Utils
             //Use AndoidKeyCode.key to find key code
             driver.PressKeyCode(AndroidKeyCode);
         }
-
         public static IWebElement GetElement(By locator) => driver.FindElement(locator);
     }
 }
