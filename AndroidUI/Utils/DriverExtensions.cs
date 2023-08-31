@@ -23,12 +23,7 @@ namespace AndroidUI.Utils
 
         public static void SendKeys(By locator, string keys)
         {
-            //driver.FindElement(locator).SendKeys(keys);
-            WaitElementIsVisible(locator);
-            var element = driver.FindElement(locator);
-            //element.Click();
-            Actions action = new Actions(driver);
-            action.SendKeys(element, keys).Perform();
+            driver.FindElement(locator).SendKeys(keys);
         }
 
         public static string GetText(By locator) => driver.FindElement(locator).Text;
