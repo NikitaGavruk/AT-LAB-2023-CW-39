@@ -1,6 +1,7 @@
 ﻿using AndroidUI.Driver;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
+using OpenQA.Selenium.Interactions;
 
 namespace AndroidUI.Utils
 {
@@ -15,7 +16,10 @@ namespace AndroidUI.Utils
 
         public static void SendKeys(By locator, string keys)
         {
-            driver.FindElement(locator).SendKeys(keys);
+            var element = GetElement(locator);
+            element.Click();
+            Actions action = new Actions(driver);
+            action.SendKeys(element, keys).Perform();
         }
 
         public static string GetText(By locator) => driver.FindElement(locator).Text;
@@ -25,11 +29,12 @@ namespace AndroidUI.Utils
             driver.Navigate().Back();
         }
 
-        public static void PressKey(int AndroidKeyCode) 
+        public static void PressKey(int AndroidKeyCode)
         {
             //Use AndoidKeyCode.key to find key code
             driver.PressKeyCode(AndroidKeyCode);
         }
 
+        public static IWebElement GetElement(By locator) => driver.FindElement(locator);
     }
 }
