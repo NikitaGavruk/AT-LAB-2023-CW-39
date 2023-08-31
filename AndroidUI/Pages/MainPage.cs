@@ -48,7 +48,7 @@ namespace AndroidUI.Pages
                          select element;
 
             if (articleLinks.Count() == 0)
-                throw new InvalidSelectorException("Element not found");
+                throw new InvalidSelectorException($"Link with \"{title}\" text not found");
 
             articleLinks.First().Click();  
 
