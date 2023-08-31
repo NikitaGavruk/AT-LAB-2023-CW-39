@@ -31,6 +31,10 @@ namespace AndroidUI.Driver
             appiumOptions.AddAdditionalCapability("appium:appPackage", capabilities.Package);
             appiumOptions.AddAdditionalCapability("appium:appActivity", capabilities.Activity);
 
+            //Disable the password save popup by allowing them
+            appiumOptions.AddAdditionalCapability("autoGrantPermissions", capabilities.GrantPermissions);
+            appiumOptions.AddAdditionalCapability("autoAcceptAlerts", capabilities.AcceptAlerts);
+
             driver = new AndroidDriver<IWebElement>(appiumUrl, appiumOptions);            
         }
 

@@ -1,7 +1,9 @@
 {
   "appium:automationName": "UiAutomator2",
-  "deviceName": "NXEDU20326001079",
+  "deviceName": "b672b92f3b8b",
   "platformName": "Android",
   "appium:appPackage": "org.wikipedia",
-  "appium:appActivity": ".main.MainActivity"
+  "appium:appActivity": ".main.MainActivity",
+  "autoGrantPermissions": "true",
+  "autoAcceptAlerts": "true"
 }

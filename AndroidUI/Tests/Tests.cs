@@ -15,5 +15,18 @@
 
             Assert.That(actualTitle, Is.EqualTo(ExpectedData.ArticleTitle));
         }
+
+        [Test]
+        public void DisplayAboutPageTest()
+        {
+            var result = mainPage.ClickSkipText()
+               .ClickMenu()
+               .ClickSettings()
+               .ScrollToElement()
+               .ClickAboutPageLink()
+               .GetTitle();
+
+            Assert.That(result, Is.EqualTo("About"));
+        }
     }
 }
