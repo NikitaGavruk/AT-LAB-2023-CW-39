@@ -10,7 +10,7 @@
                 ClickToSearchField().
                 EnterSearchRequest(ExpectedData.ArticleToBeSearched).
                 PressEnter().
-                ClickToFirstSearchPopUp().
+                ClickToSearchPopup(ExpectedData.ArticleToBeSearched).
                 GetTitle();
 
             Assert.That(actualTitle, Is.EqualTo(ExpectedData.ArticleTitle));

@@ -6,9 +6,9 @@ namespace AndroidUI.Pages
 {
     public class MainPage
     {
-        private By inactiveSearchField = By.CssSelector("android.widget.TextView");
-        private By activeSearchField = By.CssSelector("android.widget.EditText");
-        private By firstSearchPopUp = By.XPath("//*[@resource-id='org.wikipedia:id/page_list_item_title'][1]");
+        private By inactiveSearchField = By.CssSelector(".android.widget.TextView");
+        private By activeSearchField = By.XPath("//*[@resource-id='org.wikipedia:id/search_src_text']");
+        private By searchPopUps = By.XPath("//*[@resource-id='org.wikipedia:id/page_list_item_title']");
 
         public MainPage ClickToSearchField()
         {
@@ -39,9 +39,19 @@ namespace AndroidUI.Pages
             return new MainPage();
         }
 
-        public ArticlePage ClickToFirstSearchPopUp()
+        public ArticlePage ClickToSearchPopup(string title)
         {
-            DriverExtensions.ClickToElement(firstSearchPopUp);
+            var searchResults = DriverExtensions.GetElements(searchPopUps);
+
+            var articleLinks = from element in searchResults
+                         where element.Text == title
+                         select element;
+
+            if (articleLinks.Count() == 0)
+                throw new InvalidSelectorException("Element not found");
+
+            articleLinks.First().Click();  
+
             return new ArticlePage();
         }
     }

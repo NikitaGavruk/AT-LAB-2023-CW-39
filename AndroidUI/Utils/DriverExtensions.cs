@@ -40,5 +40,7 @@ namespace AndroidUI.Utils
         {
             driver.CloseApp();
         }
+
+        public static List<IWebElement> GetElements(By locator) => driver.FindElements(locator).ToList<IWebElement>();        
     }
 }
