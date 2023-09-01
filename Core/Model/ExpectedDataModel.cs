@@ -21,5 +21,14 @@ namespace Core.Model
 
         [JsonProperty("expected_article_title")]
         public string ArticleTitle { get; set; }
+
+        [JsonProperty("search_request_language")]
+        public string EnglishArticleTitle { get; set; }
+
+        [JsonProperty("expected_title_in_russian_lang")]
+        public string ArticleInRussianLang { get; set; }
+
+        [JsonProperty("expected_title_in_uzb_lang")]
+        public string ArticleInUzbLang { get; set; }
     }
 }
