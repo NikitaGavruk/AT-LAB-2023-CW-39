@@ -2,7 +2,6 @@
 using Core.enums;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Appium.MultiTouch;
 
 namespace AndroidUI.Utils
 {
@@ -49,26 +48,13 @@ namespace AndroidUI.Utils
                 }
                 catch (Exception)
                 {
-                    int screenHeight = driver.Manage().Window.Size.Height;
-                    int startX = driver.Manage().Window.Size.Width / 2;
-                    int startY = (int)(screenHeight * 0.8);
-                    int endY = (int)(screenHeight * 0.3);
-                    var action = new TouchAction(driver);
                     if (direction == ScrollDirection.Down)
                     {
-                        action.Press(startX, startY)
-                            .Wait(500)
-                            .MoveTo(startX, endY)
-                            .Release()
-                            .Perform();
+                        driver.FindElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollForward()");
                     }
                     else
                     {
-                        action.Press(startX, endY)
-                            .Wait(500)
-                            .MoveTo(startX, startY)
-                            .Release()
-                            .Perform();
+                        driver.FindElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollBackward()");
                     }
                 }
             }
