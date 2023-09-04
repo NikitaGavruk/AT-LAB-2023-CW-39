@@ -1,4 +1,5 @@
 ﻿using AndroidUI.Utils;
+using Core.enums;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 
@@ -19,6 +20,9 @@ namespace AndroidUI.Pages
         private static readonly By SettingsLinkLocator = By.Id("org.wikipedia:id/main_drawer_settings_container");
         private static readonly By PromptBoxRejectLocator = By.Id("android:id/button2");
 
+        // Add to watchlist locators
+        private By randomizer = By.XPath("//*[contains(@text,'More random articles')]");
+
         public MainPage ClickToSearchField()
         {
             DriverExtensions.ClickToElement(inactiveSearchField);
@@ -27,7 +31,7 @@ namespace AndroidUI.Pages
 
         public MainPage EnterSearchRequest(string searchRequest)
         {
-            DriverExtensions.SendKeys(activeSearchField, searchRequest); 
+            DriverExtensions.SendKeys(activeSearchField, searchRequest);
             return new MainPage();
         }
 
@@ -80,6 +84,13 @@ namespace AndroidUI.Pages
         {
             DriverExtensions.ClickToElement(SettingsLinkLocator);
             return new SettingsPage();
+        }
+
+        public RandomizerPage OpenRandomizerPage()
+        {
+            DriverExtensions.ScrollToElement(randomizer, ScrollDirection.Down);
+            DriverExtensions.ClickToElement(randomizer);
+            return new RandomizerPage();
         }
     }
 }
