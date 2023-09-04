@@ -1,7 +1,7 @@
 {
   "appium:automationName": "UiAutomator2",
-  "deviceName": "b672b92f3b8b",
+  "deviceName": "NXEDU20326001079",
   "platformName": "Android",
   "appium:appPackage": "org.wikipedia",
-  "appium:appActivity": ".main.MainActivity",
+  "appium:appActivity": ".main.MainActivity"
 }
