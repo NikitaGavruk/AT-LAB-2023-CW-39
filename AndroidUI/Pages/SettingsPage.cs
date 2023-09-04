@@ -5,7 +5,7 @@ namespace AndroidUI.Pages
 {
     public class SettingsPage
     {
-        private static readonly By AboutPageLocator = By.XPath("//*[@text='About the Wikipedia app']");
+        private static readonly By AboutPageLocator = By.XPath("//*[@class='android.widget.TextView'][contains(@text, \"Wikipedia app\")]");
 
         public SettingsPage ScrollToElement()
         {

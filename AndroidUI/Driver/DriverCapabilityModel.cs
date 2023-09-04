@@ -19,11 +19,5 @@ namespace AndroidUI.Driver
 
         [JsonProperty("appium:appActivity")]
         public string Activity { get; set; }
-
-        [JsonProperty("autoGrantPermissions")]
-        public string GrantPermissions { get; set; }
-
-        [JsonProperty("autoAcceptAlerts")]
-        public string AcceptAlerts { get; set; }
     }
 }

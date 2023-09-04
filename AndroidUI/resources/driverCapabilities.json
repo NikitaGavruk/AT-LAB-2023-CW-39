@@ -3,12 +3,5 @@
   "deviceName": "b672b92f3b8b",
   "platformName": "Android",
   "appium:appPackage": "org.wikipedia",
-<<<<<<< HEAD
   "appium:appActivity": ".main.MainActivity",
-  "autoGrantPermissions": "true",
-  "autoAcceptAlerts": "true"
 }
-=======
-  "appium:appActivity": ".main.MainActivity"
-}
->>>>>>> master

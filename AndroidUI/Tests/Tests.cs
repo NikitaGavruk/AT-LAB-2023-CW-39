@@ -50,7 +50,6 @@
         }
 
         [Test]
-        [Category("about")]
         public void DisplayAboutPageTest()
         {
             var result = mainPage.ClickSkipText()
@@ -60,7 +59,7 @@
                .ClickAboutPageLink()
                .GetTitle();
 
-            Assert.That(result, Is.EqualTo("About"));
+            Assert.That(result, Is.EqualTo(ExpectedData.ExpectedTitleOfAboutPageInMobile));
         }
     }
 }
