@@ -30,5 +30,8 @@ namespace Core.Model
 
         [JsonProperty("expected_title_in_uzb_lang")]
         public string ArticleInUzbLang { get; set; }
+
+        [JsonProperty("expected_title_of_about_page_in_mobile")]
+        public string ExpectedTitleOfAboutPageInMobile { get; set; }
     }
 }

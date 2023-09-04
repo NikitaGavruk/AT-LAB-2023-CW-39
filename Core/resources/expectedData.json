@@ -7,5 +7,6 @@
   "search_request": "Mikhail Lomonosov",
   "search_request_language": "english language",
   "expected_title_in_russian_lang": "Английский язык",
-  "expected_title_in_uzb_lang": "Инглиз тили"
+  "expected_title_in_uzb_lang": "Инглиз тили",
+  "expected_title_of_about_page_in_mobile":  "About"
 }

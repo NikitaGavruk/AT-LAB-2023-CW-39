@@ -1,5 +1,4 @@
-﻿using AndroidUI.Driver;
-using AndroidUI.Pages;
+﻿using AndroidUI.Pages;
 using AndroidUI.Utils;
 using Core.enums;
 using Core.Interfaces;
@@ -43,7 +42,7 @@ namespace AndroidUI.Tests
                 Logger.LogInfo(LogLevel.Info, statusMessage);
             }
 
-            DriverFactory.ExitDriver();
+            //DriverFactory.ExitDriver();
         }
     }
 }

@@ -2,12 +2,19 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 
 namespace AndroidUI.Utils
 {
     public static class DriverExtensions
     {
         private static AndroidDriver<IWebElement> driver => DriverFactory.GetDriver();
+
+        private static void WaitElementIsVisible(By locator)
+        {
+            WebDriverWait Wait = new WebDriverWait(driver, TimeSpan.FromSeconds(40));
+            Wait.Until(driver => driver.FindElement(locator).Displayed);
+        }
 
         public static void ClickToElement(By locator)
         {
@@ -43,6 +50,10 @@ namespace AndroidUI.Utils
         public static void CloseApp()
         {
             driver.CloseApp();
+        }
+        public static void ScrollToElement()
+        {
+            driver.FindElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"About the Wikipedia app\").instance(0))");
         }
 
         public static List<IWebElement> GetElements(By locator) => driver.FindElements(locator).ToList<IWebElement>();        

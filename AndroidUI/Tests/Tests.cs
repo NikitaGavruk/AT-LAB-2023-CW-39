@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Razor.Hosting;
-
-namespace AndroidUI.Tests
+﻿namespace AndroidUI.Tests
 {
     [TestFixture]
     public class Tests : BaseTest
@@ -8,17 +6,16 @@ namespace AndroidUI.Tests
         [Test]
         public void FindArticle()
         {
-            string actualTitle = mainPage.SkipLanguagePopUp().
-                ClickToSearchField().
-                EnterSearchRequest(ExpectedData.ArticleToBeSearched).
-                PressEnter().
-                ClickToSearchPopup(ExpectedData.ArticleToBeSearched).
-                GetTitle();
+            string actualTitle = mainPage.SkipLanguagePopUp()
+                .ClickToSearchField()
+                .EnterSearchRequest(ExpectedData.ArticleToBeSearched)
+                .PressEnter()
+                .ClickToSearchPopup(ExpectedData.ArticleToBeSearched)
+                .GetTitle();
 
             Assert.That(actualTitle, Is.EqualTo(ExpectedData.ArticleTitle));
         }
 
-        [Test]
         public void SwitchLanguageToRussian()
         {
             mainPage.SkipLanguagePopUp()
@@ -50,6 +47,19 @@ namespace AndroidUI.Tests
                 .ClickLanguagePopUpBtn()
                 .GetTitle();
             Assert.That(isTitleInUzb, Is.EqualTo(ExpectedData.ArticleInUzbLang));
+        }
+
+        [Test]
+        public void DisplayAboutPageTest()
+        {
+            var result = mainPage.ClickSkipText()
+               .ClickMenu()
+               .ClickSettings()
+               .ScrollToElement()
+               .ClickAboutPageLink()
+               .GetTitle();
+
+            Assert.That(result, Is.EqualTo(ExpectedData.ExpectedTitleOfAboutPageInMobile));
         }
     }
 }
