@@ -12,7 +12,6 @@ namespace AndroidUI.Pages
     {
         private By title = By.CssSelector(".android.widget.TextView"); //first element is title
 
-        public string GetTitle() => DriverExtensions.GetText(title);
-           
+        public string GetTitle() => DriverExtensions.GetText(title);      
     }
 }

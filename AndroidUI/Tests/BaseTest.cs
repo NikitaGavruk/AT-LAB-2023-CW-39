@@ -13,6 +13,7 @@ namespace AndroidUI.Tests
     {
         protected ICustomLogger Logger;
         protected MainPage mainPage = new MainPage();
+        protected EnglishLanguagePage languagePage = new EnglishLanguagePage();
         protected ExpectedDataModel ExpectedData;
 
         [SetUp]

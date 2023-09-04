@@ -1,7 +1,6 @@
 ﻿using AndroidUI.Utils;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
-using System.Configuration;
 
 namespace AndroidUI.Pages
 {
@@ -9,8 +8,8 @@ namespace AndroidUI.Pages
     {
         // Find article test locators
         private By inactiveSearchField = By.CssSelector("android.widget.TextView");
-        private By activeSearchField = By.CssSelector("android.widget.EditText");
-        private By firstSearchPopUp = By.XPath("//*[@resource-id='org.wikipedia:id/page_list_item_title'][1]");
+        private By activeSearchField = By.XPath("//*[@resource-id='org.wikipedia:id/search_src_text']");
+        private By searchPopUps = By.XPath("//*[@resource-id='org.wikipedia:id/page_list_item_title']");
 
         // Display about page test locators
         private static readonly By SkipTextLocator = By.Id("org.wikipedia:id/fragment_onboarding_skip_button");
@@ -49,13 +48,23 @@ namespace AndroidUI.Pages
             return new MainPage();
         }
 
-        // Display About Test Methods
-        public ArticlePage ClickToFirstSearchPopUp()
+        public ArticlePage ClickToSearchPopup(string title)
         {
-            DriverExtensions.ClickToElement(firstSearchPopUp);
+            var searchResults = DriverExtensions.GetElements(searchPopUps);
+
+            var articleLinks = from element in searchResults
+                               where element.Text == title
+                               select element;
+
+            if (articleLinks.Count() == 0)
+                throw new InvalidSelectorException($"Link with \"{title}\" text not found");
+
+            articleLinks.First().Click();
+
             return new ArticlePage();
         }
 
+        // Display About Test Methods
         public MainPage ClickSkipText()
         {
             DriverExtensions.ClickToElement(SkipTextLocator);

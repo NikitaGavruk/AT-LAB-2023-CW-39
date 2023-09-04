@@ -6,7 +6,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace AndroidUI.Utils
 {
-    public class DriverExtensions
+    public static class DriverExtensions
     {
         private static AndroidDriver<IWebElement> driver => DriverFactory.GetDriver();
 
@@ -23,7 +23,10 @@ namespace AndroidUI.Utils
 
         public static void SendKeys(By locator, string keys)
         {
-            driver.FindElement(locator).SendKeys(keys);
+            var element = GetElement(locator);
+            element.Click();
+            Actions action = new Actions(driver);
+            action.SendKeys(element, keys).Perform();
         }
 
         public static string GetText(By locator) => driver.FindElement(locator).Text;
@@ -33,7 +36,7 @@ namespace AndroidUI.Utils
             driver.Navigate().Back();
         }
 
-        public static void PressKey(int AndroidKeyCode) 
+        public static void PressKey(int AndroidKeyCode)
         {
             //Use AndoidKeyCode.key to find key code
             driver.PressKeyCode(AndroidKeyCode);
@@ -50,8 +53,11 @@ namespace AndroidUI.Utils
         }
         public static void ScrollToElement()
         {
-            var elem = driver.FindElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"About the Wikipedia app\").instance(0))");
-            elem.Click();
+            driver.FindElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"About the Wikipedia app\").instance(0))");
         }
+
+        public static List<IWebElement> GetElements(By locator) => driver.FindElements(locator).ToList<IWebElement>();        
+
+        public static IWebElement GetElement(By locator) => driver.FindElement(locator);
     }
 }
