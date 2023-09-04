@@ -16,7 +16,22 @@ namespace Core.Model
         [JsonProperty("expected_title_of_uzbek_language")]
         public string TitleOfUzbekLanguage { get; set; }
 
-        [JsonProperty("expected_article")]
+        [JsonProperty("search_request")]
         public string ArticleToBeSearched { get; set; }
+
+        [JsonProperty("expected_article_title")]
+        public string ArticleTitle { get; set; }
+
+        [JsonProperty("search_request_language")]
+        public string EnglishArticleTitle { get; set; }
+
+        [JsonProperty("expected_title_in_russian_lang")]
+        public string ArticleInRussianLang { get; set; }
+
+        [JsonProperty("expected_title_in_uzb_lang")]
+        public string ArticleInUzbLang { get; set; }
+
+        [JsonProperty("expected_title_of_about_page_in_mobile")]
+        public string ExpectedTitleOfAboutPageInMobile { get; set; }
     }
 }

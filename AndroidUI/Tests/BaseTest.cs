@@ -1,7 +1,8 @@
-﻿using AndroidUI.Driver;
+﻿using AndroidUI.Pages;
 using AndroidUI.Utils;
 using Core.enums;
 using Core.Interfaces;
+using Core.Model;
 using Core.Utils;
 using NUnit.Framework.Interfaces;
 
@@ -10,12 +11,16 @@ namespace AndroidUI.Tests
     public abstract class BaseTest
     {
         protected ICustomLogger Logger;
+        protected MainPage mainPage = new MainPage();
+        protected EnglishLanguagePage languagePage = new EnglishLanguagePage();
+        protected ExpectedDataModel ExpectedData;
 
         [SetUp]
         public void Setup()
         {
             Logger = new CustomLogger();
             Logger.LogInfo(LogLevel.Info, $"Start Test [{TestContext.CurrentContext.Test.Name}]");
+            ExpectedData = ExpectedDataReader.GetExpectedData<ExpectedDataModel>(Resources.ExpectedData);
         }
 
         [TearDown]
@@ -37,7 +42,7 @@ namespace AndroidUI.Tests
                 Logger.LogInfo(LogLevel.Info, statusMessage);
             }
 
-            DriverFactory.ExitDriver();
+            //DriverFactory.ExitDriver();
         }
     }
 }

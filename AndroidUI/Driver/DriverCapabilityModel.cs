@@ -19,6 +19,5 @@ namespace AndroidUI.Driver
 
         [JsonProperty("appium:appActivity")]
         public string Activity { get; set; }
-
     }
 }
