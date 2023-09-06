@@ -61,5 +61,17 @@
 
             Assert.That(result, Is.EqualTo(ExpectedData.ExpectedTitleOfAboutPageInMobile));
         }
+
+        [Test]
+        public void AddToWatchlist()
+        {
+            var actualResult = mainPage.SkipLanguagePopUp()
+                .OpenRandomizerPage()
+                .OpenRandomArticle()
+                .ClickWatch()
+                .IsArticleWatched();
+
+            Assert.That(actualResult, Is.True);
+        }
     }
 }

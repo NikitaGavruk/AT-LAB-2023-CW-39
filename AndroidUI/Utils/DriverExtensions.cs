@@ -1,4 +1,5 @@
-﻿using AndroidUI.Driver;
+using AndroidUI.Driver;
+using Core.enums;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Interactions;
@@ -42,7 +43,29 @@ namespace AndroidUI.Utils
             driver.PressKeyCode(AndroidKeyCode);
         }
 
-        public static void LauncApp()
+        public static void ScrollToElement(By element, ScrollDirection direction)
+        {
+            bool elementFound = false;
+            while (!elementFound)
+            {
+                var results = driver.FindElements(element);
+
+                if (results.Count > 0)
+                {
+                    elementFound = true;
+                }
+                else
+                {
+                    string scrollAction = direction == ScrollDirection.Down
+                        ? "scrollForward()"
+                        : "scrollBackward()";
+
+                    driver.FindElementByAndroidUIAutomator($"new UiScrollable(new UiSelector().scrollable(true).instance(0)).{scrollAction}");
+                }
+            }
+        }
+
+        public static void LaunchApp()
         {
             driver.LaunchApp();
         }
@@ -56,7 +79,7 @@ namespace AndroidUI.Utils
             driver.FindElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"About the Wikipedia app\").instance(0))");
         }
 
-        public static List<IWebElement> GetElements(By locator) => driver.FindElements(locator).ToList<IWebElement>();        
+        public static List<IWebElement> GetElements(By locator) => driver.FindElements(locator).ToList<IWebElement>();
 
         public static IWebElement GetElement(By locator) => driver.FindElement(locator);
     }
