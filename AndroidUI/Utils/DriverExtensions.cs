@@ -48,30 +48,24 @@ namespace AndroidUI.Utils
             bool elementFound = false;
             while (!elementFound)
             {
-                try
-                {
-                    var result = driver.FindElement(element);
+                var results = driver.FindElements(element);
 
-                    if (result != null)
-                    {
-                        elementFound = true;
-                    }
-                }
-                catch (Exception)
+                if (results.Count > 0)
                 {
-                    if (direction == ScrollDirection.Down)
-                    {
-                        driver.FindElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollForward()");
-                    }
-                    else
-                    {
-                        driver.FindElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollBackward()");
-                    }
+                    elementFound = true;
+                }
+                else
+                {
+                    string scrollAction = direction == ScrollDirection.Down
+                        ? "scrollForward()"
+                        : "scrollBackward()";
+
+                    driver.FindElementByAndroidUIAutomator($"new UiScrollable(new UiSelector().scrollable(true).instance(0)).{scrollAction}");
                 }
             }
         }
 
-        public static void LauncApp()
+        public static void LaunchApp()
         {
             driver.LaunchApp();
         }
@@ -85,7 +79,7 @@ namespace AndroidUI.Utils
             driver.FindElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"About the Wikipedia app\").instance(0))");
         }
 
-        public static List<IWebElement> GetElements(By locator) => driver.FindElements(locator).ToList<IWebElement>();        
+        public static List<IWebElement> GetElements(By locator) => driver.FindElements(locator).ToList<IWebElement>();
 
         public static IWebElement GetElement(By locator) => driver.FindElement(locator);
     }
