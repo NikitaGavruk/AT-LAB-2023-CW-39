@@ -15,7 +15,6 @@ namespace AndroidUI.Pages
         public ArticlePage ClickWatch()
         {
             DriverExtensions.ClickToElement(optionMenu);
-            Thread.Sleep(1000);
             DriverExtensions.ClickToElement(watchButton);
             return new ArticlePage();
         }
@@ -23,20 +22,10 @@ namespace AndroidUI.Pages
         public bool IsArticleWatched()
         {
             DriverExtensions.ClickToElement(optionMenu);
-            try
-            {
-                var addedIcon = DriverExtensions.GetElement(unwatchButton);
 
-                if (addedIcon != null)
-                {
-                    return true;
-                }
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-            return false;
+            var addedIcon = DriverExtensions.GetElement(unwatchButton);
+
+            return addedIcon != null;
         }
     }
 }
